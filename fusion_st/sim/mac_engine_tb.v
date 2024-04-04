@@ -85,12 +85,20 @@ localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/fusion/fus
 
 // localparam activations_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/test_activations.txt";
 // localparam weights_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/test_weights.txt";
-// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum2b_tb.txt";
-// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum4b_tb.txt";
-// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum8b_tb.txt";
 // localparam sump_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum2b_python.txt";
 // localparam sump_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum4b_python.txt";
 // localparam sump_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum8b_python.txt";
+// localparam sump_2bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum2bx4b_python.txt";
+// localparam sump_4bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum4bx2b_python.txt";
+// localparam sump_4bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum4bx8b_python.txt";
+// localparam sump_8bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum8bx4b_python.txt";
+// localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum2bx8b_python.txt";
+// localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum8bx2b_python.txt";
+
+// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum2b_tb.txt";
+// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum4b_tb.txt";
+// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/fusion/sim/sum8b_tb.txt";
+
 
 //********************* Create pseudo-wires for better representation during low-precision operations *********************//
 
