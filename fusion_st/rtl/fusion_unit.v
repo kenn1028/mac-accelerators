@@ -444,20 +444,20 @@ module fusion_unit (
                         //********* Asymmetric Operation for the Original Fusion Unit ; Creation of Fused-PEs *********//
                         _2bx4b, _4bx2b: begin
                             // Extend sign bit of 10-bit product before accumulating
-                            sum[11:0] = (sum[11:0] + {{2{product[9]}}, product[9:0]});
-                            sum[19:12] = 0;
+                            sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
+                            sum[19:12] <= 0;
                         end
 
                         _4bx8b, _8bx4b: begin
                             // Extend sign bit of 14-bit product before accumulating
-                            sum[15:0] = (sum[15:0] + {{2{product[13]}}, product[13:0]});
-                            sum[19:16] = 0;
+                            sum[15:0] <= (sum[15:0] + {{2{product[13]}}, product[13:0]});
+                            sum[19:16] <= 0;
                         end
 
                         _2bx8b, _8bx2b: begin
                             // Extend sign bit of 12-bit product before accumulating
-                            sum[13:0] = (sum[13:0] + {{2{product[11]}}, product[11:0]});
-                            sum[19:14] = 0;
+                            sum[13:0] <= (sum[13:0] + {{2{product[11]}}, product[11:0]});
+                            sum[19:14] <= 0;
                         end                        
  
                         default: sum <= 0;
