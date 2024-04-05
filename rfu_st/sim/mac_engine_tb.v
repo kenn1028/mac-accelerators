@@ -113,97 +113,97 @@ assign product_2bx2b_ST = product[7:0];
 wire [9:0] sum_2bx2b_ST;
 assign sum_2bx2b_ST = sum[9:0];
 
-// wire [13:0] product_4bx8b_ST;
-// assign product_4bx8b_ST = product[13:0];
-// wire [11:0] product_2bx8b_ST;
-// assign product_2bx8b_ST = product[11:0];
+wire [13:0] product_4bx8b_ST;
+assign product_4bx8b_ST = product[13:0];
+wire [11:0] product_2bx8b_ST;
+assign product_2bx8b_ST = product[11:0];
 
-// wire [15:0] sum_4bx8b_ST;
-// assign sum_4bx8b_ST = sum[15:0];
-// wire [13:0] sum_2bx8b_ST;
-// assign sum_2bx8b_ST = sum[13:0];
+wire [15:0] sum_4bx8b_ST;
+assign sum_4bx8b_ST = sum[15:0];
+wire [13:0] sum_2bx8b_ST;
+assign sum_2bx8b_ST = sum[13:0];
 
 //--------------- Sum Apart Logic (SA) ---------------//
-// // Assume controller knows how to properly access the 128b register based on the "mode" signal
-// wire [19:0] sum_8bx8b; // Output Buffer/Accumulator (8bx8b Default)    
-// wire [11:0] sum_4bx4b [3:0]; // 4 x 12b 
-// wire [7:0] sum_2bx2b [15:0]; // 16 x 8b
+// Assume controller knows how to properly access the 128b register based on the "mode" signal
+wire [19:0] sum_8bx8b; // Output Buffer/Accumulator (8bx8b Default)    
+wire [11:0] sum_4bx4b [3:0]; // 4 x 12b 
+wire [7:0] sum_2bx2b [15:0]; // 16 x 8b
 
-// // Map the continuous 128b register into arrays that properly group low-precision sums
-// genvar i;
-// localparam BITWIDTH_4bx4b = 12;
-// localparam BITWIDTH_2bx2b = 8;
+// Map the continuous 128b register into arrays that properly group low-precision sums
+genvar i;
+localparam BITWIDTH_4bx4b = 12;
+localparam BITWIDTH_2bx2b = 8;
 
-// generate
-//     for (i = 0; i < 16; i = i+1) begin : generate_block_1
-//         if (i == 0) begin : generate_block_2
-//             assign sum_8bx8b = sum[19:0];
-//             assign sum_4bx4b [i][11:0] = sum[11:0];
-//             assign sum_2bx2b [i][7:0] = sum[7:0];
-//         end else if (i > 0 && i < 4) begin : generate_block_3
-//             assign sum_4bx4b [i][11:0] = sum[((BITWIDTH_4bx4b * i) + BITWIDTH_4bx4b - 1):(BITWIDTH_4bx4b * i)];
-//             assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];       
-//         end else if (i >= 4) begin : generate_block_4
-//             assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];               
-//         end
-//     end
-// endgenerate
+generate
+    for (i = 0; i < 16; i = i+1) begin : generate_block_1
+        if (i == 0) begin : generate_block_2
+            assign sum_8bx8b = sum[19:0];
+            assign sum_4bx4b [i][11:0] = sum[11:0];
+            assign sum_2bx2b [i][7:0] = sum[7:0];
+        end else if (i > 0 && i < 4) begin : generate_block_3
+            assign sum_4bx4b [i][11:0] = sum[((BITWIDTH_4bx4b * i) + BITWIDTH_4bx4b - 1):(BITWIDTH_4bx4b * i)];
+            assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];       
+        end else if (i >= 4) begin : generate_block_4
+            assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];               
+        end
+    end
+endgenerate
 
-// // Do the same for the 64b register of the FU current product
-// wire [15:0] product_8bx8b; // 16b   
-// wire [7:0] product_4bx4b [3:0]; // 4 x 8b 
-// wire [3:0] product_2bx2b [15:0]; // 16 x 4b
+// Do the same for the 64b register of the FU current product
+wire [15:0] product_8bx8b; // 16b   
+wire [7:0] product_4bx4b [3:0]; // 4 x 8b 
+wire [3:0] product_2bx2b [15:0]; // 16 x 4b
 
-// genvar j;
-// localparam BITWIDTHp_4bx4b = 8;
-// localparam BITWIDTHp_2bx2b = 4;
-// generate
-//     for (j = 0; j < 16; j = j+1) begin : generate_block_5
-//         if (j == 0) begin : generate_block_6
-//             assign product_8bx8b = product[15:0];
-//             assign product_4bx4b [j][7:0] = product[7:0];
-//             assign product_2bx2b [j][3:0] = product[3:0];
-//         end else if (j > 0 && j < 4) begin : generate_block_7
-//             assign product_4bx4b [j][7:0] = product[((BITWIDTHp_4bx4b * j) + BITWIDTHp_4bx4b - 1):(BITWIDTHp_4bx4b * j)];
-//             assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];       
-//         end else if (j >= 4) begin : generate_block_8
-//             assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];               
-//         end
-//     end
-// endgenerate
+genvar j;
+localparam BITWIDTHp_4bx4b = 8;
+localparam BITWIDTHp_2bx2b = 4;
+generate
+    for (j = 0; j < 16; j = j+1) begin : generate_block_5
+        if (j == 0) begin : generate_block_6
+            assign product_8bx8b = product[15:0];
+            assign product_4bx4b [j][7:0] = product[7:0];
+            assign product_2bx2b [j][3:0] = product[3:0];
+        end else if (j > 0 && j < 4) begin : generate_block_7
+            assign product_4bx4b [j][7:0] = product[((BITWIDTHp_4bx4b * j) + BITWIDTHp_4bx4b - 1):(BITWIDTHp_4bx4b * j)];
+            assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];       
+        end else if (j >= 4) begin : generate_block_8
+            assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];               
+        end
+    end
+endgenerate
 
-// // Do the same for the input activations and weights
-// wire [7:0] activation_8bx8b; // 16b   
-// wire [3:0] activation_4bx4b [1:0]; // 2 x 4b 
-// wire [1:0] activation_2bx2b [3:0]; // 4 x 2b
+// Do the same for the input activations and weights
+wire [7:0] activation_8bx8b; // 16b   
+wire [3:0] activation_4bx4b [1:0]; // 2 x 4b 
+wire [1:0] activation_2bx2b [3:0]; // 4 x 2b
 
-// wire [7:0] weight_8bx8b; // 16b   
-// wire [3:0] weight_4bx4b [1:0]; // 2 x 4b 
-// wire [1:0] weight_2bx2b [3:0]; // 4 x 2b
+wire [7:0] weight_8bx8b; // 16b   
+wire [3:0] weight_4bx4b [1:0]; // 2 x 4b 
+wire [1:0] weight_2bx2b [3:0]; // 4 x 2b
 
-// genvar k;
-// generate
-//     for (k = 0; k < 4; k = k+1) begin : generate_block_9
-//         if (k == 0) begin : generate_block_10
-//             assign activation_8bx8b = curr_activation[7:0];
-//             assign activation_4bx4b [k][3:0] = curr_activation[3:0];
-//             assign activation_2bx2b [k][1:0] = curr_activation[1:0];
+genvar k;
+generate
+    for (k = 0; k < 4; k = k+1) begin : generate_block_9
+        if (k == 0) begin : generate_block_10
+            assign activation_8bx8b = curr_activation[7:0];
+            assign activation_4bx4b [k][3:0] = curr_activation[3:0];
+            assign activation_2bx2b [k][1:0] = curr_activation[1:0];
 
-//             assign weight_8bx8b = curr_weight[7:0];
-//             assign weight_4bx4b [k][3:0] = curr_weight[3:0];
-//             assign weight_2bx2b [k][1:0] = curr_weight[1:0];                 
-//         end else if (k > 0 && k < 2) begin : generate_block_11
-//             assign activation_4bx4b [k][3:0] = curr_activation[((4 * k) + 4 - 1):(4 * k)];
-//             assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];
+            assign weight_8bx8b = curr_weight[7:0];
+            assign weight_4bx4b [k][3:0] = curr_weight[3:0];
+            assign weight_2bx2b [k][1:0] = curr_weight[1:0];                 
+        end else if (k > 0 && k < 2) begin : generate_block_11
+            assign activation_4bx4b [k][3:0] = curr_activation[((4 * k) + 4 - 1):(4 * k)];
+            assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];
 
-//             assign weight_4bx4b [k][3:0] = curr_weight[((4 * k) + 4 - 1):(4 * k)];
-//             assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];       
-//         end else if (k >= 2) begin : generate_block_12
-//             assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];    
-//             assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];               
-//         end
-//     end
-// endgenerate
+            assign weight_4bx4b [k][3:0] = curr_weight[((4 * k) + 4 - 1):(4 * k)];
+            assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];       
+        end else if (k >= 2) begin : generate_block_12
+            assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];    
+            assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];               
+        end
+    end
+endgenerate
 
 //************************************************************************************************************************//
 
