@@ -277,7 +277,6 @@ initial begin
 
     test_precision(_2bx4b, NUMBER_OF_TEST);
     test_precision(_4bx2b, NUMBER_OF_TEST);
-
     test_precision(_4bx8b, NUMBER_OF_TEST);
     test_precision(_8bx4b, NUMBER_OF_TEST);
     test_precision(_2bx8b, NUMBER_OF_TEST);
@@ -342,10 +341,10 @@ always@(negedge clk) begin
     end
 end
 
+//***** For synchronization of test outputs when reading through the generated Python .txt file ($fread) *****//
 reg [127:0] sum_py_sa, sum_tb_sa;
 reg [19:0] sum_py_st, sum_tb_st;
 
-//***** For synchronization of test outputs when reading through the generated Python .txt file ($fread) *****//
 always@(negedge clk) begin
     if (!nrst) begin     
         count_sum <= 0;
