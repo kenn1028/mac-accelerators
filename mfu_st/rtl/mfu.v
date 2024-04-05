@@ -86,10 +86,9 @@ module signbit_ctrl (
     // assign {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = {4{sy}};
 
     //** Configuration/Mode Parameters **//    
-    localparam _2bx2b = 4'd0; localparam _4bx4b = 4'd1; localparam _8bx8b = 4'd2;                   
-    localparam _2bx4b = 4'd3; localparam _4bx2b = 4'd4;
-    localparam _4bx8b = 4'd5; localparam _8bx4b = 4'd6;
-    localparam _2bx8b = 4'd7; localparam _8bx2b = 4'd8;
+    localparam _2bx2b = 4'd0; 
+    localparam _4bx4b = 4'd1; 
+    localparam _8bx8b = 4'd2;                   
 
     // Assign BitBricks that are always connected to the signed/unsigned control signals (Default: 8bx8b Mode)
     always@(*) begin
@@ -100,12 +99,12 @@ module signbit_ctrl (
     //** Control Signal for Input Activations (sx) **//
     always@(*) begin
         case(mode)
-            _2bx2b, _2bx4b, _2bx8b: begin
+            _2bx2b: begin
                 {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
                 {lh_sx[4:1], ll_sx[4:1]} = {8{sx}};
             end
 
-            _4bx2b, _4bx4b, _4bx8b: begin
+            _4bx4b: begin
                 {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
                 {lh_sx[4:1], ll_sx[4:1]} = 8'b0;
             end
@@ -120,14 +119,14 @@ module signbit_ctrl (
     //** Control Signal for Input Weights (sy) **//
     always@(*) begin
         case(mode)
-            _2bx2b, _4bx2b, _8bx2b: begin
+            _2bx2b: begin
                 {hh_sy[2], hh_sy[4]} = {2{sy}};
                 hl_sy[4:1] = {4{sy}};
                 {lh_sy[2], lh_sy[4]} = {2{sy}};
                 ll_sy[4:1] = {4{sy}};               
             end
 
-            _2bx4b, _4bx4b, _8bx4b: begin
+            _4bx4b: begin
                 {hh_sy[2], hh_sy[4]} = {2{sy}};
                 hl_sy[4:1] = 4'b0;
                 {lh_sy[2], lh_sy[4]} = {2{sy}};
