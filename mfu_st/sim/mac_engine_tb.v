@@ -61,10 +61,9 @@ localparam NULL = 0;
 localparam CLK_PERIOD = 150;
 
 // Configuration/Mode Parameters   
-localparam _2bx2b = 4'd0; localparam _4bx4b = 4'd1; localparam _8bx8b = 4'd2;                   
-localparam _2bx4b = 4'd3; localparam _4bx2b = 4'd4;
-localparam _4bx8b = 4'd5; localparam _8bx4b = 4'd6;
-localparam _2bx8b = 4'd7; localparam _8bx2b = 4'd8;
+localparam _2bx2b = 4'd0; 
+localparam _4bx4b = 4'd1; 
+localparam _8bx8b = 4'd2;                   
 
 // Filepaths
 localparam activations_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/test_activations.txt";
@@ -72,12 +71,13 @@ localparam weights_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/
 localparam sump_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2b_python.txt";
 localparam sump_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4b_python.txt";
 localparam sump_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum8b_python.txt";
-localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2bx4b_python.txt";
-localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4bx2b_python.txt";
-localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4bx8b_python.txt";
-localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum8bx4b_python.txt";
-localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2bx8b_python.txt";
-localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum8bx2b_python.txt";
+
+// localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2bx4b_python.txt";
+// localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4bx2b_python.txt";
+// localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4bx8b_python.txt";
+// localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum8bx4b_python.txt";
+// localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2bx8b_python.txt";
+// localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum8bx2b_python.txt";
 
 // localparam sumtb_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum2b_tb.txt";
 // localparam sumtb_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.srcs/sim_1/imports/new/sum4b_tb.txt";
@@ -98,7 +98,6 @@ localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/mfu/mfu.sr
 // localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/mfu/sim/sum2b_tb.txt";
 // localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/mfu/sim/sum4b_tb.txt";
 // localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/mfu/sim/sum8b_tb.txt";
-
 
 //********************* Create pseudo-wires for better representation during low-precision operations *********************//
 
