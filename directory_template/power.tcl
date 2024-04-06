@@ -22,4 +22,4 @@ read_vcd "mac_engine.dump" -strip_path "mac_engine_tb/UUT"
 check_power
 set_power_analysis_options -waveform_format fsdb -waveform_output vcd
 update_power
-report_power > mac_engine_pt_power.rpt
+report_power -hierarchy > mac_engine_pt_power.rpt

@@ -10,7 +10,7 @@ check_design > logs/check_design.log
 source timing.sdc
 compile
 report_constraint -all_violators > logs/constraint_report.log
-report_area > logs/area_report.log
+report_area -hierarchy > logs/area_report.log
 report_timing > logs/timing_report.log
 report_power > logs/power_report.log
 write_file -format verilog -hierarchy -output mapped/mac_engine_mapped.v
