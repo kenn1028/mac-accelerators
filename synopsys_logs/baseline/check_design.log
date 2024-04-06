@@ -1,0 +1,21 @@
+ 
+****************************************
+check_design summary:
+Version:     U-2022.12
+Date:        Sat Apr  6 08:05:36 2024
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      2
+    Unconnected ports (LINT-28)                                     2
+
+Cells                                                               2
+    Cells do not drive (LINT-1)                                     2
+--------------------------------------------------------------------------------
+
+Warning: In design 'mac_engine', cell 'C258' does not drive any nets. (LINT-1)
+Warning: In design 'psmac', cell 'C220' does not drive any nets. (LINT-1)
+Warning: In design 'mac_engine', port 'sx' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'sy' is not connected to any nets. (LINT-28)
+1

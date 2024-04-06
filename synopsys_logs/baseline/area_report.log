@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : area
+Design : mac_engine
+Version: U-2022.12
+Date   : Sat Apr  6 08:05:43 2024
+****************************************
+
+Library(s) Used:
+
+    GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+
+Number of ports:                          335
+Number of nets:                           808
+Number of cells:                          456
+Number of combinational cells:            382
+Number of sequential cells:                67
+Number of macros/black boxes:               0
+Number of buf/inv:                         53
+Number of references:                      22
+
+Combinational area:                202.953599
+Buf/Inv area:                        7.377600
+Noncombinational area:              88.600798
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                   291.554398
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  --------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-    Noncombi-  Black-
+                                  Total      Total    national  national   boxes   Design
+--------------------------------  ---------  -------  --------  ---------  ------  --------------------------------
+mac_engine                         291.5544    100.0   31.5984    56.8632  0.0000  mac_engine
+PSMAC1                             188.4768     64.6   25.3344    31.7376  0.0000  psmac
+PSMAC1/add_122                      26.2392      9.0   26.2392     0.0000  0.0000  psmac_DW01_add_0
+PSMAC1/simple_mult                 105.1656     36.1    0.1392     0.0000  0.0000  mult
+PSMAC1/simple_mult/mult_28         105.0264     36.0   90.7584     0.0000  0.0000  mult_DW02_mult_0
+PSMAC1/simple_mult/mult_28/FS_1     14.2680      4.9   14.2680     0.0000  0.0000  mult_DW01_add_0_DW01_add_1
+add_79                               7.4472      2.6    7.4472     0.0000  0.0000  mac_engine_DW01_inc_0
+add_85_aco                           7.1688      2.5    7.1688     0.0000  0.0000  mac_engine_DW01_inc_1_DW01_inc_2
+--------------------------------  ---------  -------  --------  ---------  ------  --------------------------------
+Total                                                 202.9536    88.6008  0.0000
+
+1

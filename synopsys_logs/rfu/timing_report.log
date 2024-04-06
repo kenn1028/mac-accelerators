@@ -1,0 +1,111 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mac_engine
+Version: U-2022.12
+Date   : Fri Apr  5 23:24:27 2024
+****************************************
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: top
+
+  Startpoint: mode[1] (input port clocked by clk)
+  Endpoint: RFU1/sum_reg[19]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                  200.00     200.00 f
+  mode[1] (in)                                            0.00     200.00 f
+  RFU1/mode[1] (rfu)                                      0.00     200.00 f
+  RFU1/sign_ctrl/mode[1] (signbit_ctrl)                   0.00     200.00 f
+  RFU1/sign_ctrl/U5/Z (SC7P5T_NR3X1_CSC20L)              18.15     218.15 r
+  RFU1/sign_ctrl/U7/Z (SC7P5T_AN2X1_CSC20L)              34.28     252.43 r
+  RFU1/sign_ctrl/hh_sy[4] (signbit_ctrl)                  0.00     252.43 r
+  RFU1/bb_hh_4/sy (s_bitbrick_4)                          0.00     252.43 r
+  RFU1/bb_hh_4/U10/Z (SC7P5T_AN2X2_A_CSC20L)             26.56     278.99 r
+  RFU1/bb_hh_4/U9/Z (SC7P5T_ND2X1_MR_CSC20L)             14.39     293.38 f
+  RFU1/bb_hh_4/FA_p2/b (full_adder_12)                    0.00     293.38 f
+  RFU1/bb_hh_4/FA_p2/U3/Z (SC7P5T_XOR2X2_CSC20L)         39.41     332.79 r
+  RFU1/bb_hh_4/FA_p2/U2/Z (SC7P5T_AO22X1_A_CSC20L)       34.64     367.43 r
+  RFU1/bb_hh_4/FA_p2/co (full_adder_12)                   0.00     367.43 r
+  RFU1/bb_hh_4/FA_p3b/ci (full_adder_11)                  0.00     367.43 r
+  RFU1/bb_hh_4/FA_p3b/U1/Z (SC7P5T_XOR2X2_CSC20L)        40.78     408.21 f
+  RFU1/bb_hh_4/FA_p3b/sum (full_adder_11)                 0.00     408.21 f
+  RFU1/bb_hh_4/FA_p3a/a (full_adder_10)                   0.00     408.21 f
+  RFU1/bb_hh_4/FA_p3a/U3/Z (SC7P5T_XOR2X2_CSC20L)        28.99     437.20 r
+  RFU1/bb_hh_4/FA_p3a/U1/Z (SC7P5T_XOR2X2_CSC20L)        38.45     475.65 f
+  RFU1/bb_hh_4/FA_p3a/sum (full_adder_10)                 0.00     475.65 f
+  RFU1/bb_hh_4/p[3] (s_bitbrick_4)                        0.00     475.65 f
+  RFU1/U65/CO (SC7P5T_FAX1_A_CSC20L)                     41.14     516.79 f
+  RFU1/U205/Z (SC7P5T_AOI222X1_CSC20L)                   34.91     551.70 r
+  RFU1/U204/Z (SC7P5T_XNR3X1_CSC20L)                     84.31     636.01 r
+  RFU1/add_6_root_add_0_root_add_283_15/B[5] (rfu_DW01_add_20)
+                                                          0.00     636.01 r
+  RFU1/add_6_root_add_0_root_add_283_15/U1_5/CO (SC7P5T_FAX1_A_CSC20L)
+                                                         53.62     689.63 r
+  RFU1/add_6_root_add_0_root_add_283_15/U1_6/S (SC7P5T_FAX1_A_CSC20L)
+                                                         62.16     751.79 f
+  RFU1/add_6_root_add_0_root_add_283_15/SUM[6] (rfu_DW01_add_20)
+                                                          0.00     751.79 f
+  RFU1/add_4_root_add_0_root_add_283_15/A[6] (rfu_DW01_add_18)
+                                                          0.00     751.79 f
+  RFU1/add_4_root_add_0_root_add_283_15/U1_6/S (SC7P5T_FAX1_A_CSC20L)
+                                                         65.32     817.11 r
+  RFU1/add_4_root_add_0_root_add_283_15/SUM[6] (rfu_DW01_add_18)
+                                                          0.00     817.11 r
+  RFU1/add_1_root_add_0_root_add_283_15/A[6] (rfu_DW01_add_12)
+                                                          0.00     817.11 r
+  RFU1/add_1_root_add_0_root_add_283_15/U1_6/S (SC7P5T_FAX1_A_CSC20L)
+                                                         66.35     883.46 f
+  RFU1/add_1_root_add_0_root_add_283_15/SUM[6] (rfu_DW01_add_12)
+                                                          0.00     883.46 f
+  RFU1/add_0_root_add_0_root_add_283_15/B[6] (rfu_DW01_add_11)
+                                                          0.00     883.46 f
+  RFU1/add_0_root_add_0_root_add_283_15/U1_6/CO (SC7P5T_FAX1_A_CSC20L)
+                                                         37.31     920.77 f
+  RFU1/add_0_root_add_0_root_add_283_15/U1_7/Z (SC7P5T_XOR3X2_CSC20L)
+                                                         73.01     993.78 r
+  RFU1/add_0_root_add_0_root_add_283_15/SUM[7] (rfu_DW01_add_11)
+                                                          0.00     993.78 r
+  RFU1/U22/Z (SC7P5T_AO222X1_CSC20L)                     88.03    1081.82 r
+  RFU1/add_376/B[7] (rfu_DW01_add_2)                      0.00    1081.82 r
+  RFU1/add_376/U1_7/CO (SC7P5T_FAX1_A_CSC20L)            71.68    1153.50 r
+  RFU1/add_376/U1_8/CO (SC7P5T_FAX1_A_CSC20L)            45.21    1198.70 r
+  RFU1/add_376/U1_9/CO (SC7P5T_FAX1_A_CSC20L)            44.93    1243.63 r
+  RFU1/add_376/U1_10/CO (SC7P5T_FAX1_A_CSC20L)           45.06    1288.69 r
+  RFU1/add_376/U1_11/CO (SC7P5T_FAX1_A_CSC20L)           44.83    1333.53 r
+  RFU1/add_376/U1_12/CO (SC7P5T_FAX1_A_CSC20L)           44.83    1378.36 r
+  RFU1/add_376/U1_13/CO (SC7P5T_FAX1_A_CSC20L)           44.83    1423.19 r
+  RFU1/add_376/U1_14/CO (SC7P5T_FAX1_A_CSC20L)           44.83    1468.03 r
+  RFU1/add_376/U1_15/CO (SC7P5T_FAX1_A_CSC20L)           44.83    1512.86 r
+  RFU1/add_376/U1_16/CO (SC7P5T_FAX1_A_CSC20L)           45.18    1558.04 r
+  RFU1/add_376/U1_17/CO (SC7P5T_FAX1_A_CSC20L)           45.18    1603.21 r
+  RFU1/add_376/U1_18/CO (SC7P5T_FAX1_A_CSC20L)           39.83    1643.04 r
+  RFU1/add_376/U1_19/Z (SC7P5T_XOR3X2_CSC20L)            62.68    1705.73 r
+  RFU1/add_376/SUM[19] (rfu_DW01_add_2)                   0.00    1705.73 r
+  RFU1/U105/Z (SC7P5T_AO22X1_A_CSC20L)                   29.32    1735.05 r
+  RFU1/sum_reg[19]/D (SC7P5T_DFFQX1_AS_CSC20L)            0.00    1735.05 r
+  data arrival time                                               1735.05
+
+  clock clk (rise edge)                                2000.00    2000.00
+  clock network delay (ideal)                             0.00    2000.00
+  clock uncertainty                                    -200.00    1800.00
+  RFU1/sum_reg[19]/CLK (SC7P5T_DFFQX1_AS_CSC20L)          0.00    1800.00 r
+  library setup time                                    -25.38    1774.62
+  data required time                                              1774.62
+  --------------------------------------------------------------------------
+  data required time                                              1774.62
+  data arrival time                                              -1735.05
+  --------------------------------------------------------------------------
+  slack (MET)                                                       39.57
+
+
+1

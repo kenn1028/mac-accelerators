@@ -1,0 +1,51 @@
+ 
+****************************************
+check_design summary:
+Version:     U-2022.12
+Date:        Fri Apr  5 05:41:14 2024
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     14
+    Feedthrough (LINT-29)                                           8
+    Shorted outputs (LINT-31)                                       6
+
+Cells                                                              17
+    Cells do not drive (LINT-1)                                    16
+    Connected to power or ground (LINT-32)                          1
+--------------------------------------------------------------------------------
+
+Warning: In design 'mac_engine', cell 'C258' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_19' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_20' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_21' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_22' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_23' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_24' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_25' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_26' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'B_27' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C392' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C393' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C394' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C395' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C396' does not drive any nets. (LINT-1)
+Warning: In design 'fusion_unit', cell 'C397' does not drive any nets. (LINT-1)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hh_sx[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hh_sx[2]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hl_sx[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hl_sx[2]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'hh_sy[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'hh_sy[3]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'lh_sy[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'lh_sy[3]'. (LINT-29)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hh_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[2]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'hh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'lh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'lh_sy[3]'. (LINT-31)
+Warning: In design 'bitbrick', a pin on submodule 'FA_p3a' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ci' is connected to logic 1. 
+1

@@ -1,0 +1,42 @@
+ 
+****************************************
+check_design summary:
+Version:     U-2022.12
+Date:        Fri Apr  5 21:43:19 2024
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     14
+    Feedthrough (LINT-29)                                           8
+    Shorted outputs (LINT-31)                                       6
+
+Cells                                                               8
+    Cells do not drive (LINT-1)                                     7
+    Connected to power or ground (LINT-32)                          1
+--------------------------------------------------------------------------------
+
+Warning: In design 'mac_engine', cell 'C258' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C228' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C237' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C238' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C263' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C264' does not drive any nets. (LINT-1)
+Warning: In design 'mfu', cell 'C265' does not drive any nets. (LINT-1)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hh_sx[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hh_sx[2]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hl_sx[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sx' is connected directly to output port 'hl_sx[2]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'hh_sy[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'hh_sy[3]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'lh_sy[1]'. (LINT-29)
+Warning: In design 'signbit_ctrl', input port 'sy' is connected directly to output port 'lh_sy[3]'. (LINT-29)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hh_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[2]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'hh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'lh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to output port 'lh_sy[3]'. (LINT-31)
+Warning: In design 'bitbrick', a pin on submodule 'FA_p3a' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ci' is connected to logic 1. 
+1

@@ -1,0 +1,190 @@
+ 
+****************************************
+Report : area
+Design : mac_engine
+Version: U-2022.12
+Date   : Fri Apr  5 21:43:26 2024
+****************************************
+
+Library(s) Used:
+
+    GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+
+Number of ports:                         1474
+Number of nets:                          2647
+Number of cells:                         1191
+Number of combinational cells:            987
+Number of sequential cells:                67
+Number of macros/black boxes:               0
+Number of buf/inv:                         96
+Number of references:                      22
+
+Combinational area:                641.642400
+Buf/Inv area:                       13.363200
+Noncombinational area:              88.600798
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                   730.243198
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  --------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-    Noncombi-  Black-
+                                  Total      Total    national  national   boxes   Design
+--------------------------------  ---------  -------  --------  ---------  ------  --------------------------------
+mac_engine                         730.2432    100.0   31.5984    56.8632  0.0000  mac_engine
+MFU1                               627.1656     85.9  144.5592    31.7376  0.0000  mfu
+MFU1/add_0_root_add_0_root_add_275_3
+                                    15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_25
+MFU1/add_0_root_add_0_root_add_280_3
+                                    13.0152      1.8   13.0152     0.0000  0.0000  mfu_DW01_add_29
+MFU1/add_0_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_10
+MFU1/add_1_root_add_0_root_add_275_3
+                                    15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_26
+MFU1/add_1_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_11
+MFU1/add_204                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_3
+MFU1/add_204_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_28
+MFU1/add_215                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_5
+MFU1/add_215_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_4
+MFU1/add_227                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_7
+MFU1/add_227_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_6
+MFU1/add_239                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_9
+MFU1/add_239_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_8
+MFU1/add_2_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_12
+MFU1/add_379                        26.2392      3.6   26.2392     0.0000  0.0000  mfu_DW01_add_2
+MFU1/add_384                        15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_1
+MFU1/add_390                        13.0152      1.8   13.0152     0.0000  0.0000  mfu_DW01_add_0
+MFU1/add_3_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_22
+MFU1/add_4_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_17
+MFU1/add_5_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_13
+MFU1/add_6_root_add_0_root_add_286_15
+                                    10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_19
+MFU1/bb_hh_1                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_0
+MFU1/bb_hh_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_0
+MFU1/bb_hh_1/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_62
+MFU1/bb_hh_1/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_63
+MFU1/bb_hh_1/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_61
+MFU1/bb_hh_1/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_0
+MFU1/bb_hh_1/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_31
+MFU1/bb_hh_2                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_12
+MFU1/bb_hh_2/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_48
+MFU1/bb_hh_2/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_46
+MFU1/bb_hh_2/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_47
+MFU1/bb_hh_2/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_45
+MFU1/bb_hh_2/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_24
+MFU1/bb_hh_2/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_23
+MFU1/bb_hh_3                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_8
+MFU1/bb_hh_3/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_32
+MFU1/bb_hh_3/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_30
+MFU1/bb_hh_3/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_31
+MFU1/bb_hh_3/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_29
+MFU1/bb_hh_3/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_16
+MFU1/bb_hh_3/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_15
+MFU1/bb_hh_4                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_4
+MFU1/bb_hh_4/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_16
+MFU1/bb_hh_4/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_14
+MFU1/bb_hh_4/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_15
+MFU1/bb_hh_4/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_13
+MFU1/bb_hh_4/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_8
+MFU1/bb_hh_4/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_7
+MFU1/bb_hl_1                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_15
+MFU1/bb_hl_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_60
+MFU1/bb_hl_1/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_58
+MFU1/bb_hl_1/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_59
+MFU1/bb_hl_1/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_57
+MFU1/bb_hl_1/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_30
+MFU1/bb_hl_1/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_29
+MFU1/bb_hl_2                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_11
+MFU1/bb_hl_2/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_44
+MFU1/bb_hl_2/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_42
+MFU1/bb_hl_2/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_43
+MFU1/bb_hl_2/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_41
+MFU1/bb_hl_2/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_22
+MFU1/bb_hl_2/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_21
+MFU1/bb_hl_3                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_7
+MFU1/bb_hl_3/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_28
+MFU1/bb_hl_3/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_26
+MFU1/bb_hl_3/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_27
+MFU1/bb_hl_3/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_25
+MFU1/bb_hl_3/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_14
+MFU1/bb_hl_3/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_13
+MFU1/bb_hl_4                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_3
+MFU1/bb_hl_4/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_12
+MFU1/bb_hl_4/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_10
+MFU1/bb_hl_4/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_11
+MFU1/bb_hl_4/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_9
+MFU1/bb_hl_4/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_6
+MFU1/bb_hl_4/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_5
+MFU1/bb_lh_1                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_14
+MFU1/bb_lh_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_56
+MFU1/bb_lh_1/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_54
+MFU1/bb_lh_1/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_55
+MFU1/bb_lh_1/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_53
+MFU1/bb_lh_1/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_28
+MFU1/bb_lh_1/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_27
+MFU1/bb_lh_2                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_10
+MFU1/bb_lh_2/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_40
+MFU1/bb_lh_2/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_38
+MFU1/bb_lh_2/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_39
+MFU1/bb_lh_2/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_37
+MFU1/bb_lh_2/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_20
+MFU1/bb_lh_2/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_19
+MFU1/bb_lh_3                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_6
+MFU1/bb_lh_3/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_24
+MFU1/bb_lh_3/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_22
+MFU1/bb_lh_3/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_23
+MFU1/bb_lh_3/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_21
+MFU1/bb_lh_3/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_12
+MFU1/bb_lh_3/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_11
+MFU1/bb_lh_4                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_2
+MFU1/bb_lh_4/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_8
+MFU1/bb_lh_4/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_6
+MFU1/bb_lh_4/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_7
+MFU1/bb_lh_4/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_5
+MFU1/bb_lh_4/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_4
+MFU1/bb_lh_4/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_3
+MFU1/bb_ll_1                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_13
+MFU1/bb_ll_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_52
+MFU1/bb_ll_1/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_50
+MFU1/bb_ll_1/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_51
+MFU1/bb_ll_1/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_49
+MFU1/bb_ll_1/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_26
+MFU1/bb_ll_1/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_25
+MFU1/bb_ll_2                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_9
+MFU1/bb_ll_2/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_36
+MFU1/bb_ll_2/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_34
+MFU1/bb_ll_2/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_35
+MFU1/bb_ll_2/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_33
+MFU1/bb_ll_2/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_18
+MFU1/bb_ll_2/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_17
+MFU1/bb_ll_3                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_5
+MFU1/bb_ll_3/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_20
+MFU1/bb_ll_3/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_18
+MFU1/bb_ll_3/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_19
+MFU1/bb_ll_3/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_17
+MFU1/bb_ll_3/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_10
+MFU1/bb_ll_3/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_9
+MFU1/bb_ll_4                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_1
+MFU1/bb_ll_4/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_4
+MFU1/bb_ll_4/FA_p3a                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_2
+MFU1/bb_ll_4/FA_p3b                  2.0880      0.3    2.0880     0.0000  0.0000  full_adder_3
+MFU1/bb_ll_4/FA_p4                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_1
+MFU1/bb_ll_4/HA_p1                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_2
+MFU1/bb_ll_4/HA_p2                   1.1136      0.2    1.1136     0.0000  0.0000  half_adder_1
+MFU1/sign_ctrl                       2.2968      0.3    2.2968     0.0000  0.0000  signbit_ctrl
+add_73                               7.4472      1.0    7.4472     0.0000  0.0000  mac_engine_DW01_inc_0
+add_79_aco                           7.1688      1.0    7.1688     0.0000  0.0000  mac_engine_DW01_inc_1_DW01_inc_2
+--------------------------------  ---------  -------  --------  ---------  ------  --------------------------------
+Total                                                 641.6424    88.6008  0.0000
+
+1
