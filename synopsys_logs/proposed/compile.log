@@ -1,0 +1,364 @@
+Initializing gui preferences from file  /home/kpelayo/.synopsys_dc_gui/preferences.tcl
+set search_path "$search_path mapped lib cons rtl"
+. /cad/tools/synopsys/syn/U-2022.12/libraries/syn /cad/tools/synopsys/syn/U-2022.12/dw/syn_ver /cad/tools/synopsys/syn/U-2022.12/dw/sim_ver mapped lib cons rtl
+set target_library /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db
+/cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db
+set link_library "* $target_library"
+* /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db
+read_verilog proposed.v
+Loading db file '/cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db'
+Loading db file '/cad/tools/synopsys/syn/U-2022.12/libraries/syn/gtech.db'
+Loading db file '/cad/tools/synopsys/syn/U-2022.12/libraries/syn/standard.sldb'
+  Loading link library 'GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C'
+  Loading link library 'gtech'
+Loading verilog file '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v
+
+Statistics for case statements in always block at line 190 in file
+        '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           191            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 219 in file
+        '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           220            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 388 in file
+        '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           389            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 458 in file
+        '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           469            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine proposed line 388 in file
+                '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|     product_reg     | Latch |  48   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+
+Inferred memory devices in process
+        in routine proposed line 449 in file
+                '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   mode_buffer_reg   | Flip-flop |   4   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine proposed line 458 in file
+                '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/proposed.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       sum_reg       | Flip-flop |  128  |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/full_adder.db:full_adder'
+Loaded 8 designs.
+Current design is 'full_adder'.
+full_adder half_adder s_bitbrick ns_bitbrick fs_bitbrick ss_bitbrick signbit_ctrl proposed
+read_verilog mac_engine.v
+Loading verilog file '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.v
+
+Statistics for case statements in always block at line 59 in file
+        '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            65            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+        in routine mac_engine line 59 in file
+                '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      valid_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      state_reg      | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+|       ctr_reg       | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine mac_engine line 101 in file
+                '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      WBUF_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|      IBUF_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.db:mac_engine'
+Loaded 1 design.
+Current design is 'mac_engine'.
+mac_engine
+current_design mac_engine
+Current design is 'mac_engine'.
+{mac_engine}
+link
+
+  Linking design 'mac_engine'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (9 designs)               /home/kpelayo/Documents/Pelayo_196_199/proposed/rtl/mac_engine.db, etc
+  GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C (library) /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db
+
+1
+check_design > logs/check_design.log
+source timing.sdc
+1
+compile
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | U-2022.12-DWBB_202212.0 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 1025                                   |
+| Number of User Hierarchies                              | 93                                     |
+| Sequential Cell Count                                   | 224                                    |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 1                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 68                                     |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+
+Information: There are 190 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'full_adder_0'
+  Processing 'half_adder_0'
+  Processing 'fs_bitbrick_0'
+  Processing 's_bitbrick_0'
+  Processing 'ns_bitbrick_0'
+  Processing 'ss_bitbrick'
+  Processing 'signbit_ctrl'
+  Processing 'proposed'
+  Processing 'mac_engine'
+Information: The register 'state_reg[2]' is a constant and will be removed. (OPT-1206)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'mac_engine_DW01_cmp6_0_DW01_cmp6_1'
+  Processing 'mac_engine_DW01_inc_0'
+  Processing 'proposed_DW01_add_0'
+  Processing 'proposed_DW01_add_1'
+  Processing 'proposed_DW01_add_2'
+  Processing 'proposed_DW01_add_3'
+  Processing 'proposed_DW01_add_4'
+  Processing 'proposed_DW01_add_5'
+  Processing 'proposed_DW01_add_6'
+  Processing 'proposed_DW01_add_7'
+  Processing 'proposed_DW01_add_8'
+  Processing 'proposed_DW01_add_9'
+  Processing 'proposed_DW01_add_10'
+  Processing 'proposed_DW01_add_11'
+  Processing 'proposed_DW01_add_12'
+  Processing 'proposed_DW01_add_13'
+  Processing 'proposed_DW01_add_14'
+  Processing 'proposed_DW01_add_15'
+  Processing 'proposed_DW01_add_16'
+  Processing 'proposed_DW01_add_17'
+  Processing 'proposed_DW01_add_18'
+  Processing 'proposed_DW01_add_19'
+  Processing 'proposed_DW01_add_20'
+  Allocating blocks in 'DW02_mult_A_width8_B_width1'
+  Building model 'DW01_MUX'
+  Processing 'DW01_MUX'
+  Building model 'DW01_mmux_width2'
+  Processing 'DW01_mmux_width2'
+  Building model 'DW01_mmux_width3'
+  Processing 'DW01_mmux_width3'
+  Building model 'DW01_mmux_width4'
+  Processing 'DW01_mmux_width4'
+  Building model 'DW01_mmux_width5'
+  Processing 'DW01_mmux_width5'
+  Allocating blocks in 'DW01_absval_width8'
+  Building model 'DW01_NAND2'
+  Processing 'DW01_NAND2'
+  Building model 'DW01_inc_width8' (cla)
+  Processing 'DW01_inc_width8'
+  Building model 'DW01_absval_width8' (cla)
+  Processing 'DW01_absval_width8'
+  Allocating blocks in 'DW01_absval_width1'
+  Building model 'DW01_inc_width1' (cla)
+  Processing 'DW01_inc_width1'
+  Building model 'DW01_absval_width1' (cla)
+  Processing 'DW01_absval_width1'
+  Building model 'DW01_inc_width9' (cla)
+  Processing 'DW01_inc_width9'
+  Building model 'DW02_mult_A_width8_B_width1' (csa)
+  Processing 'DW02_mult_A_width8_B_width1'
+  Building model 'DW01_inc_width8' (rpl)
+  Processing 'DW01_inc_width8'
+  Building model 'DW01_add_width6' (rpl)
+  Processing 'DW01_add_width6'
+  Building model 'DW01_add_width6' (cla)
+  Processing 'DW01_add_width6'
+  Building model 'DW01_add_width8' (rpl)
+  Processing 'DW01_add_width8'
+  Building model 'DW01_add_width8' (cla)
+  Processing 'DW01_add_width8'
+  Building model 'DW01_add_width12' (rpl)
+  Processing 'DW01_add_width12'
+  Building model 'DW01_add_width12' (cla)
+  Processing 'DW01_add_width12'
+  Building model 'DW01_add_width16' (rpl)
+  Processing 'DW01_add_width16'
+  Building model 'DW01_add_width16' (cla)
+  Processing 'DW01_add_width16'
+  Processing 'mac_engine_DW01_inc_1_DW01_inc_2'
+  Processing 'mac_engine_DW02_mult_0'
+  Processing 'proposed_DW01_add_21'
+  Processing 'proposed_DW01_add_22'
+  Processing 'proposed_DW01_add_23'
+  Processing 'proposed_DW01_add_24'
+  Processing 'proposed_DW01_add_25'
+  Processing 'proposed_DW01_add_26'
+  Processing 'proposed_DW01_add_27'
+  Processing 'proposed_DW01_add_28'
+  Processing 'proposed_DW01_add_29'
+  Processing 'proposed_DW01_add_30'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04    1391.0      0.00       0.0       0.0                          
+    0:00:04    1391.0      0.00       0.0       0.0                          
+    0:00:04    1391.0      0.00       0.0       0.0                          
+    0:00:04    1391.0      0.00       0.0       0.0                          
+    0:00:04    1391.0      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     978.1      0.00       0.0       0.0                          
+    0:00:04     976.8      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     976.7      0.00       0.0       0.0                          
+    0:00:04     974.7      0.00       0.0       0.0                          
+Loading db file '/cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/timing/db/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+report_constraint -all_violators > logs/constraint_report.log
+report_area -hierarchy > logs/area_report.log
+report_timing > logs/timing_report.log
+report_power > logs/power_report.log
+write_file -format verilog -hierarchy -output mapped/mac_engine_mapped.v
+Writing verilog file '/home/kpelayo/Documents/Pelayo_196_199/proposed/mapped/mac_engine_mapped.v'.
+Warning: Changed wire name ll_sy[4] to ll_sy[4]_snps_wire in module signbit_ctrl.  Please use the change_names command to make the correct changes before invoking the verilog writer. (VO-2)
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 9 nets to module proposed using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+1
+write_file -format ddc -hierarchy -output mapped/mac_engine_mapped.ddc
+Writing ddc file 'mapped/mac_engine_mapped.ddc'.
+1
+write_sdf mapped/mac_engine_mapped.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/home/kpelayo/Documents/Pelayo_196_199/proposed/mapped/mac_engine_mapped.sdf'. (WT-3)
+1
+write_sdc mapped/mac_engine_mapped.sdc
+1
+quit
+Memory usage for this session 538 Mbytes.
+Memory usage for this session including child processes 538 Mbytes.
+CPU usage for this session 10 seconds ( 0.00 hours ).
+Elapsed time for this session 13 seconds ( 0.00 hours ).
+
+Thank you...
+
