@@ -1,5 +1,5 @@
 ## Define clock constraints.
-set CLK_FREQUENCY           500000000
+set CLK_FREQUENCY           50000000
 set CLK_PERIOD              [expr {1000000000000 / ${CLK_FREQUENCY} / 1.0}]
 set CLK_HIGH_TIME           [expr {${CLK_PERIOD} / 2.0}]
 set CLK_UNCERTAINTY         [expr {${CLK_PERIOD} * 0.1}]
