@@ -22,16 +22,16 @@
 module mac_engine_tb();
 
 // Set the number of tests using the following parameter
-localparam NUMBER_OF_TEST = 8'd10;
+localparam NUMBER_OF_TEST = 8'd51;
 localparam SIGNED_X = 1'b1;
 localparam SIGNED_Y = 1'b1;
-localparam ARCHITECTURE =  1'b0; // 0 = Sum Apart (SA), 1 = Sum Together (ST)
+localparam ARCHITECTURE =  1'b1; // 0 = Sum Apart (SA), 1 = Sum Together (ST)
 
 // MAC Engine I/O Signals
 reg [7:0] curr_activation;      
 reg [7:0] curr_weight;                    
-reg sx;                        
-reg sy;                                   
+// reg sx;                        
+// reg sy;                                   
 reg [3:0] mode;          
 reg clk;                           
 reg nrst;    
@@ -41,13 +41,13 @@ reg [7:0] batch_size;
 wire valid;                   
 
 //--------------- Sum Apart Logic (SA) ---------------//
-wire [63:0] product;
-wire [127:0] sum;
+// wire [63:0] product;
+// wire [127:0] sum;
 // wire reg [127:0] OBUF;
 
 //--------------- Sum Together Logic (ST) ---------------//
-// wire [15:0] product; 
-// wire [19:0] sum; 
+wire [15:0] product; 
+wire [19:0] sum; 
 // wire [19:0] OBUF; 
 
 // Testbench Signals/Parameters
@@ -58,7 +58,7 @@ integer sumtb_file, otb;
 integer sump_file, op; 
 integer count, count_sum;
 localparam NULL = 0;
-localparam CLK_PERIOD = 150;
+localparam CLK_PERIOD = 20; // 20ns = 50 MHz
 
 // Configuration/Mode Parameters   
 localparam _2bx2b = 4'd0; localparam _4bx4b = 4'd1; localparam _8bx8b = 4'd2;                   
@@ -67,61 +67,63 @@ localparam _4bx8b = 4'd5; localparam _8bx4b = 4'd6;
 localparam _2bx8b = 4'd7; localparam _8bx2b = 4'd8;          
 
 // Filepaths
-localparam activations_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/test_activations.txt";
-localparam weights_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/test_weights.txt";
-localparam sump_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum2b_python.txt";
-localparam sump_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum4b_python.txt";
-localparam sump_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum8b_python.txt";
-localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum2bx4b_python.txt";
-localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum4bx2b_python.txt";
-localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum4bx8b_python.txt";
-localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum8bx4b_python.txt";
-localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum2bx8b_python.txt";
-localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum8bx2b_python.txt";
+// localparam activations_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/test_activations.txt";
+// localparam weights_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/test_weights.txt";
+// localparam sump_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum2b_python.txt";
+// localparam sump_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum4b_python.txt";
+// localparam sump_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum8b_python.txt";
+// localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum2bx4b_python.txt";
+// localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum4bx2b_python.txt";
+// localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum4bx8b_python.txt";
+// localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum8bx4b_python.txt";
+// localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum2bx8b_python.txt";
+// localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum8bx2b_python.txt";
 
-// localparam sumtb_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum2b_tb.txt";
-// localparam sumtb_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum4b_tb.txt";
-// localparam sumtb_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed/proposed.srcs/sim_1/imports/new/sum8b_tb.txt";
+// localparam sumtb_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum2b_tb.txt";
+// localparam sumtb_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum4b_tb.txt";
+// localparam sumtb_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_st/proposed_st.srcs/sim_1/imports/new/sum8b_tb.txt";
 
-// localparam activations_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/test_activations.txt";
-// localparam weights_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/test_weights.txt";
-// localparam sump_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum2b_python.txt";
-// localparam sump_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum4b_python.txt";
-// localparam sump_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum8b_python.txt";
-// localparam sump_2bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum2bx4b_python.txt";
-// localparam sump_4bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum4bx2b_python.txt";
-// localparam sump_4bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum4bx8b_python.txt";
-// localparam sump_8bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum8bx4b_python.txt";
-// localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum2bx8b_python.txt";
-// localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum8bx2b_python.txt";
+localparam activations_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/test_activations.txt";
+localparam weights_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/test_weights.txt";
+localparam sump_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum2b_python.txt";
+localparam sump_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum4b_python.txt";
+localparam sump_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum8b_python.txt";
+localparam sump_2bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum2bx4b_python.txt";
+localparam sump_4bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum4bx2b_python.txt";
+localparam sump_4bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum4bx8b_python.txt";
+localparam sump_8bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum8bx4b_python.txt";
+localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum2bx8b_python.txt";
+localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum8bx2b_python.txt";
 
-// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum2b_tb.txt";
-// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum4b_tb.txt";
-// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed/sim/sum8b_tb.txt";
+localparam pyscript_filepath = "python3 /home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/generate_test_files.py";
+
+// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum2b_tb.txt";
+// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum4b_tb.txt";
+// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_st/sim/sum8b_tb.txt";
 
 
 //********************* Create pseudo-wires for better representation during low-precision operations *********************//
 
 //--------------- Sum Together Logic (ST) ---------------//
-// wire [9:0] product_4bx4b_ST;
-// assign product_4bx4b_ST = product[9:0];
-// wire [11:0] sum_4bx4b_ST;
-// assign sum_4bx4b_ST = sum[11:0];
+wire [9:0] product_4bx4b_ST;
+assign product_4bx4b_ST = product[9:0];
+wire [11:0] sum_4bx4b_ST;
+assign sum_4bx4b_ST = sum[11:0];
 
-// wire [7:0] product_2bx2b_ST;
-// assign product_2bx2b_ST = product[7:0];
-// wire [9:0] sum_2bx2b_ST;
-// assign sum_2bx2b_ST = sum[9:0];
+wire [7:0] product_2bx2b_ST;
+assign product_2bx2b_ST = product[7:0];
+wire [9:0] sum_2bx2b_ST;
+assign sum_2bx2b_ST = sum[9:0];
 
-// wire [13:0] product_4bx8b_ST;
-// assign product_4bx8b_ST = product[13:0];
-// wire [11:0] product_2bx8b_ST;
-// assign product_2bx8b_ST = product[11:0];
+wire [13:0] product_4bx8b_ST;
+assign product_4bx8b_ST = product[13:0];
+wire [11:0] product_2bx8b_ST;
+assign product_2bx8b_ST = product[11:0];
 
-// wire [15:0] sum_4bx8b_ST;
-// assign sum_4bx8b_ST = sum[15:0];
-// wire [13:0] sum_2bx8b_ST;
-// assign sum_2bx8b_ST = sum[13:0];
+wire [15:0] sum_4bx8b_ST;
+assign sum_4bx8b_ST = sum[15:0];
+wire [13:0] sum_2bx8b_ST;
+assign sum_2bx8b_ST = sum[13:0];
 
 //--------------- Sum Apart Logic (SA) ---------------//
 // Assume controller knows how to properly access the 128b register based on the "mode" signal
@@ -210,12 +212,12 @@ endgenerate
 // Unit-Under-Test (UUT) Instantiation
 mac_engine UUT(
     .activations(curr_activation), .weights(curr_weight),
-    .sx(sx), .sy(sy),
+    // .sx(sx), .sy(sy),
     .mode(mode),
     .clk(clk),
     .nrst(nrst),
     .en(en),
-    .batch_size(NUMBER_OF_TEST),
+    .batch_size(batch_size),
     .ready(ready),
     .valid(valid),
     // .OBUF(OBUF),
@@ -235,44 +237,58 @@ task test_precision;
         // Enable the MAC engine and set the precision mode
         en = 1'b1;
         ready = 1'b1;
+        nrst = 1'b1;
         // #(CLK_PERIOD); // Setup Time for Input Buffers
         mode = test_mode;
+        batch_size = number_of_tests;
         
         // Test data over the same number of clock cyles
-        // + 1 cycles for: 
-        // >> sum since it empties it first, delaying it by 1 cycle
+        // + 1 cycles for sum since it empties it first, delaying it by 1 cycle
         #(CLK_PERIOD * (number_of_tests + 1)); 
 
         // Turn off Enable signal after 1 clock cycle
         #(CLK_PERIOD); 
         en = 1'b0;
         ready = 1'b0;
+    
+        // Wait for another 2 clock cycles for next set of tests and clear accumulator register
+        #(CLK_PERIOD);
+        nrst = 1'b0;
+        #(CLK_PERIOD);
 
-        // Wait for another 2 clock cycles for next set of tests
-        #(CLK_PERIOD * 2);
+        // Generate New Random Test Cases
+        $system(pyscript_filepath);
     end
 endtask
 
 // Testbench Proper
-initial begin
-//    $dumpfile("mac_engine.dump");
-//    $dumpvars(0, mac_engine_tb);
-    
-//    $vcdplusfile("mac_engine_tb.vpd");
-//    $vcdpluson;
-//    $vcdplusmemon;
-//    $sdf_annotate("../mapped/mac_engine_mapped.sdf", UUT);
+initial begin   
+    $dumpfile("mac_engine.dump");
+    $dumpvars(0, mac_engine_tb);
+        
+    $vcdplusfile("mac_engine_tb.vpd");
+    $vcdpluson;
+    $vcdplusmemon;
+    $sdf_annotate("../mapped/mac_engine_mapped.sdf", UUT);
 
     clk = 1'b0; nrst = 1'b0; en = 1'b0; mode = 4'd15;
-    sx = SIGNED_X; sy = SIGNED_Y; // Sets unsigned activations and signed weights
+    // sx = SIGNED_X; sy = SIGNED_Y; // Sets unsigned activations and signed weights
     curr_activation = 0; curr_weight = 0;
 
     #(CLK_PERIOD * 2) nrst = 1'b1; #(CLK_PERIOD * 6);
 
-    //********* Start Testing each Precision Modes using the same inputs *********//
-    test_precision(_2bx2b, NUMBER_OF_TEST);
-    test_precision(_4bx4b, NUMBER_OF_TEST);
-    test_precision(_8bx8b, NUMBER_OF_TEST);
+    //********* Start Testing each Precision Modes using randomized inputs *********//
+    // repeat (209) begin
+    //     test_precision(_2bx2b, 8'd4);
+    // end
+
+    // repeat (209) begin
+    //     test_precision(_4bx4b, 8'd13);
+    // end      
+
+    repeat (200) begin
+        test_precision(_8bx8b, 8'd51);
+    end
 
     // test_precision(_2bx4b, NUMBER_OF_TEST);
     // test_precision(_4bx2b, NUMBER_OF_TEST);
@@ -281,15 +297,14 @@ initial begin
     // test_precision(_2bx8b, NUMBER_OF_TEST);
     // test_precision(_8bx2b, NUMBER_OF_TEST);
 
-    ready = 1'b1;
-    #(CLK_PERIOD * 4)
+    $display("\nSimulation Finished :)\n");
 
     // Close text files
     $fclose(activ_file);
     $fclose(weight_file);    
     $fclose(sump_file);
 
-    // // Validate text files (Discontinued, just check immediately every clock cycle)
+    // Validate text files (Discontinued, just check immediately every clock cycle)
     // validate_sum(_2bx2b, NUMBER_OF_TEST);
     // validate_sum(_4bx4b, NUMBER_OF_TEST);
     // validate_sum(_8bx8b, NUMBER_OF_TEST);
@@ -571,4 +586,5 @@ end
 // endtask
 
 endmodule
+
 

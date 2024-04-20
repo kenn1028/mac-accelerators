@@ -21,11 +21,17 @@
 
 module mac_engine_tb();
 
+// Set the number of tests using the following parameter
+localparam NUMBER_OF_TEST = 8'd51;
+localparam SIGNED_X = 1'b1;
+localparam SIGNED_Y = 1'b1;
+localparam ARCHITECTURE =  1'b0; // 0 = Sum Apart (SA), 1 = Sum Together (ST)
+
 // MAC Engine I/O Signals
 reg [7:0] curr_activation;      
 reg [7:0] curr_weight;                    
-reg sx;                        
-reg sy;                                   
+// reg sx;                        
+// reg sy;                                   
 reg [3:0] mode;          
 reg clk;                           
 reg nrst;    
@@ -35,20 +41,14 @@ reg [7:0] batch_size;
 wire valid;                   
 
 //--------------- Sum Apart Logic (SA) ---------------//
-// wire [63:0] product;
-// wire [127:0] sum;
+wire [63:0] product;
+wire [127:0] sum;
 // wire reg [127:0] OBUF;
 
 //--------------- Sum Together Logic (ST) ---------------//
-wire [15:0] product; 
-wire [19:0] sum; 
+// wire [15:0] product; 
+// wire [19:0] sum; 
 // wire [19:0] OBUF; 
-
-// Set the number of tests using the following parameter
-localparam NUMBER_OF_TEST = 8'd10;
-localparam SIGNED_X = 1'b1;
-localparam SIGNED_Y = 1'b1;
-localparam ARCHITECTURE =  1'b1; // 0 = Sum Apart (SA), 1 = Sum Together (ST)
 
 // Testbench Signals/Parameters
 integer l;
@@ -58,164 +58,166 @@ integer sumtb_file, otb;
 integer sump_file, op; 
 integer count, count_sum;
 localparam NULL = 0;
-localparam CLK_PERIOD = 150;
+localparam CLK_PERIOD = 20; // 20ns = 50 MHz
 
 // Configuration/Mode Parameters   
 localparam _2bx2b = 4'd0; localparam _4bx4b = 4'd1; localparam _8bx8b = 4'd2;                   
 localparam _2bx4b = 4'd3; localparam _4bx2b = 4'd4;
 localparam _4bx8b = 4'd5; localparam _8bx4b = 4'd6;
-localparam _2bx8b = 4'd7; localparam _8bx2b = 4'd8;
+localparam _2bx8b = 4'd7; localparam _8bx2b = 4'd8;          
 
 // Filepaths
-localparam activations_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/test_activations.txt";
-localparam weights_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/test_weights.txt";
-localparam sump_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum2b_python.txt";
-localparam sump_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum4b_python.txt";
-localparam sump_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum8b_python.txt";
-localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum2bx4b_python.txt";
-localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum4bx2b_python.txt";
-localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum4bx8b_python.txt";
-localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum8bx4b_python.txt";
-localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum2bx8b_python.txt";
-localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum8bx2b_python.txt";
+// localparam activations_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/test_activations.txt";
+// localparam weights_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/test_weights.txt";
+// localparam sump_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum2b_python.txt";
+// localparam sump_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum4b_python.txt";
+// localparam sump_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum8b_python.txt";
+// localparam sump_2bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum2bx4b_python.txt";
+// localparam sump_4bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum4bx2b_python.txt";
+// localparam sump_4bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum4bx8b_python.txt";
+// localparam sump_8bx4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum8bx4b_python.txt";
+// localparam sump_2bx8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum2bx8b_python.txt";
+// localparam sump_8bx2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum8bx2b_python.txt";
 
-// localparam sumtb_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum2b_tb.txt";
-// localparam sumtb_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum4b_tb.txt";
-// localparam sumtb_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/baseline/baseline.srcs/sim_1/imports/new/sum8b_tb.txt";
+// localparam sumtb_2b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum2b_tb.txt";
+// localparam sumtb_4b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum4b_tb.txt";
+// localparam sumtb_8b_filepath = "E:/School_Stuff/EEE_Microlab/Prelim/proposed_sa/proposed_sa.srcs/sim_1/imports/new/sum8b_tb.txt";
 
-// localparam activations_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/test_activations.txt";
-// localparam weights_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/test_weights.txt";
-// localparam sump_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum2b_python.txt";
-// localparam sump_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum4b_python.txt";
-// localparam sump_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum8b_python.txt";
-// localparam sump_2bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum2bx4b_python.txt";
-// localparam sump_4bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum4bx2b_python.txt";
-// localparam sump_4bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum4bx8b_python.txt";
-// localparam sump_8bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum8bx4b_python.txt";
-// localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum2bx8b_python.txt";
-// localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum8bx2b_python.txt";
+localparam activations_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/test_activations.txt";
+localparam weights_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/test_weights.txt";
+localparam sump_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum2b_python.txt";
+localparam sump_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum4b_python.txt";
+localparam sump_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum8b_python.txt";
+localparam sump_2bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum2bx4b_python.txt";
+localparam sump_4bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum4bx2b_python.txt";
+localparam sump_4bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum4bx8b_python.txt";
+localparam sump_8bx4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum8bx4b_python.txt";
+localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum2bx8b_python.txt";
+localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum8bx2b_python.txt";
 
-// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum2b_tb.txt";
-// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum4b_tb.txt";
-// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum8b_tb.txt";
+localparam pyscript_filepath = "python3 /home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/generate_test_files.py";
+
+// localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum2b_tb.txt";
+// localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum4b_tb.txt";
+// localparam sumtb_8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/proposed_sa/sim/sum8b_tb.txt";
 
 
 //********************* Create pseudo-wires for better representation during low-precision operations *********************//
 
 //--------------- Sum Together Logic (ST) ---------------//
-wire [9:0] product_4bx4b_ST;
-assign product_4bx4b_ST = product[9:0];
-wire [11:0] sum_4bx4b_ST;
-assign sum_4bx4b_ST = sum[11:0];
+// wire [9:0] product_4bx4b_ST;
+// assign product_4bx4b_ST = product[9:0];
+// wire [11:0] sum_4bx4b_ST;
+// assign sum_4bx4b_ST = sum[11:0];
 
-wire [7:0] product_2bx2b_ST;
-assign product_2bx2b_ST = product[7:0];
-wire [9:0] sum_2bx2b_ST;
-assign sum_2bx2b_ST = sum[9:0];
+// wire [7:0] product_2bx2b_ST;
+// assign product_2bx2b_ST = product[7:0];
+// wire [9:0] sum_2bx2b_ST;
+// assign sum_2bx2b_ST = sum[9:0];
 
-wire [13:0] product_4bx8b_ST;
-assign product_4bx8b_ST = product[13:0];
-wire [11:0] product_2bx8b_ST;
-assign product_2bx8b_ST = product[11:0];
+// wire [13:0] product_4bx8b_ST;
+// assign product_4bx8b_ST = product[13:0];
+// wire [11:0] product_2bx8b_ST;
+// assign product_2bx8b_ST = product[11:0];
 
-wire [15:0] sum_4bx8b_ST;
-assign sum_4bx8b_ST = sum[15:0];
-wire [13:0] sum_2bx8b_ST;
-assign sum_2bx8b_ST = sum[13:0];
+// wire [15:0] sum_4bx8b_ST;
+// assign sum_4bx8b_ST = sum[15:0];
+// wire [13:0] sum_2bx8b_ST;
+// assign sum_2bx8b_ST = sum[13:0];
 
 //--------------- Sum Apart Logic (SA) ---------------//
-// // Assume controller knows how to properly access the 128b register based on the "mode" signal
-// wire [19:0] sum_8bx8b; // Output Buffer/Accumulator (8bx8b Default)    
-// wire [11:0] sum_4bx4b [3:0]; // 4 x 12b 
-// wire [7:0] sum_2bx2b [15:0]; // 16 x 8b
+// Assume controller knows how to properly access the 128b register based on the "mode" signal
+wire [19:0] sum_8bx8b; // Output Buffer/Accumulator (8bx8b Default)    
+wire [11:0] sum_4bx4b [3:0]; // 4 x 12b 
+wire [7:0] sum_2bx2b [15:0]; // 16 x 8b
 
-// // Map the continuous 128b register into arrays that properly group low-precision sums
-// genvar i;
-// localparam BITWIDTH_4bx4b = 12;
-// localparam BITWIDTH_2bx2b = 8;
+// Map the continuous 128b register into arrays that properly group low-precision sums
+genvar i;
+localparam BITWIDTH_4bx4b = 12;
+localparam BITWIDTH_2bx2b = 8;
 
-// generate
-//     for (i = 0; i < 16; i = i+1) begin : generate_block_1
-//         if (i == 0) begin : generate_block_2
-//             assign sum_8bx8b = sum[19:0];
-//             assign sum_4bx4b [i][11:0] = sum[11:0];
-//             assign sum_2bx2b [i][7:0] = sum[7:0];
-//         end else if (i > 0 && i < 4) begin : generate_block_3
-//             assign sum_4bx4b [i][11:0] = sum[((BITWIDTH_4bx4b * i) + BITWIDTH_4bx4b - 1):(BITWIDTH_4bx4b * i)];
-//             assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];       
-//         end else if (i >= 4) begin : generate_block_4
-//             assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];               
-//         end
-//     end
-// endgenerate
+generate
+    for (i = 0; i < 16; i = i+1) begin : generate_block_1
+        if (i == 0) begin : generate_block_2
+            assign sum_8bx8b = sum[19:0];
+            assign sum_4bx4b [i][11:0] = sum[11:0];
+            assign sum_2bx2b [i][7:0] = sum[7:0];
+        end else if (i > 0 && i < 4) begin : generate_block_3
+            assign sum_4bx4b [i][11:0] = sum[((BITWIDTH_4bx4b * i) + BITWIDTH_4bx4b - 1):(BITWIDTH_4bx4b * i)];
+            assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];       
+        end else if (i >= 4) begin : generate_block_4
+            assign sum_2bx2b [i][7:0] = sum[((BITWIDTH_2bx2b * i) + BITWIDTH_2bx2b - 1):(BITWIDTH_2bx2b * i)];               
+        end
+    end
+endgenerate
 
-// // Do the same for the 64b register of the FU current product
-// wire [15:0] product_8bx8b; // 16b   
-// wire [7:0] product_4bx4b [3:0]; // 4 x 8b 
-// wire [3:0] product_2bx2b [15:0]; // 16 x 4b
+// Do the same for the 64b register of the FU current product
+wire [15:0] product_8bx8b; // 16b   
+wire [7:0] product_4bx4b [3:0]; // 4 x 8b 
+wire [3:0] product_2bx2b [15:0]; // 16 x 4b
 
-// genvar j;
-// localparam BITWIDTHp_4bx4b = 8;
-// localparam BITWIDTHp_2bx2b = 4;
-// generate
-//     for (j = 0; j < 16; j = j+1) begin : generate_block_5
-//         if (j == 0) begin : generate_block_6
-//             assign product_8bx8b = product[15:0];
-//             assign product_4bx4b [j][7:0] = product[7:0];
-//             assign product_2bx2b [j][3:0] = product[3:0];
-//         end else if (j > 0 && j < 4) begin : generate_block_7
-//             assign product_4bx4b [j][7:0] = product[((BITWIDTHp_4bx4b * j) + BITWIDTHp_4bx4b - 1):(BITWIDTHp_4bx4b * j)];
-//             assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];       
-//         end else if (j >= 4) begin : generate_block_8
-//             assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];               
-//         end
-//     end
-// endgenerate
+genvar j;
+localparam BITWIDTHp_4bx4b = 8;
+localparam BITWIDTHp_2bx2b = 4;
+generate
+    for (j = 0; j < 16; j = j+1) begin : generate_block_5
+        if (j == 0) begin : generate_block_6
+            assign product_8bx8b = product[15:0];
+            assign product_4bx4b [j][7:0] = product[7:0];
+            assign product_2bx2b [j][3:0] = product[3:0];
+        end else if (j > 0 && j < 4) begin : generate_block_7
+            assign product_4bx4b [j][7:0] = product[((BITWIDTHp_4bx4b * j) + BITWIDTHp_4bx4b - 1):(BITWIDTHp_4bx4b * j)];
+            assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];       
+        end else if (j >= 4) begin : generate_block_8
+            assign product_2bx2b [j][3:0] = product[((BITWIDTHp_2bx2b * j) + BITWIDTHp_2bx2b - 1):(BITWIDTHp_2bx2b * j)];               
+        end
+    end
+endgenerate
 
-// // Do the same for the input activations and weights
-// wire [7:0] activation_8bx8b; // 16b   
-// wire [3:0] activation_4bx4b [1:0]; // 2 x 4b 
-// wire [1:0] activation_2bx2b [3:0]; // 4 x 2b
+// Do the same for the input activations and weights
+wire [7:0] activation_8bx8b; // 16b   
+wire [3:0] activation_4bx4b [1:0]; // 2 x 4b 
+wire [1:0] activation_2bx2b [3:0]; // 4 x 2b
 
-// wire [7:0] weight_8bx8b; // 16b   
-// wire [3:0] weight_4bx4b [1:0]; // 2 x 4b 
-// wire [1:0] weight_2bx2b [3:0]; // 4 x 2b
+wire [7:0] weight_8bx8b; // 16b   
+wire [3:0] weight_4bx4b [1:0]; // 2 x 4b 
+wire [1:0] weight_2bx2b [3:0]; // 4 x 2b
 
-// genvar k;
-// generate
-//     for (k = 0; k < 4; k = k+1) begin : generate_block_9
-//         if (k == 0) begin : generate_block_10
-//             assign activation_8bx8b = curr_activation[7:0];
-//             assign activation_4bx4b [k][3:0] = curr_activation[3:0];
-//             assign activation_2bx2b [k][1:0] = curr_activation[1:0];
+genvar k;
+generate
+    for (k = 0; k < 4; k = k+1) begin : generate_block_9
+        if (k == 0) begin : generate_block_10
+            assign activation_8bx8b = curr_activation[7:0];
+            assign activation_4bx4b [k][3:0] = curr_activation[3:0];
+            assign activation_2bx2b [k][1:0] = curr_activation[1:0];
 
-//             assign weight_8bx8b = curr_weight[7:0];
-//             assign weight_4bx4b [k][3:0] = curr_weight[3:0];
-//             assign weight_2bx2b [k][1:0] = curr_weight[1:0];                 
-//         end else if (k > 0 && k < 2) begin : generate_block_11
-//             assign activation_4bx4b [k][3:0] = curr_activation[((4 * k) + 4 - 1):(4 * k)];
-//             assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];
+            assign weight_8bx8b = curr_weight[7:0];
+            assign weight_4bx4b [k][3:0] = curr_weight[3:0];
+            assign weight_2bx2b [k][1:0] = curr_weight[1:0];                 
+        end else if (k > 0 && k < 2) begin : generate_block_11
+            assign activation_4bx4b [k][3:0] = curr_activation[((4 * k) + 4 - 1):(4 * k)];
+            assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];
 
-//             assign weight_4bx4b [k][3:0] = curr_weight[((4 * k) + 4 - 1):(4 * k)];
-//             assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];       
-//         end else if (k >= 2) begin : generate_block_12
-//             assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];    
-//             assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];               
-//         end
-//     end
-// endgenerate
+            assign weight_4bx4b [k][3:0] = curr_weight[((4 * k) + 4 - 1):(4 * k)];
+            assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];       
+        end else if (k >= 2) begin : generate_block_12
+            assign activation_2bx2b [k][1:0] = curr_activation[((2 * k) + 2 - 1):(2 * k)];    
+            assign weight_2bx2b [k][1:0] = curr_weight[((2 * k) + 2 - 1):(2 * k)];               
+        end
+    end
+endgenerate
 
 //************************************************************************************************************************//
 
 // Unit-Under-Test (UUT) Instantiation
 mac_engine UUT(
     .activations(curr_activation), .weights(curr_weight),
-    .sx(sx), .sy(sy),
+    // .sx(sx), .sy(sy),
     .mode(mode),
     .clk(clk),
     .nrst(nrst),
     .en(en),
-    .batch_size(NUMBER_OF_TEST),
+    .batch_size(batch_size),
     .ready(ready),
     .valid(valid),
     // .OBUF(OBUF),
@@ -235,62 +237,74 @@ task test_precision;
         // Enable the MAC engine and set the precision mode
         en = 1'b1;
         ready = 1'b1;
+        nrst = 1'b1;
         // #(CLK_PERIOD); // Setup Time for Input Buffers
         mode = test_mode;
+        batch_size = number_of_tests;
         
         // Test data over the same number of clock cyles
-        // + 1 cycles for: 
-        // >> sum since it empties it first, delaying it by 1 cycle
+        // + 1 cycles for sum since it empties it first, delaying it by 1 cycle
         #(CLK_PERIOD * (number_of_tests + 1)); 
 
         // Turn off Enable signal after 1 clock cycle
         #(CLK_PERIOD); 
         en = 1'b0;
         ready = 1'b0;
+    
+        // Wait for another 2 clock cycles for next set of tests and clear accumulator register
+        #(CLK_PERIOD);
+        nrst = 1'b0;
+        #(CLK_PERIOD);
 
-        // Wait for another 2 clock cycles for next set of tests
-        #(CLK_PERIOD * 2);
+        // Generate New Random Test Cases
+        $system(pyscript_filepath);
     end
 endtask
 
 // Testbench Proper
 initial begin
-//    $dumpfile("mac_engine.dump");
-//    $dumpvars(0, mac_engine_tb);
-    
-//    $vcdplusfile("mac_engine_tb.vpd");
-//    $vcdpluson;
-//     $vcdplusmemon;
-//    $sdf_annotate("../mapped/mac_engine_mapped.sdf", UUT);
+    $dumpfile("mac_engine.dump");
+    $dumpvars(0, mac_engine_tb);
+        
+    $vcdplusfile("mac_engine_tb.vpd");
+    $vcdpluson;
+    $vcdplusmemon;
+    $sdf_annotate("../mapped/mac_engine_mapped.sdf", UUT);
 
     clk = 1'b0; nrst = 1'b0; en = 1'b0; mode = 4'd15;
-    sx = SIGNED_X; sy = SIGNED_Y; // Sets unsigned activations and signed weights
+    // sx = SIGNED_X; sy = SIGNED_Y; // Sets unsigned activations and signed weights
     curr_activation = 0; curr_weight = 0;
-    // ready = 1'b1;
 
     #(CLK_PERIOD * 2) nrst = 1'b1; #(CLK_PERIOD * 6);
 
-    //********* Start Testing each Precision Modes using the same inputs *********//
-    test_precision(_2bx2b, NUMBER_OF_TEST);
-    test_precision(_4bx4b, NUMBER_OF_TEST);
-    test_precision(_8bx8b, NUMBER_OF_TEST);
+    //********* Start Testing each Precision Modes using randomized inputs *********//
+    // repeat (209) begin
+    //     test_precision(_2bx2b, 8'd4);
+    // end
 
-    test_precision(_2bx4b, NUMBER_OF_TEST);
-    test_precision(_4bx2b, NUMBER_OF_TEST);
-    test_precision(_4bx8b, NUMBER_OF_TEST);
-    test_precision(_8bx4b, NUMBER_OF_TEST);
-    test_precision(_2bx8b, NUMBER_OF_TEST);
-    test_precision(_8bx2b, NUMBER_OF_TEST);
+    // repeat (209) begin
+    //     test_precision(_4bx4b, 8'd13);
+    // end      
 
-    ready = 1'b1;
-    #(CLK_PERIOD * 4)
+    repeat (200) begin
+        test_precision(_8bx8b, 8'd51);
+    end
+
+    // test_precision(_2bx4b, NUMBER_OF_TEST);
+    // test_precision(_4bx2b, NUMBER_OF_TEST);
+    // test_precision(_4bx8b, NUMBER_OF_TEST);
+    // test_precision(_8bx4b, NUMBER_OF_TEST);
+    // test_precision(_2bx8b, NUMBER_OF_TEST);
+    // test_precision(_8bx2b, NUMBER_OF_TEST);
+
+    $display("\nSimulation Finished :)\n");
 
     // Close text files
     $fclose(activ_file);
     $fclose(weight_file);    
     $fclose(sump_file);
 
-    // // Validate text files (Discontinued, just check immediately every clock cycle)
+    // Validate text files (Discontinued, just check immediately every clock cycle)
     // validate_sum(_2bx2b, NUMBER_OF_TEST);
     // validate_sum(_4bx4b, NUMBER_OF_TEST);
     // validate_sum(_8bx8b, NUMBER_OF_TEST);
@@ -374,7 +388,7 @@ always@(negedge clk) begin
                         $display("Cannot open sum2b_python.txt");
                     end                 
 
-                // Asymmetric Precision Modes for Original baseline Unit (FU) only      
+                // Asymmetric Precision Modes for Original Fusion Unit (FU) only      
                 end else if (mode == _2bx4b) begin
                     $display("\nValidating Output Buffer (sum) Values in 2bx4b Mode...");
                     // Open the 2bx4b Text Files
