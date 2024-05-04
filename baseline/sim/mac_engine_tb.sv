@@ -58,7 +58,12 @@ integer sumtb_file, otb;
 integer sump_file, op; 
 integer count, count_sum;
 localparam NULL = 0;
-localparam CLK_PERIOD = 20; // 20ns = 50MHz
+localparam CLK_PERIOD = 1492;
+
+integer exec_time_counter;
+integer exec_time_file;
+wire [31:0] exec_time; 
+assign exec_time = (exec_time_counter*CLK_PERIOD)/1000; // in nanoseconds
 
 // Configuration/Mode Parameters   
 localparam _2bx2b = 4'd0; localparam _4bx4b = 4'd1; localparam _8bx8b = 4'd2;                   
@@ -96,6 +101,7 @@ localparam sump_2bx8b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baselin
 localparam sump_8bx2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum8bx2b_python.txt";
 
 localparam pyscript_filepath = "python3 /home/kpelayo/Documents/Pelayo_196_199/baseline/sim/generate_test_files.py";
+localparam exec_time_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/pt_simulation.log";
 
 // localparam sumtb_2b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum2b_tb.txt";
 // localparam sumtb_4b_filepath = "/home/kpelayo/Documents/Pelayo_196_199/baseline/sim/sum4b_tb.txt";
@@ -274,21 +280,22 @@ initial begin
     clk = 1'b0; nrst = 1'b0; en = 1'b0; mode = 4'd15;
     sx = SIGNED_X; sy = SIGNED_Y; // Sets unsigned activations and signed weights
     curr_activation = 0; curr_weight = 0;
+    exec_time_counter = 0;
 
     #(CLK_PERIOD * 2) nrst = 1'b1; #(CLK_PERIOD * 6);
 
     //********* Start Testing each Precision Modes using randomized inputs *********//
-    repeat (200) begin
-        test_precision(_2bx2b, 8'd51);
-    end
+    // repeat (200) begin
+    //     test_precision(_2bx2b, 8'd51);
+    // end
 
     // repeat (200) begin
     //     test_precision(_4bx4b, 8'd51);
-    // end      
-
-    // repeat (200) begin
-    //     test_precision(_8bx8b, 8'd51);
     // end
+
+    repeat (200) begin
+        test_precision(_8bx8b, 8'd51);
+    end
 
     // test_precision(_2bx4b, NUMBER_OF_TEST);
     // test_precision(_4bx2b, NUMBER_OF_TEST);
@@ -298,18 +305,36 @@ initial begin
     // test_precision(_8bx2b, NUMBER_OF_TEST);
 
     $display("\nSimulation Finished :)\n");
+    $display("\nTotal Execution Time : %f ns \n", exec_time);
+
+    // Open and Write Total Execution Time
+    exec_time_file = $fopen(exec_time_filepath,"w+");
+    if (exec_time_file == NULL) begin
+        $display("Cannot open pt_simulation.log");
+        $finish;
+    end     
+
+    $fwrite(exec_time_file, "Total execution time: %f", exec_time);
 
     // Close text files
     $fclose(activ_file);
     $fclose(weight_file);    
     $fclose(sump_file);
+    $fclose(exec_time_file);
 
-    // // Validate text files (Discontinued, just check immediately every clock cycle)
+    // Validate text files (Discontinued, just check immediately every clock cycle)
     // validate_sum(_2bx2b, NUMBER_OF_TEST);
     // validate_sum(_4bx4b, NUMBER_OF_TEST);
     // validate_sum(_8bx8b, NUMBER_OF_TEST);
 
     $finish;
+end
+
+//***** Create internal counter for measuring the total execution time when the MAC is enabled *****//
+always@(posedge clk) begin
+    if (en) begin
+        exec_time_counter <= exec_time_counter + 1;
+    end
 end
 
 //***** For synchronization of test inputs when reading through .txt file ($fscanf) *****//
