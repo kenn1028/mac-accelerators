@@ -427,17 +427,24 @@ module proposed (
 
             _4bx4b: begin
                 // Sign-Bit Extension to 10-bits for BB Cluster 8-bit Products
-                product[9:0] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
-                product[15:10] = 0;
+                // product[9:0] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
+                // product[15:10] = 0;
+                product[15:6] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
+                product[5:0] = 0;                
             end
 
             _2bx2b: begin
                 // Sign-Bit Extension to 8-bits for 6-bit BB Products
-                product[7:0] = {{4{pp_hh_1[3]}}, pp_hh_1} + {{4{pp_hl_1[3]}}, pp_hl_1} + {{4{pp_lh_1[3]}}, pp_lh_1} + {{4{pp_ll_1[3]}}, pp_ll_1} +
-                               {{4{pp_hh_2[3]}}, pp_hh_2} + {{4{pp_hl_2[3]}}, pp_hl_2} + {{3{pp_lh_2[4]}}, pp_lh_2} + {{4{pp_ll_2[3]}}, pp_ll_2} +
-                               {{4{pp_hh_3[3]}}, pp_hh_3} + {{3{pp_hl_3[4]}}, pp_hl_3} + {{4{pp_lh_3[3]}}, pp_lh_3} + {{4{pp_ll_3[3]}}, pp_ll_3} +
-                               {{3{pp_hh_4[4]}}, pp_hh_4} + {{3{pp_hl_4[4]}}, pp_hl_4} + {{3{pp_lh_4[4]}}, pp_lh_4} + {{4{pp_ll_4[3]}}, pp_ll_4};
-                product[15:8] = 0;
+                // product[7:0] = {{4{pp_hh_1[3]}}, pp_hh_1} + {{4{pp_hl_1[3]}}, pp_hl_1} + {{4{pp_lh_1[3]}}, pp_lh_1} + {{4{pp_ll_1[3]}}, pp_ll_1} +
+                //                {{4{pp_hh_2[3]}}, pp_hh_2} + {{4{pp_hl_2[3]}}, pp_hl_2} + {{3{pp_lh_2[4]}}, pp_lh_2} + {{4{pp_ll_2[3]}}, pp_ll_2} +
+                //                {{4{pp_hh_3[3]}}, pp_hh_3} + {{3{pp_hl_3[4]}}, pp_hl_3} + {{4{pp_lh_3[3]}}, pp_lh_3} + {{4{pp_ll_3[3]}}, pp_ll_3} +
+                //                {{3{pp_hh_4[4]}}, pp_hh_4} + {{3{pp_hl_4[4]}}, pp_hl_4} + {{3{pp_lh_4[4]}}, pp_lh_4} + {{4{pp_ll_4[3]}}, pp_ll_4};
+                // product[15:8] = 0;
+                product[15:8] = {{4{pp_hh_1[3]}}, pp_hh_1} + {{4{pp_hl_1[3]}}, pp_hl_1} + {{4{pp_lh_1[3]}}, pp_lh_1} + {{4{pp_ll_1[3]}}, pp_ll_1} +
+                                {{4{pp_hh_2[3]}}, pp_hh_2} + {{4{pp_hl_2[3]}}, pp_hl_2} + {{3{pp_lh_2[4]}}, pp_lh_2} + {{4{pp_ll_2[3]}}, pp_ll_2} +
+                                {{4{pp_hh_3[3]}}, pp_hh_3} + {{3{pp_hl_3[4]}}, pp_hl_3} + {{4{pp_lh_3[3]}}, pp_lh_3} + {{4{pp_ll_3[3]}}, pp_ll_3} +
+                                {{3{pp_hh_4[4]}}, pp_hh_4} + {{3{pp_hl_4[4]}}, pp_hl_4} + {{3{pp_lh_4[4]}}, pp_lh_4} + {{4{pp_ll_4[3]}}, pp_ll_4};
+                product[7:0] = 0;                            
             end
 
             default: product = 0;
@@ -531,14 +538,18 @@ module proposed (
 
                         _4bx4b: begin
                             // Extend the sign bit of the 10-bit "product" (and sums) in 4bx4b mode to fit 12-bit sum when adding
-                            sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
-                            sum[19:12] <= 0;
+                            // sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
+                            // sum[19:12] <= 0;
+                            sum[19:8] <= (sum[19:8] + {{2{product[15]}}, product[15:6]});
+                            sum[7:0] <= 0;                            
                         end
 
                         _2bx2b: begin
                             // Extend the sign bit of the 8-bit "product" (and sums) in 2bx2b mode to fit 10-bit sum when adding
-                            sum[9:0] <= (sum[9:0] + {{2{product[7]}}, product[7:0]});
-                            sum[19:10] <= 0;
+                            // sum[9:0] <= (sum[9:0] + {{2{product[7]}}, product[7:0]});
+                            // sum[19:10] <= 0;
+                            sum[19:10] <= (sum[19:10] + {{2{product[15]}}, product[15:8]});
+                            sum[9:0] <= 0;                                                  
                         end                 
  
                         default: sum <= 0;

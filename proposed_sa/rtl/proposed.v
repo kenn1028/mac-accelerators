@@ -66,12 +66,107 @@ module s_bitbrick(
     full_adder FA_p3b (.a(pp1[2]), .b(pp2[1]), .ci(FA_p2_co), .sum(HA_p3_in), .co(FA_p3_co));
     full_adder FA_p3a (.a(HA_p3_in), .b(HA_p2_co), .ci(1'b1), .sum(p[3]), .co(HA_p3_co)); // p[3] + 1'b1 on nth bit
     
-    wire HA_p5_in;
-    assign p[4] = (xi[2] ^ yi[2]) & (xi[1] | xi[0]) & (yi[1] | yi[0]); // Simplified expression for p[4]     
+    assign p[4] = (xi[2] ^ yi[2]) & (xi[1] | xi[0]) & (yi[1] | yi[0]); // Simplified expression for p[4]   
 endmodule
 
+//***** Nonnegative Activation Simplified BitBrick (nSBB) Unit *****//
+module ns_bitbrick(
+    input [1:0] x, // 2-bit Inputs
+    input [1:0] y,
+    // input sx, // Control Flag Signals for Signed (1) or Unsigned Input (0)
+    input sy,
+    output [3:0] p // Reduced product to 4-bits
+    );
+       
+    // Initialize 3-bit Operands - Optimization Point #1: Reduces one AND gate by assuming signed x
+    wire [2:0] xi, yi;
+    assign xi = {x[1], x}; // Fixed Signed X, bit extension
+    assign yi = {y[1] & sy, y};
+       
+    // Multiplier
+    wire [2:0] pp0, pp1, pp2; // PPG
+    
+    // Partial Product Generation (PPG)
+    assign pp0 = {~(xi[2] & yi[0]), (xi[1] & yi[0]), (xi[0] & yi[0])};
+    assign pp1 = {~(xi[2] & yi[1]), (xi[1] & yi[1]), (xi[0] & yi[1])};
+    assign pp2 = {(xi[2] & yi[2]), ~(xi[1] & yi[2]), ~(xi[0] & yi[2])};    
+    
+    // Partial Product Reduction (PPR) - Following Actual Implementation 
+    assign p[0] = pp0[0];  // p[0]
+    
+    wire HA_p1_co;
+    half_adder HA_p1 (.a(pp0[1]), .b(pp1[0]), .sum(p[1]), .co(HA_p1_co)); // p[1]
+    
+    wire HA_p2_co, FA_p2_co, HA_p2_in;
+    full_adder FA_p2 (.a(pp1[1]), .b(pp2[0]), .ci(HA_p1_co), .sum(HA_p2_in), .co(FA_p2_co));
+    half_adder HA_p2 (.a(pp0[2]), .b(HA_p2_in), .sum(p[2]), .co(HA_p2_co)); // p[2]
+    
+    wire HA_p3_co, FA_p3_co, HA_p3_in;
+    full_adder FA_p3b (.a(pp1[2]), .b(pp2[1]), .ci(FA_p2_co), .sum(HA_p3_in), .co(FA_p3_co));
+    full_adder FA_p3a (.a(HA_p3_in), .b(HA_p2_co), .ci(1'b1), .sum(p[3]), .co(HA_p3_co)); // p[3] + 1'b1 on nth bit
+    
+    // assign p[4] = (xi[2] ^ yi[2]) & (xi[1] | xi[0]) & (yi[1] | yi[0]); // Simplified expression for p[4]     
+    // assign p[4] = xi[2] & (yi[1] | yi[0]); // Further Simplified expression for p[4]     
+endmodule
+
+//***** 4-bit Version of the Simplified BitBrick (4b-sBB) Unit or 3x3 Baugh-Wooley Multiplier *****//
+module fs_bitbrick(
+    input [1:0] x, // 2-bit Inputs
+    input [1:0] y,
+    input sx, // Control Flag Signals for Signed (1) or Unsigned Input (0)
+    input sy,
+    output [3:0] p // Reduced product to 5-bits
+    );
+       
+    // Initialize 3-bit Operands (Extend 2-bits Unsigned or create 3-bits Signed)
+    wire [2:0] xi, yi;
+    assign xi = {sx & x[1] , x};
+    assign yi = {sy & y[1] , y};
+       
+    // Multiplier
+    wire [2:0] pp0, pp1, pp2; // PPG
+    
+    // Partial Product Generation (PPG)
+    assign pp0 = {~(xi[2] & yi[0]), (xi[1] & yi[0]), (xi[0] & yi[0])};
+    assign pp1 = {~(xi[2] & yi[1]), (xi[1] & yi[1]), (xi[0] & yi[1])};
+    assign pp2 = {(xi[2] & yi[2]), ~(xi[1] & yi[2]), ~(xi[0] & yi[2])};    
+    
+    // Partial Product Reduction (PPR) - Following Actual Implementation 
+    assign p[0] = pp0[0];  // p[0]
+    
+    wire HA_p1_co;
+    half_adder HA_p1 (.a(pp0[1]), .b(pp1[0]), .sum(p[1]), .co(HA_p1_co)); // p[1]
+    
+    wire HA_p2_co, FA_p2_co, HA_p2_in;
+    full_adder FA_p2 (.a(pp1[1]), .b(pp2[0]), .ci(HA_p1_co), .sum(HA_p2_in), .co(FA_p2_co));
+    half_adder HA_p2 (.a(pp0[2]), .b(HA_p2_in), .sum(p[2]), .co(HA_p2_co)); // p[2]
+    
+    wire HA_p3_co, FA_p3_co, HA_p3_in;
+    full_adder FA_p3b (.a(pp1[2]), .b(pp2[1]), .ci(FA_p2_co), .sum(HA_p3_in), .co(FA_p3_co));
+    full_adder FA_p3a (.a(HA_p3_in), .b(HA_p2_co), .ci(1'b1), .sum(p[3]), .co(HA_p3_co)); // p[3] + 1'b1 on nth bit
+    
+    // assign p[4] = (xi[2] ^ yi[2]) & (xi[1] | xi[0]) & (yi[1] | yi[0]); // Simplified expression for p[4]     
+endmodule
+
+//***** Signed-Only BitBrick (sSBB) Unit *****//
+module ss_bitbrick(
+    input [1:0] x, // 2-bit Inputs
+    input [1:0] y,
+    // input sx, // Control Flag Signals for Signed (1) or Unsigned Input (0)
+    // input sy,
+    output [3:0] p // Reduced product to 4-bits
+    );
+       
+    // Minterm Format (x[1] & x[0] & y[1] & y[0]) 
+    assign p[0] = x[0] & y[0];
+    assign p[3] = (x[1] & (~y[1]) & y[0]) | (~x[1] & x[0] & y[1]);
+    assign p[2] = (x[1] & (~x[0]) & y[1] & (~y[0])) | p[3];
+    assign p[1] = p[3] | (x[1] & (~x[0]) & y[0]) | (x[0] & y[1] & (~y[0]));
+endmodule
+
+//** Controller Module to handle the Sign Bits of each BitBrick (BB) based on the chosen precision mode **//
 module signbit_ctrl (
-    input sx, input sy,
+    // input sx, input sy,
     input [3:0] mode,
     output reg [4:1] hh_sx, output reg [4:1] hl_sx, output reg [4:1] lh_sx, output reg [4:1] ll_sx,
     output reg [4:1] hh_sy, output reg [4:1] hl_sy, output reg [4:1] lh_sy, output reg [4:1] ll_sy    
@@ -83,27 +178,39 @@ module signbit_ctrl (
     localparam _8bx8b = 4'd2;                   
 
     // Assign BitBricks that are always connected to the signed/unsigned control signals (Default: 8bx8b Mode)
-    always@(*) begin
-        {hh_sx[2:1], hl_sx[2:1]} = {4{sx}};
-        {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = {4{sy}};
-    end
+    // always@(*) begin
+    //     // {hh_sx[2:1], hl_sx[2:1]} = {4{sx}};
+    //     // {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = {4{sy}};
+    //     {hh_sx[2:1], hl_sx[2:1]} = 4'b1111;
+    //     {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = 4'b1111;        
+    // end
 
     //** Control Signal for Input Activations (sx) **//
+    // Optimization Point #1: Fix as Signed-Input Modes to 1'b1 instead of depending on sx and sy
     always@(*) begin
         case(mode)
             _2bx2b: begin
-                {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
-                {lh_sx[4:1], ll_sx[4:1]} = {8{sx}};
+                // {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
+                // {lh_sx[4:1], ll_sx[4:1]} = {8{sx}};
+                {hh_sx[4:3], hl_sx[4:3]} = {4{1'b1}};
+                {lh_sx[4:1], ll_sx[4:1]} = {8{1'b1}};        
+
+                {hh_sx[2:1], hl_sx[2:1]} = 4'b1111;
             end
 
             _4bx4b: begin
-                {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
+                // {hh_sx[4:3], hl_sx[4:3]} = {4{sx}};
+                {hh_sx[4:3], hl_sx[4:3]} = {4{1'b1}};                
                 {lh_sx[4:1], ll_sx[4:1]} = 8'b0;
+
+                {hh_sx[2:1], hl_sx[2:1]} = 4'b1111;
             end
 
             default: begin
                 {hh_sx[4:3], hl_sx[4:3]} = 4'b0;
                 {lh_sx[4:1], ll_sx[4:1]} = 8'b0;
+
+                {hh_sx[2:1], hl_sx[2:1]} = 4'b1111;
             end
         endcase
     end
@@ -112,17 +219,29 @@ module signbit_ctrl (
     always@(*) begin
         case(mode)
             _2bx2b: begin
-                {hh_sy[2], hh_sy[4]} = {2{sy}};
-                hl_sy[4:1] = {4{sy}};
-                {lh_sy[2], lh_sy[4]} = {2{sy}};
-                ll_sy[4:1] = {4{sy}};               
+                // {hh_sy[2], hh_sy[4]} = {2{sy}};
+                // hl_sy[4:1] = {4{sy}};
+                // {lh_sy[2], lh_sy[4]} = {2{sy}};
+                // ll_sy[4:1] = {4{sy}};               
+                {hh_sy[2], hh_sy[4]} = {2{1'b1}};
+                hl_sy[4:1] = {4{1'b1}};
+                {lh_sy[2], lh_sy[4]} = {2{1'b1}};
+                ll_sy[4:1] = {4{1'b1}};       
+
+                {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = 4'b1111;             
             end
 
             _4bx4b: begin
-                {hh_sy[2], hh_sy[4]} = {2{sy}};
+                // {hh_sy[2], hh_sy[4]} = {2{sy}};
+                // hl_sy[4:1] = 4'b0;
+                // {lh_sy[2], lh_sy[4]} = {2{sy}};
+                // ll_sy[4:1] = 4'b0;                
+                {hh_sy[2], hh_sy[4]} = {2{1'b1}};
                 hl_sy[4:1] = 4'b0;
-                {lh_sy[2], lh_sy[4]} = {2{sy}};
-                ll_sy[4:1] = 4'b0;                
+                {lh_sy[2], lh_sy[4]} = {2{1'b1}};
+                ll_sy[4:1] = 4'b0;                  
+
+                {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = 4'b1111;                             
             end
 
             default: begin
@@ -130,6 +249,8 @@ module signbit_ctrl (
                 hl_sy[4:1] = 4'b0;
                 {lh_sy[2], lh_sy[4]} = 2'b0;
                 ll_sy[4:1] = 4'b0;                
+
+                {hh_sy[1], hh_sy[3], lh_sy[1], lh_sy[3]} = 4'b1111;             
             end
         endcase
     end
@@ -140,8 +261,8 @@ endmodule
 module proposed (
     input [7:0] x,
     input [7:0] y,
-    input sx,
-    input sy,
+    // input sx,
+    // input sy,
     input [3:0] mode,
     input clk,
     input en,
@@ -176,7 +297,8 @@ module proposed (
 
     // Instantiate controller:
     wire [4:1] hh_sx, hl_sx, lh_sx, ll_sx, hh_sy, hl_sy, lh_sy, ll_sy;
-    signbit_ctrl sign_ctrl(.sx(sx), .sy(sy), .mode(mode), 
+    signbit_ctrl sign_ctrl( //.sx(sx), .sy(sy), 
+                           .mode(mode), 
                            .hh_sx(hh_sx), .hl_sx(hl_sx), .lh_sx(lh_sx), .ll_sx(ll_sx), 
                            .hh_sy(hh_sy), .hl_sy(hl_sy), .lh_sy(lh_sy), .ll_sy(ll_sy));
 
@@ -185,54 +307,80 @@ module proposed (
     //     will be processed as signed inputs.
     
     //****************** Block 1 = High-High, x[7:4] * y[7:4] ******************//
-    wire [4:0] pp_hh_1, pp_hl_1, pp_lh_1, pp_ll_1;
-    s_bitbrick bb_hh_1(.x(xh[3:2]), .y(yh[3:2]), .p(pp_hh_1), .sx(hh_sx[1]), .sy(hh_sy[1]));    
-    s_bitbrick bb_hl_1(.x(xh[3:2]), .y(yh[1:0]), .p(pp_hl_1), .sx(hl_sx[1]), .sy(hl_sy[1]));    
-    s_bitbrick bb_lh_1(.x(xh[1:0]), .y(yh[3:2]), .p(pp_lh_1), .sx(lh_sx[1]), .sy(lh_sy[1]));    
-    s_bitbrick bb_ll_1(.x(xh[1:0]), .y(yh[1:0]), .p(pp_ll_1), .sx(ll_sx[1]), .sy(ll_sy[1]));    
+    wire [3:0] pp_hh_1, pp_hl_1, pp_lh_1, pp_ll_1;
+    // Optimization Point: Always Signed X and Y, use nSBB to save an AND gate   
+    // ns_bitbrick bb_hh_1(.x(xh[3:2]), .y(yh[3:2]), .p(pp_hh_1), .sy(hh_sy[1]));
+    ss_bitbrick bb_hh_1(.x(xh[3:2]), .y(yh[3:2]), .p(pp_hh_1));
+
+    // Optimization Point: Always Signed X, use nSBB to save an AND gate   
+    ns_bitbrick bb_hl_1(.x(xh[3:2]), .y(yh[1:0]), .p(pp_hl_1), .sy(hl_sy[1]));
+
+    // Optimization Point: Always Signed Y, use nSBB to save an AND gate   
+    ns_bitbrick bb_lh_1(.y(xh[1:0]), .x(yh[3:2]), .p(pp_lh_1), .sy(lh_sx[1]));    
+
+    // Optimization Point: Lower Multiplication Product can be represented with 4-bits
+    fs_bitbrick bb_ll_1(.x(xh[1:0]), .y(yh[1:0]), .p(pp_ll_1), .sx(ll_sx[1]), .sy(ll_sy[1]));    
     
     wire [7:0] pp_hh;
     // assign pp_hh = (pp_ll_1 + {pp_hl_1, 2'b0} + {pp_lh_1, 2'b0} + {pp_hh_1, 4'b0});
     // assign pp_hh = {pp_hh_1, pp_ll_1[3:0]} + {(pp_hl_1 + pp_lh_1), 2'b00}; // Merge + Add-Shift    
-    assign pp_hh = {pp_hh_1, pp_ll_1[3:0]} + {({pp_hl_1[4], pp_hl_1} + {pp_lh_1[4], pp_lh_1}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
-
+    // assign pp_hh = {pp_hh_1, pp_ll_1[3:0]} + {({pp_hl_1[4], pp_hl_1} + {pp_lh_1[4], pp_lh_1}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
+    assign pp_hh = {{pp_hh_1[3], pp_hh_1}, pp_ll_1} + {({{2{pp_hl_1[3]}}, pp_hl_1} + {{2{pp_lh_1[3]}}, pp_lh_1}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
 
     //******************  Block 2 = High-Low, x[7:4] * y[3:0] ******************//
-    wire [4:0] pp_hh_2, pp_hl_2, pp_lh_2, pp_ll_2;
-    s_bitbrick bb_hh_2(.x(xh[3:2]), .y(yl[3:2]), .p(pp_hh_2), .sx(hh_sx[2]), .sy(hh_sy[2]));    
-    s_bitbrick bb_hl_2(.x(xh[3:2]), .y(yl[1:0]), .p(pp_hl_2), .sx(hl_sx[2]), .sy(hl_sy[2]));    
+    wire [3:0] pp_hh_2, pp_hl_2, pp_ll_2;
+    wire [4:0] pp_lh_2;
+    // Optimization Point: Always Signed X, use nSBB to save an AND gate       
+    ns_bitbrick bb_hh_2(.x(xh[3:2]), .y(yl[3:2]), .p(pp_hh_2), .sy(hh_sy[2]));    
+    ns_bitbrick bb_hl_2(.x(xh[3:2]), .y(yl[1:0]), .p(pp_hl_2), .sy(hl_sy[2]));
+
     s_bitbrick bb_lh_2(.x(xh[1:0]), .y(yl[3:2]), .p(pp_lh_2), .sx(lh_sx[2]), .sy(lh_sy[2]));    
-    s_bitbrick bb_ll_2(.x(xh[1:0]), .y(yl[1:0]), .p(pp_ll_2), .sx(ll_sx[2]), .sy(ll_sy[2]));    
+
+    // Optimization Point: Lower Multiplication Product can be represented with 4-bits
+    fs_bitbrick bb_ll_2(.x(xh[1:0]), .y(yl[1:0]), .p(pp_ll_2), .sx(ll_sx[2]), .sy(ll_sy[2]));    
     
     wire [7:0] pp_hl;
     // assign pp_hl = (pp_ll_2 + {pp_hl_2, 2'b0} + {pp_lh_2, 2'b0} + {pp_hh_2, 4'b0});
     // assign pp_hl = {pp_hh_2, pp_ll_2[3:0]} + {(pp_hl_2 + pp_lh_2), 2'b00}; // Merge + Add-Shift  
-    assign pp_hl = {pp_hh_2, pp_ll_2[3:0]} + {({pp_hl_2[4], pp_hl_2} + {pp_lh_2[4], pp_lh_2}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
-
+    // assign pp_hl = {pp_hh_2, pp_ll_2[3:0]} + {({pp_hl_2[4], pp_hl_2} + {pp_lh_2[4], pp_lh_2}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
+    assign pp_hl = {{pp_hh_2[3], pp_hh_2}, pp_ll_2} + {({{2{pp_hl_2[3]}}, pp_hl_2} + {pp_lh_2[4], pp_lh_2}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
 
     //******************  Block 3 = Low-High, x[3:0] * y[7:4] ******************//
-    wire [4:0] pp_hh_3, pp_hl_3, pp_lh_3, pp_ll_3;
-    s_bitbrick bb_hh_3(.x(xl[3:2]), .y(yh[3:2]), .p(pp_hh_3), .sx(hh_sx[3]), .sy(hh_sy[3]));    
+    wire [3:0] pp_hh_3, pp_lh_3, pp_ll_3;
+    wire [4:0] pp_hl_3;
+    // Optimization Point: Always Signed Y, use nSBB to save an AND gate   
+    // s_bitbrick bb_hh_3(.x(xl[3:2]), .y(yh[3:2]), .p(pp_hh_3), .sx(hh_sx[3]), .sy(hh_sy[3]));   
+    ns_bitbrick bb_hh_3(.y(xl[3:2]), .x(yh[3:2]), .p(pp_hh_3), .sy(hh_sx[3]));   
+
     s_bitbrick bb_hl_3(.x(xl[3:2]), .y(yh[1:0]), .p(pp_hl_3), .sx(hl_sx[3]), .sy(hl_sy[3]));    
-    s_bitbrick bb_lh_3(.x(xl[1:0]), .y(yh[3:2]), .p(pp_lh_3), .sx(lh_sx[3]), .sy(lh_sy[3]));    
-    s_bitbrick bb_ll_3(.x(xl[1:0]), .y(yh[1:0]), .p(pp_ll_3), .sx(ll_sx[3]), .sy(ll_sy[3]));    
+    
+    // Optimization Point: Always Signed Y, use nSBB to save an AND gate       
+    ns_bitbrick bb_lh_3(.y(xl[1:0]), .x(yh[3:2]), .p(pp_lh_3), .sy(lh_sx[3]));    
+
+    // Optimization Point: Lower Multiplication Product can be represented with 4-bits
+    fs_bitbrick bb_ll_3(.x(xl[1:0]), .y(yh[1:0]), .p(pp_ll_3), .sx(ll_sx[3]), .sy(ll_sy[3]));    
     
     wire [7:0] pp_lh;
     // assign pp_lh = (pp_ll_3 + {pp_hl_3, 2'b0} + {pp_lh_3, 2'b0} + {pp_hh_3, 4'b0});  
     // assign pp_lh = {pp_hh_3, pp_ll_3[3:0]} + {(pp_hl_3 + pp_lh_3), 2'b00}; // Merge + Add-Shift   
-    assign pp_lh = {pp_hh_3, pp_ll_3[3:0]} + {({pp_hl_3[4], pp_hl_3} + {pp_lh_3[4], pp_lh_3}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
+    // assign pp_lh = {pp_hh_3, pp_ll_3[3:0]} + {({pp_hl_3[4], pp_hl_3} + {pp_lh_3[4], pp_lh_3}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
+    assign pp_lh = {{pp_hh_3[3], pp_hh_3}, pp_ll_3} + {({pp_hl_3[4], pp_hl_3} + {{2{pp_lh_3[3]}}, pp_lh_3}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension   
 
     //******************  Block 4 = Low-Low, x[3:0] * y[3:0] ******************//
-    wire [4:0] pp_hh_4, pp_hl_4, pp_lh_4, pp_ll_4;
+    wire [4:0] pp_hh_4, pp_hl_4, pp_lh_4;
+    wire [3:0] pp_ll_4;
     s_bitbrick bb_hh_4(.x(xl[3:2]), .y(yl[3:2]), .p(pp_hh_4), .sx(hh_sx[4]), .sy(hh_sy[4]));    
     s_bitbrick bb_hl_4(.x(xl[3:2]), .y(yl[1:0]), .p(pp_hl_4), .sx(hl_sx[4]), .sy(hl_sy[4]));    
     s_bitbrick bb_lh_4(.x(xl[1:0]), .y(yl[3:2]), .p(pp_lh_4), .sx(lh_sx[4]), .sy(lh_sy[4]));    
-    s_bitbrick bb_ll_4(.x(xl[1:0]), .y(yl[1:0]), .p(pp_ll_4), .sx(ll_sx[4]), .sy(ll_sy[4]));    
+
+    // Optimization Point: Lower Multiplication Product can be represented with 4-bits
+    fs_bitbrick bb_ll_4(.x(xl[1:0]), .y(yl[1:0]), .p(pp_ll_4), .sx(ll_sx[4]), .sy(ll_sy[4]));    
     
     wire [7:0] pp_ll;
     // assign pp_ll = (pp_ll_4 + {pp_hl_4, 2'b0} + {pp_lh_4, 2'b0} + {pp_hh_4, 4'b0});    
     // assign pp_ll = {pp_hh_4, pp_ll_4[3:0]} + {(pp_hl_4 + pp_lh_4), 2'b00}; // Merge + Add-Shift    
-    assign pp_ll = {pp_hh_4, pp_ll_4[3:0]} + {({pp_hl_4[4], pp_hl_4} + {pp_lh_4[4], pp_lh_4}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension
+    // assign pp_ll = {pp_hh_4, pp_ll_4[3:0]} + {({pp_hl_4[4], pp_hl_4} + {pp_lh_4[4], pp_lh_4}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension
+    assign pp_ll = {pp_hh_4, pp_ll_4} + {({pp_hl_4[4], pp_hl_4} + {pp_lh_4[4], pp_lh_4}), 2'b00}; // Merge + Add-Shift w/ Sign Bit Extension
 
     //** Output Product Mapping based on chosen mode **//
 
@@ -241,14 +389,19 @@ module proposed (
         case(mode)
            _8bx8b: begin
                // Sign-Bit Extension to 16-bits for BB Cluster 8-bit Products
-               product[15:0] = {pp_hh, pp_ll} + {{{4{(pp_lh[7] & sy)}}, pp_lh} + {{4{(pp_hl[7] & sx)}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
-               // product[15:0] = {{8{1'b0}}, pp_ll} + {{4{(pp_lh[7] & sy)}}, pp_lh, 4'b0} + {{4{(pp_hl[7] & sx)}}, pp_hl, 4'b0} + {pp_hh, 8'b0};            
+            //    product[15:0] = {pp_hh, pp_ll} + {{{4{(pp_lh[7] & sy)}}, pp_lh} + {{4{(pp_hl[7] & sx)}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
+               // product[15:0] = {{8{1'b0}}, pp_ll} + {{4{(pp_lh[7] & sy)}}, pp_lh, 4'b0} + {{4{(pp_hl[7] & sx)}}, pp_hl, 4'b0} + {pp_hh, 8'b0};        
+
+                // Optimization Point #2: Reduce Sign-Bit Logic and Always Extend Sign-Bit
+               product[15:0] = {pp_hh, pp_ll} + {{{4{(pp_lh[7])}}, pp_lh} + {{4{(pp_hl[7])}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
            end
             
             _4bx4b: begin
                 // Must map 4x8b BitBrick products to 64-bit output product register
-                product[31:0] = {pp_hh, pp_hl, pp_lh, pp_ll};         
-                product[63:32] = 0; 
+                // product[31:0] = {pp_hh, pp_hl, pp_lh, pp_ll};         
+                // product[63:32] = 0; 
+                product[63:32] = {pp_hh, pp_hl, pp_lh, pp_ll};         
+                product[31:0] = 0;                 
             end
             
             _2bx2b: begin
@@ -318,17 +471,24 @@ module proposed (
                     case(mode)
                         _8bx8b: begin
                             // Extend sign bit of 16-bit product in 8bx8b mode then accumulated to fit 20-bit sum when adding
-                            sum[19:0] <= (sum[19:0] + {{4{product[15]}}, product[15:0]});                    
-                            sum[127:20] <= 0;
+                            // sum[19:0] <= (sum[19:0] + {{4{product[15]}}, product[15:0]});                    
+                            // sum[127:20] <= 0;
+                            sum[127:108] <= (sum[127:108] + {{4{product[15]}}, product[15:0]});                    
+                            sum[107:0] <= 0;                            
                         end
 
                         _4bx4b: begin
                             // Map the 32-bit product register (4x8b products) to fit 4x12b = 48-bit sum w/ sign extend to 12b
-                            sum[11:0] <= (sum[11:0] + {{4{product[7]}}, product[7:0]});
-                            sum[23:12] <= (sum[23:12] + {{4{product[15]}}, product[15:8]});
-                            sum[35:24] <= (sum[35:24] + {{4{product[23]}}, product[23:16]});
-                            sum[47:36] <= (sum[47:36] + {{4{product[31]}}, product[31:24]});
-                            sum[127:48] <= 0;
+                            // sum[11:0] <= (sum[11:0] + {{4{product[7]}}, product[7:0]});
+                            // sum[23:12] <= (sum[23:12] + {{4{product[15]}}, product[15:8]});
+                            // sum[35:24] <= (sum[35:24] + {{4{product[23]}}, product[23:16]});
+                            // sum[47:36] <= (sum[47:36] + {{4{product[31]}}, product[31:24]});
+                            // sum[127:48] <= 0;
+                            sum[79:0] <= 0;                            
+                            sum[91:80] <= (sum[91:80] + {{4{product[39]}}, product[39:32]});
+                            sum[103:92] <= (sum[103:92] + {{4{product[47]}}, product[47:40]});
+                            sum[115:104] <= (sum[115:104] + {{4{product[55]}}, product[55:48]});
+                            sum[127:116] <= (sum[127:116] + {{4{product[63]}}, product[63:56]});
                         end
 
                         _2bx2b: begin

@@ -22,8 +22,8 @@
 module mac_engine(
     input [7:0] activations,
     input [7:0] weights,
-    input sx,
-    input sy,
+    // input sx,
+    // input sy,
     input [3:0] mode,
     input clk,
     input nrst,
@@ -123,8 +123,8 @@ module mac_engine(
     proposed PFU1 (
         .x(IBUF[0][7:0]),
         .y(WBUF[0][7:0]),
-        .sx(sx),
-        .sy(sy),
+        // .sx(sx),
+        // .sy(sy),
         .mode(mode),
         .clk(clk),
         .en(en),
