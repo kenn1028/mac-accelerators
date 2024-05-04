@@ -308,8 +308,9 @@ def sum_tohex_writefile_SA(filename:str, sum, NUMBER_OF_TEST_CASES, MODE):
             sum_hex = sum_hex + str(tohex(sum[i][j], sum_bitwidth)) 
 
             if (j == (NUMBER_OF_PRODUCTS-1)):
-                if (MODE == 8 or MODE == 4):
-                    sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
+                if (MODE == '8bx8b' or MODE == '4bx4b'):
+                    # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
+                    sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                   
                 else:
                     sum_file.write(sum_hex + "\n") 
                     
@@ -356,29 +357,48 @@ def sum_tohex_writefile_ST(filename:str, sum_list, NUMBER_OF_TEST_CASES, MODE):
             sum_bitwidth = 16                
 
     for i in range(NUMBER_OF_TEST_CASES+1): # Add 1 to consider the 0 index where sum is reset
-        if (baseline == "Y"):
-            if (MODE == '2bx4b' or MODE == '2bx8b'):
-                # (2b/4b)x(2b/4b) and (2b/8b)x(2b/8b) have expected sum_bitwidths that are not divisible
-                # by 4 which does not translate properly in Hex, convert to Binary first then add '00' at end
-                # to become divisible by 4 before changing back to Hex
-                sum_bin = str(tobin(sum(sum_list[i]), sum_bitwidth) + '00')
-                sum_int = BitArray(bin = sum_bin).int # Integer Representation after "Left Shifting" by 2
+        if (MODE == '2bx4b' or MODE == '2bx8b' or MODE == '2bx2b'):
+            # Modes 2b x (2b/4b/8b) have expected sum_bitwidths that are not divisible
+            # by 4 which does not translate properly in Hex, convert to Binary first then add '00' at end
+            # to become divisible by 4 before changing back to Hex
+            sum_bin = str(tobin(sum(sum_list[i]), sum_bitwidth) + '00')
+            sum_int = BitArray(bin = sum_bin).int # Integer Representation after "Left Shifting" by 2
 
-                sum_hex = ""
-                sum_hex = sum_hex + str(tohex(sum_int, sum_bitwidth + 2))
+            sum_hex = ""
+            sum_hex = sum_hex + str(tohex(sum_int, sum_bitwidth + 2))
 
-                # If testing baseline data-gated architecture, padding is added at the LSB or start
-                sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                 
-            else:
-                sum_hex = ""
-                sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
-
-                # If testing baseline data-gated architecture, padding is added at the LSB or start
-                sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")            
+            # If testing baseline data-gated architecture, padding is added at the LSB or start
+            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                 
         else:
             sum_hex = ""
             sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
-            sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
+
+            # If testing baseline data-gated architecture, padding is added at the LSB or start
+            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")           
+        # if (baseline == "Y"):
+        #     if (MODE == '2bx4b' or MODE == '2bx8b'):
+        #         # (2b/4b)x(2b/4b) and (2b/8b)x(2b/8b) have expected sum_bitwidths that are not divisible
+        #         # by 4 which does not translate properly in Hex, convert to Binary first then add '00' at end
+        #         # to become divisible by 4 before changing back to Hex
+        #         sum_bin = str(tobin(sum(sum_list[i]), sum_bitwidth) + '00')
+        #         sum_int = BitArray(bin = sum_bin).int # Integer Representation after "Left Shifting" by 2
+
+        #         sum_hex = ""
+        #         sum_hex = sum_hex + str(tohex(sum_int, sum_bitwidth + 2))
+
+        #         # If testing baseline data-gated architecture, padding is added at the LSB or start
+        #         sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                 
+        #     else:
+        #         sum_hex = ""
+        #         sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
+
+        #         # If testing baseline data-gated architecture, padding is added at the LSB or start
+        #         sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")            
+        # else:
+        #     sum_hex = ""
+        #     sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
+        #     # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
+        #     sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
                     
     sum_file.close()
 

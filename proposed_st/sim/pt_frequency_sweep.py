@@ -3,7 +3,7 @@ import csv
 import subprocess
 
 # Constants
-area = 192.72 # in um2
+area = 559.51 # in um2
 area_mm2 = area * (1/1000)**2 # in mm2
 
 # Filepaths/Commands
@@ -14,9 +14,9 @@ pt_report_log_path = "mac_engine_pt_power.rpt"
 vcs_command = "vcs mac_engine_tb.sv ../mapped/mac_engine_mapped.v /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/verilog/GF22FDX_SC7P5T_116CPP_BASE_CSC20L.v /cad/tools/libraries/dwc_logic_in_gf22fdx_sc7p5t_116cpp_base_csc20l/GF22FDX_SC7P5T_116CPP_BASE_CSC20L_FDK_RELV02R80/model/verilog/prim.v -full64 -debug_pp +neg_tchk -R -l vcs.log"
 
 # Generate Range of Frequencies to Sweep
-interval =    34000000 # 10 MHz
+interval =    10000000 # 10 MHz
 start_freq = 500000000 # 500 MHz
-end_freq =   670000000 # 1 GHz
+end_freq =   550000000 # 550 GHz
 freq_list = list(range(start_freq, (end_freq + interval), interval))
 
 # Create CSV for Energy/Throughput Reports (https://www.freecodecamp.org/news/how-to-create-a-csv-file-in-python/)
@@ -48,31 +48,31 @@ for freq in freq_list:
 
         # Rewrite Testbench based on current precision mode
         if (prec == '2bx2b'):
-            tb_data[280 + 7] = "    repeat (200) begin\n"
-            tb_data[281 + 7] = "        test_precision(_2bx2b, 8'd51);\n"
+            tb_data[280 + 7] = "    repeat (209) begin\n"
+            tb_data[281 + 7] = "        test_precision(_2bx2b, 8'd4);\n"
             tb_data[282 + 7] = "    end\n"
-            tb_data[284 + 7] = "    // repeat (200) begin\n"
-            tb_data[285 + 7] = "    //     test_precision(_4bx4b, 8'd51);\n"
+            tb_data[284 + 7] = "    // repeat (209) begin\n"
+            tb_data[285 + 7] = "    //     test_precision(_4bx4b, 8'd13);\n"
             tb_data[286 + 7] = "    // end\n"
             tb_data[288 + 7] = "    // repeat (200) begin\n"
             tb_data[289 + 7] = "    //     test_precision(_8bx8b, 8'd51);\n"
             tb_data[290 + 7] = "    // end\n"                       
         elif (prec == '4bx4b'):
-            tb_data[280 + 7] = "    // repeat (200) begin\n"
-            tb_data[281 + 7] = "    //     test_precision(_2bx2b, 8'd51);\n"
+            tb_data[280 + 7] = "    // repeat (209) begin\n"
+            tb_data[281 + 7] = "    //     test_precision(_2bx2b, 8'd4);\n"
             tb_data[282 + 7] = "    // end\n"
-            tb_data[284 + 7] = "    repeat (200) begin\n"
-            tb_data[285 + 7] = "        test_precision(_4bx4b, 8'd51);\n"
+            tb_data[284 + 7] = "    repeat (209) begin\n"
+            tb_data[285 + 7] = "        test_precision(_4bx4b, 8'd13);\n"
             tb_data[286 + 7] = "    end\n"
             tb_data[288 + 7] = "    // repeat (200) begin\n"
             tb_data[289 + 7] = "    //     test_precision(_8bx8b, 8'd51);\n"
             tb_data[290 + 7] = "    // end\n" 
         elif (prec == '8bx8b'):
-            tb_data[280 + 7] = "    // repeat (200) begin\n"
-            tb_data[281 + 7] = "    //     test_precision(_2bx2b, 8'd51);\n"
+            tb_data[280 + 7] = "    // repeat (209) begin\n"
+            tb_data[281 + 7] = "    //     test_precision(_2bx2b, 8'd4);\n"
             tb_data[282 + 7] = "    // end\n"
-            tb_data[284 + 7] = "    // repeat (200) begin\n"
-            tb_data[285 + 7] = "    //     test_precision(_4bx4b, 8'd51);\n"
+            tb_data[284 + 7] = "    // repeat (209) begin\n"
+            tb_data[285 + 7] = "    //     test_precision(_4bx4b, 8'd13);\n"
             tb_data[286 + 7] = "    // end\n"
             tb_data[288 + 7] = "    repeat (200) begin\n"
             tb_data[289 + 7] = "        test_precision(_8bx8b, 8'd51);\n"

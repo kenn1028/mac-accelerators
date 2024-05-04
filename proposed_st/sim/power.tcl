@@ -17,7 +17,7 @@ link_design
 
 # Define simulation environment
 set_units -time ps -resistance kOhm -capacitance fF -voltage V -current mA
-create_clock -period 1492 -name CLK [get_ports clk]
+create_clock -period 1818 -name CLK [get_ports clk]
 read_vcd "../sim/mac_engine.dump" -strip_path "mac_engine_tb/UUT"
 check_power
 set_power_analysis_options -waveform_format fsdb -waveform_output vcd
