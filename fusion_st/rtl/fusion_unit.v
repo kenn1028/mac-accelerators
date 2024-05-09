@@ -273,71 +273,98 @@ module fusion_unit (
 
             _4bx4b: begin
                 // Sign-Bit Extension to 10-bits for BB Cluster 8-bit Products
-                product[9:0] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
-                product[15:10] = 0;
+                // product[9:0] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
+                // product[15:10] = 0;
+                product[15:6] = ({{2{pp_hh[7]}}, pp_hh} + {{2{pp_hl[7]}}, pp_hl} + {{2{pp_lh[7]}}, pp_lh} + {{2{pp_ll[7]}}, pp_ll});
+                product[5:0] = 0;                
             end
 
             _2bx2b: begin
                 // Sign-Bit Extension to 8-bits for 6-bit BB Products
-                product[7:0] = {{2{pp_hh_1[5]}}, pp_hh_1} + {{2{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_ll_1[5]}}, pp_ll_1} +
+                // product[7:0] = {{2{pp_hh_1[5]}}, pp_hh_1} + {{2{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_ll_1[5]}}, pp_ll_1} +
+                //                {{2{pp_hh_2[5]}}, pp_hh_2} + {{2{pp_hl_2[5]}}, pp_hl_2} + {{2{pp_lh_2[5]}}, pp_lh_2} + {{2{pp_ll_2[5]}}, pp_ll_2} +
+                //                {{2{pp_hh_3[5]}}, pp_hh_3} + {{2{pp_hl_3[5]}}, pp_hl_3} + {{2{pp_lh_3[5]}}, pp_lh_3} + {{2{pp_ll_3[5]}}, pp_ll_3} +
+                //                {{2{pp_hh_4[5]}}, pp_hh_4} + {{2{pp_hl_4[5]}}, pp_hl_4} + {{2{pp_lh_4[5]}}, pp_lh_4} + {{2{pp_ll_4[5]}}, pp_ll_4};
+                // product[15:8] = 0;
+                product[15:8] = {{2{pp_hh_1[5]}}, pp_hh_1} + {{2{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_ll_1[5]}}, pp_ll_1} +
                                {{2{pp_hh_2[5]}}, pp_hh_2} + {{2{pp_hl_2[5]}}, pp_hl_2} + {{2{pp_lh_2[5]}}, pp_lh_2} + {{2{pp_ll_2[5]}}, pp_ll_2} +
                                {{2{pp_hh_3[5]}}, pp_hh_3} + {{2{pp_hl_3[5]}}, pp_hl_3} + {{2{pp_lh_3[5]}}, pp_lh_3} + {{2{pp_ll_3[5]}}, pp_ll_3} +
                                {{2{pp_hh_4[5]}}, pp_hh_4} + {{2{pp_hl_4[5]}}, pp_hl_4} + {{2{pp_lh_4[5]}}, pp_lh_4} + {{2{pp_ll_4[5]}}, pp_ll_4};
-                product[15:8] = 0;
+                product[7:0] = 0;                
             end
 
             //********* Asymmetric Operation for the Original Fusion Unit ; Creation of Fused-PEs *********//
             _2bx4b: begin
                 // Sign-Bit Extension to 10-bits from 6-bit BB Products
-                product[9:0] = ({{4{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) + ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_lh_1[5]}}, pp_lh_1, 2'b0}) +
+                // product[9:0] = ({{4{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) + ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_lh_1[5]}}, pp_lh_1, 2'b0}) +
+                //                ({{4{pp_hl_2[5]}}, pp_hl_2} + {{2{pp_hh_2[5]}}, pp_hh_2, 2'b0}) + ({{4{pp_ll_2[5]}}, pp_ll_2} + {{2{pp_lh_2[5]}}, pp_lh_2, 2'b0}) +
+                //                ({{4{pp_hl_3[5]}}, pp_hl_3} + {{2{pp_hh_3[5]}}, pp_hh_3, 2'b0}) + ({{4{pp_ll_3[5]}}, pp_ll_3} + {{2{pp_lh_3[5]}}, pp_lh_3, 2'b0}) +
+                //                ({{4{pp_hl_4[5]}}, pp_hl_4} + {{2{pp_hh_4[5]}}, pp_hh_4, 2'b0}) + ({{4{pp_ll_4[5]}}, pp_ll_4} + {{2{pp_lh_4[5]}}, pp_lh_4, 2'b0});
+                // product[15:10] = 0;
+                product[15:6] = ({{4{pp_hl_1[5]}}, pp_hl_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) + ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_lh_1[5]}}, pp_lh_1, 2'b0}) +
                                ({{4{pp_hl_2[5]}}, pp_hl_2} + {{2{pp_hh_2[5]}}, pp_hh_2, 2'b0}) + ({{4{pp_ll_2[5]}}, pp_ll_2} + {{2{pp_lh_2[5]}}, pp_lh_2, 2'b0}) +
                                ({{4{pp_hl_3[5]}}, pp_hl_3} + {{2{pp_hh_3[5]}}, pp_hh_3, 2'b0}) + ({{4{pp_ll_3[5]}}, pp_ll_3} + {{2{pp_lh_3[5]}}, pp_lh_3, 2'b0}) +
                                ({{4{pp_hl_4[5]}}, pp_hl_4} + {{2{pp_hh_4[5]}}, pp_hh_4, 2'b0}) + ({{4{pp_ll_4[5]}}, pp_ll_4} + {{2{pp_lh_4[5]}}, pp_lh_4, 2'b0});
-
-                product[15:10] = 0;
+                product[5:0] = 0;                
             end
             _4bx2b: begin
                 // Sign-Bit Extension to 10-bits from 6-bit BB Products
-                product[9:0] = ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_hl_1[5]}}, pp_hl_1, 2'b0}) + ({{4{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) +
+                // product[9:0] = ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_hl_1[5]}}, pp_hl_1, 2'b0}) + ({{4{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) +
+                //                ({{4{pp_ll_2[5]}}, pp_ll_2} + {{2{pp_hl_2[5]}}, pp_hl_2, 2'b0}) + ({{4{pp_lh_2[5]}}, pp_lh_2} + {{2{pp_hh_2[5]}}, pp_hh_2, 2'b0}) +
+                //                ({{4{pp_ll_3[5]}}, pp_ll_3} + {{2{pp_hl_3[5]}}, pp_hl_3, 2'b0}) + ({{4{pp_lh_3[5]}}, pp_lh_3} + {{2{pp_hh_3[5]}}, pp_hh_3, 2'b0}) +
+                //                ({{4{pp_ll_4[5]}}, pp_ll_4} + {{2{pp_hl_4[5]}}, pp_hl_4, 2'b0}) + ({{4{pp_lh_4[5]}}, pp_lh_4} + {{2{pp_hh_4[5]}}, pp_hh_4, 2'b0});
+                // product[15:10] = 0;
+                product[15:6] = ({{4{pp_ll_1[5]}}, pp_ll_1} + {{2{pp_hl_1[5]}}, pp_hl_1, 2'b0}) + ({{4{pp_lh_1[5]}}, pp_lh_1} + {{2{pp_hh_1[5]}}, pp_hh_1, 2'b0}) +
                                ({{4{pp_ll_2[5]}}, pp_ll_2} + {{2{pp_hl_2[5]}}, pp_hl_2, 2'b0}) + ({{4{pp_lh_2[5]}}, pp_lh_2} + {{2{pp_hh_2[5]}}, pp_hh_2, 2'b0}) +
                                ({{4{pp_ll_3[5]}}, pp_ll_3} + {{2{pp_hl_3[5]}}, pp_hl_3, 2'b0}) + ({{4{pp_lh_3[5]}}, pp_lh_3} + {{2{pp_hh_3[5]}}, pp_hh_3, 2'b0}) +
                                ({{4{pp_ll_4[5]}}, pp_ll_4} + {{2{pp_hl_4[5]}}, pp_hl_4, 2'b0}) + ({{4{pp_lh_4[5]}}, pp_lh_4} + {{2{pp_hh_4[5]}}, pp_hh_4, 2'b0});
-
-                product[15:10] = 0;
+                product[5:0] = 0;                
             end
 
             _4bx8b: begin // Extension of 2bx4b but instead of BBs, we use the BB clusters
                 // Sign-Bit Extension to 14-bits from 8-bit BB Cluster Products
-                product[13:0] = ({{6{pp_hl[7] & sx}}, pp_hl} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0}) + ({{6{pp_ll[7] & sx}}, pp_ll} + {{2{pp_lh[7] & (sx | sy)}}, pp_lh, 4'b0});
-
-                product[15:14] = 0;
+                // product[13:0] = ({{6{pp_hl[7] & sx}}, pp_hl} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0}) + ({{6{pp_ll[7] & sx}}, pp_ll} + {{2{pp_lh[7] & (sx | sy)}}, pp_lh, 4'b0});
+                // product[15:14] = 0;
+                product[15:2] = ({{6{pp_hl[7] & sx}}, pp_hl} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0}) + ({{6{pp_ll[7] & sx}}, pp_ll} + {{2{pp_lh[7] & (sx | sy)}}, pp_lh, 4'b0});
+                product[1:0] = 0;                
             end
             _8bx4b: begin  // Extension of 4bx2b but instead of BBs, we use the BB clusters
                 // Sign-Bit Extension to 14-bits from 8-bit BB Cluster Products            
-                product[13:0] = ({{6{pp_ll[7] & sy}}, pp_ll} + {{2{pp_hl[7] & (sx | sy)}}, pp_hl, 4'b0}) + ({{6{pp_lh[7] & sy}}, pp_lh} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0});
-
-                product[15:14] = 0;
+                // product[13:0] = ({{6{pp_ll[7] & sy}}, pp_ll} + {{2{pp_hl[7] & (sx | sy)}}, pp_hl, 4'b0}) + ({{6{pp_lh[7] & sy}}, pp_lh} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0});
+                // product[15:14] = 0;
+                product[15:2] = ({{6{pp_ll[7] & sy}}, pp_ll} + {{2{pp_hl[7] & (sx | sy)}}, pp_hl, 4'b0}) + ({{6{pp_lh[7] & sy}}, pp_lh} + {{2{pp_hh[7] & (sx | sy)}}, pp_hh, 4'b0});
+                product[1:0] = 0;                
             end
 
             _2bx8b: begin
                 // Sign-Bit Extension to 12-bits from 6-bit BB Products           
-                product[11:0] = ({{6{pp_hl_2[5]}}, pp_hl_2} + {{4{pp_hh_2[5]}}, pp_hh_2, 2'b0} + {{2{pp_hl_1[5]}}, pp_hl_1, 4'b0} + {pp_hh_1, 6'b0}) +
+                // product[11:0] = ({{6{pp_hl_2[5]}}, pp_hl_2} + {{4{pp_hh_2[5]}}, pp_hh_2, 2'b0} + {{2{pp_hl_1[5]}}, pp_hl_1, 4'b0} + {pp_hh_1, 6'b0}) +
+                //                 ({{6{pp_ll_2[5]}}, pp_ll_2} + {{4{pp_lh_2[5]}}, pp_lh_2, 2'b0} + {{2{pp_ll_1[5]}}, pp_ll_1, 4'b0} + {pp_lh_1, 6'b0}) +
+
+                //                 ({{6{pp_hl_4[5]}}, pp_hl_4} + {{4{pp_hh_4[5]}}, pp_hh_4, 2'b0} + {{2{pp_hl_3[5]}}, pp_hl_3, 4'b0} + {pp_hh_3, 6'b0}) +
+                //                 ({{6{pp_ll_4[5]}}, pp_ll_4} + {{4{pp_lh_4[5]}}, pp_lh_4, 2'b0} + {{2{pp_ll_3[5]}}, pp_ll_3, 4'b0} + {pp_lh_3, 6'b0});
+                // product[15:12] = 0;
+                product[15:4] = ({{6{pp_hl_2[5]}}, pp_hl_2} + {{4{pp_hh_2[5]}}, pp_hh_2, 2'b0} + {{2{pp_hl_1[5]}}, pp_hl_1, 4'b0} + {pp_hh_1, 6'b0}) +
                                 ({{6{pp_ll_2[5]}}, pp_ll_2} + {{4{pp_lh_2[5]}}, pp_lh_2, 2'b0} + {{2{pp_ll_1[5]}}, pp_ll_1, 4'b0} + {pp_lh_1, 6'b0}) +
 
                                 ({{6{pp_hl_4[5]}}, pp_hl_4} + {{4{pp_hh_4[5]}}, pp_hh_4, 2'b0} + {{2{pp_hl_3[5]}}, pp_hl_3, 4'b0} + {pp_hh_3, 6'b0}) +
                                 ({{6{pp_ll_4[5]}}, pp_ll_4} + {{4{pp_lh_4[5]}}, pp_lh_4, 2'b0} + {{2{pp_ll_3[5]}}, pp_ll_3, 4'b0} + {pp_lh_3, 6'b0});
-
-                product[15:12] = 0;
+                product[3:0] = 0;                
             end
             _8bx2b: begin
                 // Sign-Bit Extension to 12-bits from 6-bit BB Products
-                product[11:0] = ({{6{pp_ll_3[5]}}, pp_ll_3} + {{4{pp_hl_3[5]}}, pp_hl_3, 2'b0} + {{2{pp_ll_1[5]}}, pp_ll_1, 4'b0} + {pp_hl_1, 6'b0}) +
+                // product[11:0] = ({{6{pp_ll_3[5]}}, pp_ll_3} + {{4{pp_hl_3[5]}}, pp_hl_3, 2'b0} + {{2{pp_ll_1[5]}}, pp_ll_1, 4'b0} + {pp_hl_1, 6'b0}) +
+                //                 ({{6{pp_lh_3[5]}}, pp_lh_3} + {{4{pp_hh_3[5]}}, pp_hh_3, 2'b0} + {{2{pp_lh_1[5]}}, pp_lh_1, 4'b0} + {pp_hh_1, 6'b0}) +
+
+                //                 ({{6{pp_ll_4[5]}}, pp_ll_4} + {{4{pp_hl_4[5]}}, pp_hl_4, 2'b0} + {{2{pp_ll_2[5]}}, pp_ll_2, 4'b0} + {pp_hl_2, 6'b0}) +
+                //                 ({{6{pp_lh_4[5]}}, pp_lh_4} + {{4{pp_hh_4[5]}}, pp_hh_4, 2'b0} + {{2{pp_lh_2[5]}}, pp_lh_2, 4'b0} + {pp_hh_2, 6'b0});
+                // product[15:12] = 0;
+                product[15:4] = ({{6{pp_ll_3[5]}}, pp_ll_3} + {{4{pp_hl_3[5]}}, pp_hl_3, 2'b0} + {{2{pp_ll_1[5]}}, pp_ll_1, 4'b0} + {pp_hl_1, 6'b0}) +
                                 ({{6{pp_lh_3[5]}}, pp_lh_3} + {{4{pp_hh_3[5]}}, pp_hh_3, 2'b0} + {{2{pp_lh_1[5]}}, pp_lh_1, 4'b0} + {pp_hh_1, 6'b0}) +
 
                                 ({{6{pp_ll_4[5]}}, pp_ll_4} + {{4{pp_hl_4[5]}}, pp_hl_4, 2'b0} + {{2{pp_ll_2[5]}}, pp_ll_2, 4'b0} + {pp_hl_2, 6'b0}) +
                                 ({{6{pp_lh_4[5]}}, pp_lh_4} + {{4{pp_hh_4[5]}}, pp_hh_4, 2'b0} + {{2{pp_lh_2[5]}}, pp_lh_2, 4'b0} + {pp_hh_2, 6'b0});
-
-                product[15:12] = 0;
+                product[3:0] = 0;                
             end
 
             default: product = 0;
@@ -431,33 +458,43 @@ module fusion_unit (
 
                         _4bx4b: begin
                             // Extend the sign bit of the 10-bit "product" (and sums) in 4bx4b mode to fit 12-bit sum when adding
-                            sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
-                            sum[19:12] <= 0;
+                            // sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
+                            // sum[19:12] <= 0;
+                            sum[19:8] <= (sum[19:8] + {{2{product[15]}}, product[15:6]});
+                            sum[7:0] <= 0;                            
                         end
 
                         _2bx2b: begin
                             // Extend the sign bit of the 8-bit "product" (and sums) in 2bx2b mode to fit 10-bit sum when adding
-                            sum[9:0] <= (sum[9:0] + {{2{product[7]}}, product[7:0]});
-                            sum[19:10] <= 0;
+                            // sum[9:0] <= (sum[9:0] + {{2{product[7]}}, product[7:0]});
+                            // sum[19:10] <= 0;
+                            sum[19:10] <= (sum[19:10] + {{2{product[15]}}, product[15:8]});
+                            sum[9:0] <= 0;
                         end
 
                         //********* Asymmetric Operation for the Original Fusion Unit ; Creation of Fused-PEs *********//
                         _2bx4b, _4bx2b: begin
                             // Extend sign bit of 10-bit product before accumulating
-                            sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
-                            sum[19:12] <= 0;
+                            // sum[11:0] <= (sum[11:0] + {{2{product[9]}}, product[9:0]});
+                            // sum[19:12] <= 0;
+                            sum[19:8] <= (sum[19:8] + {{2{product[15]}}, product[15:6]});
+                            sum[7:0] <= 0;                            
                         end
 
                         _4bx8b, _8bx4b: begin
                             // Extend sign bit of 14-bit product before accumulating
-                            sum[15:0] <= (sum[15:0] + {{2{product[13]}}, product[13:0]});
-                            sum[19:16] <= 0;
+                            // sum[15:0] <= (sum[15:0] + {{2{product[13]}}, product[13:0]});
+                            // sum[19:16] <= 0;
+                            sum[19:4] <= (sum[19:4] + {{2{product[15]}}, product[15:2]});
+                            sum[3:0] <= 0;
                         end
 
                         _2bx8b, _8bx2b: begin
                             // Extend sign bit of 12-bit product before accumulating
-                            sum[13:0] <= (sum[13:0] + {{2{product[11]}}, product[11:0]});
-                            sum[19:14] <= 0;
+                            // sum[13:0] <= (sum[13:0] + {{2{product[11]}}, product[11:0]});
+                            // sum[19:14] <= 0;
+                            sum[19:6] <= (sum[19:6] + {{2{product[15]}}, product[15:4]});
+                            sum[5:0] <= 0;
                         end                        
  
                         default: sum <= 0;

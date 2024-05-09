@@ -44,7 +44,7 @@ for freq in freq_list:
             tb_data = tb_file.readlines()
 
         # Change Testbench CLK_PERIOD
-        tb_data[60] = "localparam CLK_PERIOD = " + str(int((1/freq)*1000000000000)) + ";\n"
+        tb_data[60] = "localparam CLK_PERIOD = " + str(round(int((1/freq)*(1E12)), -1)) + ";\n"
 
         # Rewrite Testbench based on current precision mode
         if (prec == '2bx2b'):
@@ -86,7 +86,7 @@ for freq in freq_list:
             tcl_data = tcl_file.readlines()
 
         # Change clock period accordingly
-        tcl_data[19] = "create_clock -period " + str(int((1/freq)*1000000000000)) +" -name CLK [get_ports clk]\n"
+        tcl_data[19] = "create_clock -period " + str(int((1/freq)*(1E12))) +" -name CLK [get_ports clk]\n" # in picoseconds
 
         with open("power.tcl", 'w', encoding='utf-8') as tcl_file: 
             tcl_file.writelines(tcl_data)
@@ -106,7 +106,7 @@ for freq in freq_list:
         # Parse Simulation Log for Execution Time
         for lines in sim_data:
             if "Total" in lines.split():
-                exec_time = float(lines.split()[-1]) * 10**(-9) # in nanoseconds
+                exec_time = float(lines.split()[-1]) * (10E-9) # in nanoseconds
 
         # Parse Power Analysis for Power Report
         keywords = ["mac_engine", "PSMAC1", "PFU1"]
@@ -120,9 +120,9 @@ for freq in freq_list:
         fu_power = float(buffer[2][-2])
 
         # Calculate Energy and Throughput
-        energy = ((fu_power*exec_time)/20000)*10000000000000 # in pJ
+        energy = ((fu_power*exec_time)/20000)*(1E12) # in pJ
         throughput = 20000/exec_time
-        throughput_per_area = (throughput/(10E9))/area_mm2
+        throughput_per_area = (throughput/(1E9))/area_mm2 # in GOPs/mm2
         
         # Write/Append into CSV file
         with open('energy_throughput_report.csv', 'a', newline='') as pt_file:
