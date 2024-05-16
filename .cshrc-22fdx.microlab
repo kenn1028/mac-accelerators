@@ -1,0 +1,64 @@
+# GF 22nm FDSOI setup script
+# LPA 05-Jan-2023
+
+#
+# Cadence license information
+#
+setenv LM_LICENSE_FILE 5280@10.158.16.12
+setenv CDS_LIC_FILE 5280@10.158.16.12
+
+#
+# Cadence location
+#
+setenv CDSHOME /cad/tools/cadence/IC618
+setenv CDS_ROOT $CDSHOME
+setenv CDS_INST_DIR $CDSHOME/tools/dfII
+set path=($path $CDSHOME/bin $CDSHOME/tools/bin $CDS_INST_DIR/bin)
+
+#
+# Spectre location
+#
+setenv SPECTRE_ROOT /cad/tools/cadence/SPECTRE191
+set path=($path $SPECTRE_ROOT/tools/bin $SPECTRE_ROOT/bin)
+
+#
+# Calibre location
+#
+# setenv MGC_HOME /cad/tools/mentor/calibre/aoi_cal_2020.4_34.17
+# setenv MGC_HOME /cad/tools/mentor/calibre/aok_cal_2022.1_36.16
+# setenv MGC_HOME /cad/tools/mentor/calibre/aoi_cal_2022.1_36.16
+# setenv MGC_HOME /cad/tools/mentor/calibre/aok_cal_2022.2_38.20
+setenv MGC_HOME /cad/tools/mentor/calibre/aoi_cal_2022.2_38.20
+
+setenv CALIBRE_HOME  $MGC_HOME
+setenv MGC_DOC_PATH  $CALIBRE_HOME/../docs_cal_2022.2_15.10/docs
+sh ${CALIBRE_HOME}/bin/calibre_vco
+set path=($path $CALIBRE_HOME/bin)
+
+setenv LM_LICENSE_FILE ${LM_LICENSE_FILE}:1717@10.158.16.12
+
+setenv USE_CALIBRE_VCO aoi
+# setenv USE_CALIBRE_VCO aok
+
+## If you are running on RedHat 6
+setenv CALIBRE_2013_4_ALLOW_IXL_ON_RHEL6 101010
+
+#
+# Innovus location
+#
+setenv INNOVUS_ROOT /cad/tools/cadence/INNOVUS201
+set path=($path $INNOVUS_ROOT/tools/bin $INNOVUS_ROOT/bin)
+#
+# Genus location
+#
+setenv GENUS_ROOT /cad/tools/cadence/GENUS211
+set path=($path $GENUS_ROOT/tools/bin $GENUS_ROOT/bin)
+
+#
+# GF definitions
+#
+setenv GF_PDK_HOME /cad/tools/gf/22FDX-EXT/V1.0_4.0b
+setenv CDS_PROJECT ${GF_PDK_HOME}/DesignEnv/VirtuosoOA/setup
+# setenv BEOL_STACK 10M_2Mx_6Cx_2Ix_LB
+# setenv BEOL_STACK 10M_2Mx_4Cx_2Bx_2Jx_LB__eMRAM
+setenv BEOL_STACK 10M_2Mx_5Cx_1Jx_2Qx_LB
