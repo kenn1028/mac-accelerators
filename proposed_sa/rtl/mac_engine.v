@@ -33,7 +33,7 @@ module mac_engine(
     output reg valid,
 
     //--------------- Sum Apart Logic (SA) ---------------//
-    output reg [127:0] OBUF, // Output Buffer
+    // output reg [127:0] OBUF, // Output Buffer
     output [63:0] product, // Wire for monitoring fusion_unit scaled precision modes
     output [127:0] sum // Wire for monitoring fusion_unit scaled precision modes
 

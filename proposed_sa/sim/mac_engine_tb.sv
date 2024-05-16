@@ -58,7 +58,7 @@ integer sumtb_file, otb;
 integer sump_file, op; 
 integer count, count_sum;
 localparam NULL = 0;
-localparam CLK_PERIOD = 1780;
+localparam CLK_PERIOD = 1820;
 
 integer exec_time_counter;
 integer exec_time_file;

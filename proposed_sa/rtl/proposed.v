@@ -393,7 +393,9 @@ module proposed (
                // product[15:0] = {{8{1'b0}}, pp_ll} + {{4{(pp_lh[7] & sy)}}, pp_lh, 4'b0} + {{4{(pp_hl[7] & sx)}}, pp_hl, 4'b0} + {pp_hh, 8'b0};        
 
                 // Optimization Point #2: Reduce Sign-Bit Logic and Always Extend Sign-Bit
-               product[15:0] = {pp_hh, pp_ll} + {{{4{(pp_lh[7])}}, pp_lh} + {{4{(pp_hl[7])}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
+                // product[15:0] = {pp_hh, pp_ll} + {{{4{(pp_lh[7])}}, pp_lh} + {{4{(pp_hl[7])}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
+                product[63:48] = {pp_hh, pp_ll} + {{{4{(pp_lh[7])}}, pp_lh} + {{4{(pp_hl[7])}}, pp_hl}, 4'b0}; // Recursive implementation of MFU on 8bx8b Datapath
+                product[47:0] = 0;           
            end
             
             _4bx4b: begin
@@ -473,7 +475,7 @@ module proposed (
                             // Extend sign bit of 16-bit product in 8bx8b mode then accumulated to fit 20-bit sum when adding
                             // sum[19:0] <= (sum[19:0] + {{4{product[15]}}, product[15:0]});                    
                             // sum[127:20] <= 0;
-                            sum[127:108] <= (sum[127:108] + {{4{product[15]}}, product[15:0]});                    
+                            sum[127:108] <= (sum[127:108] + {{4{product[63]}}, product[63:48]});                    
                             sum[107:0] <= 0;                            
                         end
 
