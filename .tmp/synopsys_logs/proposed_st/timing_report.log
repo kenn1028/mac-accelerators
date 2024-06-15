@@ -1,0 +1,80 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mac_engine
+Version: U-2022.12
+Date   : Sat May  4 20:18:45 2024
+****************************************
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: top
+
+  Startpoint: mode[1] (input port clocked by clk)
+  Endpoint: product[15]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                  181.80     181.80 f
+  mode[1] (in)                                            0.00     181.80 f
+  PFU1/mode[1] (proposed)                                 0.00     181.80 f
+  PFU1/sign_ctrl/mode[1] (signbit_ctrl)                   0.00     181.80 f
+  PFU1/sign_ctrl/U6/Z (SC7P5T_NR3X1_CSC20L)              79.46     261.26 r
+  PFU1/sign_ctrl/lh_sy[4] (signbit_ctrl)                  0.00     261.26 r
+  PFU1/bb_lh_4/sy (s_bitbrick_1)                          0.00     261.26 r
+  PFU1/bb_lh_4/U2/Z (SC7P5T_AN2X2_A_CSC20L)              48.85     310.11 r
+  PFU1/bb_lh_4/U3/Z (SC7P5T_ND2X1_MR_CSC20L)             15.77     325.88 f
+  PFU1/bb_lh_4/FA_p2/b (full_adder_6)                     0.00     325.88 f
+  PFU1/bb_lh_4/FA_p2/U3/Z (SC7P5T_XOR2X2_CSC20L)         38.70     364.58 r
+  PFU1/bb_lh_4/FA_p2/U2/Z (SC7P5T_AO22X1_A_CSC20L)       34.54     399.12 r
+  PFU1/bb_lh_4/FA_p2/co (full_adder_6)                    0.00     399.12 r
+  PFU1/bb_lh_4/FA_p3b/ci (full_adder_5)                   0.00     399.12 r
+  PFU1/bb_lh_4/FA_p3b/U1/Z (SC7P5T_XOR2X2_CSC20L)        24.16     423.28 r
+  PFU1/bb_lh_4/FA_p3b/sum (full_adder_5)                  0.00     423.28 r
+  PFU1/bb_lh_4/FA_p3a/a (full_adder_4)                    0.00     423.28 r
+  PFU1/bb_lh_4/FA_p3a/U3/Z (SC7P5T_XOR2X2_CSC20L)        37.25     460.53 f
+  PFU1/bb_lh_4/FA_p3a/U1/Z (SC7P5T_XOR2X2_CSC20L)        42.31     502.84 r
+  PFU1/bb_lh_4/FA_p3a/sum (full_adder_4)                  0.00     502.84 r
+  PFU1/bb_lh_4/p[3] (s_bitbrick_1)                        0.00     502.84 r
+  PFU1/U58/S (SC7P5T_FAX1_A_CSC20L)                      65.33     568.17 f
+  PFU1/add_383_2/B[5] (proposed_DW01_add_9)               0.00     568.17 f
+  PFU1/add_383_2/U1_5/S (SC7P5T_FAX1_A_CSC20L)           74.14     642.31 r
+  PFU1/add_383_2/SUM[5] (proposed_DW01_add_9)             0.00     642.31 r
+  PFU1/add_425_2/A[5] (proposed_DW01_add_26)              0.00     642.31 r
+  PFU1/add_425_2/U1_5/CO (SC7P5T_FAX1_A_CSC20L)          52.68     694.99 r
+  PFU1/add_425_2/U1_6/CO (SC7P5T_FAX1_A_CSC20L)          46.33     741.33 r
+  PFU1/add_425_2/U1_7/CO (SC7P5T_FAX2_A_CSC20L)          35.29     776.62 r
+  PFU1/add_425_2/U1_8/CO (SC7P5T_FAX1_A_CSC20L)          42.51     819.13 r
+  PFU1/add_425_2/U1_9/CO (SC7P5T_FAX1_A_CSC20L)          44.78     863.91 r
+  PFU1/add_425_2/U1_10/CO (SC7P5T_FAX1_A_CSC20L)         44.75     908.66 r
+  PFU1/add_425_2/U1_11/CO (SC7P5T_FAX1_A_CSC20L)         44.75     953.41 r
+  PFU1/add_425_2/U1_12/CO (SC7P5T_FAX1_A_CSC20L)         44.75     998.16 r
+  PFU1/add_425_2/U1_13/CO (SC7P5T_FAX1_A_CSC20L)         44.81    1042.97 r
+  PFU1/add_425_2/U1_14/CO (SC7P5T_FAX1_A_CSC20L)         39.46    1082.43 r
+  PFU1/add_425_2/U1_15/Z (SC7P5T_XOR3X2_CSC20L)          62.37    1144.80 r
+  PFU1/add_425_2/SUM[15] (proposed_DW01_add_26)           0.00    1144.80 r
+  PFU1/U18/Z (SC7P5T_AO222X1_CSC20L)                    127.16    1271.96 r
+  PFU1/product[15] (proposed)                             0.00    1271.96 r
+  product[15] (out)                                       0.00    1271.96 r
+  data arrival time                                               1271.96
+
+  clock clk (rise edge)                                1818.00    1818.00
+  clock network delay (ideal)                             0.00    1818.00
+  clock uncertainty                                    -181.80    1636.20
+  output external delay                                -363.60    1272.60
+  data required time                                              1272.60
+  --------------------------------------------------------------------------
+  data required time                                              1272.60
+  data arrival time                                              -1271.96
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.64
+
+
+1

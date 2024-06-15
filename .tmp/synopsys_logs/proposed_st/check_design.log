@@ -1,0 +1,109 @@
+ 
+****************************************
+check_design summary:
+Version:     U-2022.12
+Date:        Sat May  4 20:18:38 2024
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     35
+    Unconnected ports (LINT-28)                                    20
+    Shorted outputs (LINT-31)                                       7
+    Constant outputs (LINT-52)                                      8
+
+Cells                                                              10
+    Cells do not drive (LINT-1)                                     7
+    Connected to power or ground (LINT-32)                          3
+
+Nets                                                               38
+    Unloaded nets (LINT-2)                                         38
+--------------------------------------------------------------------------------
+
+Warning: In design 'mac_engine', cell 'C258' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C220' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C221' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C222' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C247' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C248' does not drive any nets. (LINT-1)
+Warning: In design 'proposed', cell 'C249' does not drive any nets. (LINT-1)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_1/HA_p3_co' driven by pin 'PFU1/bb_lh_1/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_1/FA_p3_co' driven by pin 'PFU1/bb_lh_1/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_2/HA_p3_co' driven by pin 'PFU1/bb_hh_2/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_2/FA_p3_co' driven by pin 'PFU1/bb_hh_2/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_2/HA_p3_co' driven by pin 'PFU1/bb_hl_2/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_2/FA_p3_co' driven by pin 'PFU1/bb_hl_2/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_2/HA_p3_co' driven by pin 'PFU1/bb_ll_2/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_2/FA_p3_co' driven by pin 'PFU1/bb_ll_2/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_3/HA_p3_co' driven by pin 'PFU1/bb_hh_3/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_3/FA_p3_co' driven by pin 'PFU1/bb_hh_3/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_3/HA_p3_co' driven by pin 'PFU1/bb_hl_3/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_3/FA_p3_co' driven by pin 'PFU1/bb_hl_3/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_3/HA_p3_co' driven by pin 'PFU1/bb_lh_3/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_3/FA_p3_co' driven by pin 'PFU1/bb_lh_3/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_3/HA_p3_co' driven by pin 'PFU1/bb_ll_3/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_3/FA_p3_co' driven by pin 'PFU1/bb_ll_3/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_4/HA_p3_co' driven by pin 'PFU1/bb_hh_4/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hh_4/FA_p3_co' driven by pin 'PFU1/bb_hh_4/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_4/HA_p3_co' driven by pin 'PFU1/bb_hl_4/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_4/FA_p3_co' driven by pin 'PFU1/bb_hl_4/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_4/HA_p3_co' driven by pin 'PFU1/bb_lh_4/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_4/FA_p3_co' driven by pin 'PFU1/bb_lh_4/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_4/HA_p3_co' driven by pin 'PFU1/bb_ll_4/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_4/FA_p3_co' driven by pin 'PFU1/bb_ll_4/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/lh_sy[1]' driven by pin 'PFU1/sign_ctrl/lh_sy[1]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/lh_sy[3]' driven by pin 'PFU1/sign_ctrl/lh_sy[3]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hh_sy[1]' driven by pin 'PFU1/sign_ctrl/hh_sy[1]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hh_sy[3]' driven by pin 'PFU1/sign_ctrl/hh_sy[3]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hl_sx[1]' driven by pin 'PFU1/sign_ctrl/hl_sx[1]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hl_sx[2]' driven by pin 'PFU1/sign_ctrl/hl_sx[2]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hh_sx[1]' driven by pin 'PFU1/sign_ctrl/hh_sx[1]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/hh_sx[2]' driven by pin 'PFU1/sign_ctrl/hh_sx[2]' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_1/FA_p3_co' driven by pin 'PFU1/bb_hl_1/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_hl_1/HA_p3_co' driven by pin 'PFU1/bb_hl_1/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_1/FA_p3_co' driven by pin 'PFU1/bb_ll_1/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_ll_1/HA_p3_co' driven by pin 'PFU1/bb_ll_1/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_2/FA_p3_co' driven by pin 'PFU1/bb_lh_2/FA_p3b/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', net 'PFU1/bb_lh_2/HA_p3_co' driven by pin 'PFU1/bb_lh_2/FA_p3a/co' has no loads. (LINT-2)
+Warning: In design 'mac_engine', port 'OBUF[19]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[18]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[17]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[16]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'mac_engine', port 'OBUF[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hh_sy[3]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'lh_sy[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'lh_sy[3]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hh_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[1]'. (LINT-31)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to output port 'hl_sx[2]'. (LINT-31)
+Warning: In design 'ns_bitbrick', a pin on submodule 'FA_p3a' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ci' is connected to logic 1. 
+Warning: In design 'fs_bitbrick', a pin on submodule 'FA_p3a' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ci' is connected to logic 1. 
+Warning: In design 's_bitbrick', a pin on submodule 'FA_p3a' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ci' is connected to logic 1. 
+Warning: In design 'signbit_ctrl', output port 'hh_sx[2]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'hh_sx[1]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'hl_sx[2]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'hl_sx[1]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[3]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'hh_sy[1]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'lh_sy[3]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'signbit_ctrl', output port 'lh_sy[1]' is connected directly to 'logic 1'. (LINT-52)
+1

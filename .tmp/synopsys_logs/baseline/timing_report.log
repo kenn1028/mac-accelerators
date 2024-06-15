@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : mac_engine
 Version: U-2022.12
-Date   : Sat Apr  6 08:05:43 2024
+Date   : Sun Apr 28 01:43:39 2024
 ****************************************
 
 Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: GF22FDX_SC7P5T_116CPP_BASE_CSC20L_TT_0P80V_0P00V_0P00V_0P00V_25C
 Wire Load Model Mode: top
 
-  Startpoint: mode[1] (input port clocked by clk)
-  Endpoint: product[15]
-            (output port clocked by clk)
+  Startpoint: mode[0] (input port clocked by clk)
+  Endpoint: PSMAC1/sum_reg[19]
+            (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -22,77 +22,74 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  input external delay                                  200.00     200.00 r
-  mode[1] (in)                                            0.00     200.00 r
-  PSMAC1/mode[1] (psmac)                                  0.00     200.00 r
-  PSMAC1/U6/Z (SC7P5T_INVX1_CSC20L)                       5.63     205.63 f
-  PSMAC1/U51/Z (SC7P5T_OAI21X1_CSC20L)                   25.41     231.05 r
-  PSMAC1/U53/Z (SC7P5T_AN2X1_CSC20L)                     31.26     262.31 r
-  PSMAC1/simple_mult/x[1] (mult)                          0.00     262.31 r
-  PSMAC1/simple_mult/mult_28/A[1] (mult_DW02_mult_0)      0.00     262.31 r
-  PSMAC1/simple_mult/mult_28/U30/Z (SC7P5T_INVX1_CSC20L)
-                                                         18.33     280.64 f
-  PSMAC1/simple_mult/mult_28/U113/Z (SC7P5T_NR2X1_CSC20L)
-                                                         23.87     304.51 r
-  PSMAC1/simple_mult/mult_28/U63/Z (SC7P5T_XOR2X2_CSC20L)
-                                                         42.47     346.98 f
+  input external delay                                  149.20     149.20 f
+  mode[0] (in)                                            0.00     149.20 f
+  PSMAC1/mode[0] (psmac)                                  0.00     149.20 f
+  PSMAC1/U4/Z (SC7P5T_INVX2_CSC20L)                       7.13     156.33 r
+  PSMAC1/U14/Z (SC7P5T_AN2X2_A_CSC20L)                   19.76     176.09 r
+  PSMAC1/U6/Z (SC7P5T_ND2X1_L_CSC20L)                    12.93     189.03 f
+  PSMAC1/U12/Z (SC7P5T_ND2X1_L_CSC20L)                   12.33     201.36 r
+  PSMAC1/simple_mult/x[1] (mult)                          0.00     201.36 r
+  PSMAC1/simple_mult/mult_28/A[1] (mult_DW02_mult_0)      0.00     201.36 r
+  PSMAC1/simple_mult/mult_28/U58/Z (SC7P5T_INVX1_CSC20L)
+                                                         16.96     218.32 f
+  PSMAC1/simple_mult/mult_28/U137/Z (SC7P5T_NR2X1_CSC20L)
+                                                         22.89     241.21 r
+  PSMAC1/simple_mult/mult_28/U87/Z (SC7P5T_XOR2X2_CSC20L)
+                                                         43.17     284.38 f
   PSMAC1/simple_mult/mult_28/S2_2_5/S (SC7P5T_FAX1_A_CSC20L)
-                                                         57.77     404.75 r
-  PSMAC1/simple_mult/mult_28/S2_3_4/S (SC7P5T_FAX1_A_CSC20L)
-                                                         60.46     465.21 f
-  PSMAC1/simple_mult/mult_28/S2_4_3/S (SC7P5T_FAX1_A_CSC20L)
-                                                         59.35     524.56 r
-  PSMAC1/simple_mult/mult_28/S2_5_2/S (SC7P5T_FAX1_A_CSC20L)
-                                                         60.46     585.03 f
-  PSMAC1/simple_mult/mult_28/S2_6_1/S (SC7P5T_FAX1_A_CSC20L)
-                                                         59.35     644.38 r
-  PSMAC1/simple_mult/mult_28/S4_0/S (SC7P5T_FAX1_A_CSC20L)
-                                                         60.46     704.84 f
-  PSMAC1/simple_mult/mult_28/S14_7_0/CO (SC7P5T_FAX1_A_CSC20L)
-                                                         30.84     735.68 f
-  PSMAC1/simple_mult/mult_28/FS_1/B[6] (mult_DW01_add_0_DW01_add_1)
-                                                          0.00     735.68 f
-  PSMAC1/simple_mult/mult_28/FS_1/U6/Z (SC7P5T_INVX1_CSC20L)
-                                                         10.91     746.59 r
-  PSMAC1/simple_mult/mult_28/FS_1/U32/Z (SC7P5T_NR2X1_CSC20L)
-                                                         14.62     761.22 f
-  PSMAC1/simple_mult/mult_28/FS_1/U31/Z (SC7P5T_OR2X1_CSC20L)
-                                                         21.59     782.80 f
-  PSMAC1/simple_mult/mult_28/FS_1/U30/Z (SC7P5T_AOI22X1_CSC20L)
-                                                         19.49     802.29 r
-  PSMAC1/simple_mult/mult_28/FS_1/U27/Z (SC7P5T_OAI21X1_CSC20L)
-                                                         22.49     824.78 f
-  PSMAC1/simple_mult/mult_28/FS_1/U24/Z (SC7P5T_AOI21X1_CSC20L)
-                                                         22.27     847.05 r
-  PSMAC1/simple_mult/mult_28/FS_1/U22/Z (SC7P5T_OAI21X1_CSC20L)
-                                                         22.82     869.87 f
-  PSMAC1/simple_mult/mult_28/FS_1/U17/Z (SC7P5T_AOI21X1_CSC20L)
-                                                         31.04     900.91 r
-  PSMAC1/simple_mult/mult_28/FS_1/U15/Z (SC7P5T_ND2X1_CSC20L)
-                                                         16.84     917.76 f
-  PSMAC1/simple_mult/mult_28/FS_1/U14/Z (SC7P5T_AO22IA1A2X1_CSC20L)
-                                                         22.92     940.67 f
-  PSMAC1/simple_mult/mult_28/FS_1/U13/Z (SC7P5T_XOR3X1_CSC20L)
-                                                        126.70    1067.37 r
-  PSMAC1/simple_mult/mult_28/FS_1/SUM[13] (mult_DW01_add_0_DW01_add_1)
-                                                          0.00    1067.37 r
-  PSMAC1/simple_mult/mult_28/PRODUCT[15] (mult_DW02_mult_0)
-                                                          0.00    1067.37 r
-  PSMAC1/simple_mult/product[15] (mult)                   0.00    1067.37 r
-  PSMAC1/product[15] (psmac)                              0.00    1067.37 r
-  product[15] (out)                                       0.00    1067.37 r
-  data arrival time                                               1067.37
+                                                         62.69     347.06 r
+  PSMAC1/simple_mult/mult_28/S2_3_4/CO (SC7P5T_FAX1_A_CSC20L)
+                                                         47.31     394.38 r
+  PSMAC1/simple_mult/mult_28/S2_4_4/S (SC7P5T_FAX1_A_CSC20L)
+                                                         66.12     460.50 f
+  PSMAC1/simple_mult/mult_28/U4/Z (SC7P5T_ND2X1_L_CSC20L)
+                                                         11.34     471.84 r
+  PSMAC1/simple_mult/mult_28/U7/Z (SC7P5T_ND3X1_MR_CSC20L)
+                                                         29.10     500.94 f
+  PSMAC1/simple_mult/mult_28/S2_6_3/S (SC7P5T_FAX1_A_CSC20L)
+                                                         70.72     571.66 r
+  PSMAC1/simple_mult/mult_28/S4_2/S (SC7P5T_FAX1_A_CSC20L)
+                                                         59.40     631.06 f
+  PSMAC1/simple_mult/mult_28/U75/Z (SC7P5T_XOR2X2_CSC20L)
+                                                         31.25     662.32 f
+  PSMAC1/simple_mult/mult_28/FS_1/A[7] (mult_DW01_add_0_DW01_add_1)
+                                                          0.00     662.32 f
+  PSMAC1/simple_mult/mult_28/FS_1/U9/Z (SC7P5T_XOR3X1_L_CSC20L)
+                                                        103.77     766.09 r
+  PSMAC1/simple_mult/mult_28/FS_1/SUM[7] (mult_DW01_add_0_DW01_add_1)
+                                                          0.00     766.09 r
+  PSMAC1/simple_mult/mult_28/PRODUCT[9] (mult_DW02_mult_0)
+                                                          0.00     766.09 r
+  PSMAC1/simple_mult/product[9] (mult)                    0.00     766.09 r
+  PSMAC1/add_122/B[9] (psmac_DW01_add_0)                  0.00     766.09 r
+  PSMAC1/add_122/U1_9/CO (SC7P5T_FAX1_A_CSC20L)          60.14     826.23 r
+  PSMAC1/add_122/U1_10/CO (SC7P5T_FAX1_A_CSC20L)         44.85     871.08 r
+  PSMAC1/add_122/U1_11/CO (SC7P5T_FAX1_A_CSC20L)         44.78     915.86 r
+  PSMAC1/add_122/U1_12/CO (SC7P5T_FAX1_A_CSC20L)         44.83     960.69 r
+  PSMAC1/add_122/U1_13/CO (SC7P5T_FAX1_A_CSC20L)         44.83    1005.52 r
+  PSMAC1/add_122/U1_14/CO (SC7P5T_FAX1_A_CSC20L)         44.83    1050.34 r
+  PSMAC1/add_122/U1_15/CO (SC7P5T_FAX1_A_CSC20L)         44.83    1095.18 r
+  PSMAC1/add_122/U1_16/CO (SC7P5T_FAX1_A_CSC20L)         45.16    1140.34 r
+  PSMAC1/add_122/U1_17/CO (SC7P5T_FAX1_A_CSC20L)         45.16    1185.51 r
+  PSMAC1/add_122/U1_18/CO (SC7P5T_FAX1_A_CSC20L)         39.82    1225.32 r
+  PSMAC1/add_122/U1_19/Z (SC7P5T_XOR3X2_CSC20L)          62.66    1287.99 r
+  PSMAC1/add_122/SUM[19] (psmac_DW01_add_0)               0.00    1287.99 r
+  PSMAC1/U7/Z (SC7P5T_AO22X1_A_CSC20L)                   29.34    1317.33 r
+  PSMAC1/sum_reg[19]/D (SC7P5T_DFFQX1_AS_CSC20L)          0.00    1317.33 r
+  data arrival time                                               1317.33
 
-  clock clk (rise edge)                                2000.00    2000.00
-  clock network delay (ideal)                             0.00    2000.00
-  clock uncertainty                                    -200.00    1800.00
-  output external delay                                -400.00    1400.00
-  data required time                                              1400.00
+  clock clk (rise edge)                                1492.00    1492.00
+  clock network delay (ideal)                             0.00    1492.00
+  clock uncertainty                                    -149.20    1342.80
+  PSMAC1/sum_reg[19]/CLK (SC7P5T_DFFQX1_AS_CSC20L)        0.00    1342.80 r
+  library setup time                                    -25.40    1317.40
+  data required time                                              1317.40
   --------------------------------------------------------------------------
-  data required time                                              1400.00
-  data arrival time                                              -1067.37
+  data required time                                              1317.40
+  data arrival time                                              -1317.33
   --------------------------------------------------------------------------
-  slack (MET)                                                      332.63
+  slack (MET)                                                        0.08
 
 
 1

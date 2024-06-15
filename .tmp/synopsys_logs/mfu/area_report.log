@@ -3,7 +3,7 @@
 Report : area
 Design : mac_engine
 Version: U-2022.12
-Date   : Fri Apr  5 21:43:26 2024
+Date   : Sat Jun 15 23:22:03 2024
 ****************************************
 
 Library(s) Used:
@@ -40,13 +40,13 @@ mac_engine                         730.2432    100.0   31.5984    56.8632  0.000
 MFU1                               627.1656     85.9  144.5592    31.7376  0.0000  mfu
 MFU1/add_0_root_add_0_root_add_275_3
                                     15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_25
-MFU1/add_0_root_add_0_root_add_280_3
+MFU1/add_0_root_add_0_root_add_282_3
                                     13.0152      1.8   13.0152     0.0000  0.0000  mfu_DW01_add_29
-MFU1/add_0_root_add_0_root_add_286_15
+MFU1/add_0_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_10
 MFU1/add_1_root_add_0_root_add_275_3
                                     15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_26
-MFU1/add_1_root_add_0_root_add_286_15
+MFU1/add_1_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_11
 MFU1/add_204                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_3
 MFU1/add_204_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_28
@@ -56,18 +56,18 @@ MFU1/add_227                         7.7256      1.1    7.7256     0.0000  0.000
 MFU1/add_227_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_6
 MFU1/add_239                         7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_9
 MFU1/add_239_2                       7.7256      1.1    7.7256     0.0000  0.0000  mfu_DW01_add_8
-MFU1/add_2_root_add_0_root_add_286_15
+MFU1/add_2_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_12
-MFU1/add_379                        26.2392      3.6   26.2392     0.0000  0.0000  mfu_DW01_add_2
-MFU1/add_384                        15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_1
-MFU1/add_390                        13.0152      1.8   13.0152     0.0000  0.0000  mfu_DW01_add_0
-MFU1/add_3_root_add_0_root_add_286_15
+MFU1/add_386                        26.2392      3.6   26.2392     0.0000  0.0000  mfu_DW01_add_2
+MFU1/add_393                        15.6600      2.1   15.6600     0.0000  0.0000  mfu_DW01_add_1
+MFU1/add_3_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_22
-MFU1/add_4_root_add_0_root_add_286_15
+MFU1/add_401                        13.0152      1.8   13.0152     0.0000  0.0000  mfu_DW01_add_0
+MFU1/add_4_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_17
-MFU1/add_5_root_add_0_root_add_286_15
+MFU1/add_5_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_13
-MFU1/add_6_root_add_0_root_add_286_15
+MFU1/add_6_root_add_0_root_add_293_15
                                     10.3704      1.4   10.3704     0.0000  0.0000  mfu_DW01_add_19
 MFU1/bb_hh_1                        13.4328      1.8    2.8536     0.0000  0.0000  bitbrick_0
 MFU1/bb_hh_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_0

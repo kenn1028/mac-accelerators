@@ -9,7 +9,7 @@ Report : power
         -analysis_effort low
 Design : mac_engine
 Version: U-2022.12
-Date   : Fri Apr  5 05:41:26 2024
+Date   : Tue May  7 22:24:21 2024
 ****************************************
 
 
@@ -35,207 +35,207 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-mac_engine                             3.56e-02    0.113    2.510    0.151 100.0
+mac_engine                             3.56e-02    0.113    2.536    0.151 100.0
   add_79_aco (mac_engine_DW01_inc_1_DW01_inc_2)
                                        7.45e-05 2.55e-04 1.17e-02 3.41e-04   0.2
   add_73 (mac_engine_DW01_inc_0)       1.74e-04 5.29e-04 1.68e-02 7.20e-04   0.5
-  FU1 (fusion_unit)                    3.37e-02 6.46e-02    2.291    0.101  66.7
+  FU1 (fusion_unit)                    3.38e-02 6.49e-02    2.318    0.101  66.8
     add_0_root_add_0_root_add_235_3 (fusion_unit_DW01_add_13)
-                                       4.76e-04 2.34e-04 1.11e-02 7.22e-04   0.5
+                                       4.77e-04 2.80e-04 1.47e-02 7.72e-04   0.5
     add_0_root_add_0_root_add_225_3 (fusion_unit_DW01_add_7)
-                                       5.40e-04 2.92e-04 1.60e-02 8.48e-04   0.6
+                                       5.43e-04 2.57e-04 1.29e-02 8.13e-04   0.5
     add_0_root_add_0_root_add_215_3 (fusion_unit_DW01_add_10)
-                                       5.36e-04 2.64e-04 1.22e-02 8.13e-04   0.5
+                                       5.40e-04 2.70e-04 1.29e-02 8.23e-04   0.5
     add_0_root_add_0_root_add_271_3 (fusion_unit_DW01_add_91)
-                                       2.38e-04 7.02e-04 2.00e-02 9.60e-04   0.6
+                                       2.42e-04 7.36e-04 2.27e-02 1.00e-03   0.7
     add_0_root_add_205_3 (fusion_unit_DW01_add_94)
-                                       5.49e-04 2.75e-04 1.22e-02 8.35e-04   0.6
-    add_317_3 (fusion_unit_DW01_add_98)
-                                       2.88e-04 8.06e-04 2.40e-02 1.12e-03   0.7
-    add_311_3 (fusion_unit_DW01_add_101)
-                                       2.89e-04 8.01e-04 2.40e-02 1.11e-03   0.7
-    add_0_root_add_0_root_add_276_3 (fusion_unit_DW01_add_95)
-                                       2.07e-04 5.79e-04 1.72e-02 8.04e-04   0.5
-    add_0_root_add_0_root_add_282_15 (fusion_unit_DW01_add_16)
+                                       5.60e-04 2.75e-04 1.22e-02 8.47e-04   0.6
+    add_335_3 (fusion_unit_DW01_add_98)
+                                       2.89e-04 8.06e-04 2.40e-02 1.12e-03   0.7
+    add_328_3 (fusion_unit_DW01_add_101)
+                                       2.92e-04 8.22e-04 2.58e-02 1.14e-03   0.8
+    add_0_root_add_0_root_add_278_3 (fusion_unit_DW01_add_95)
+                                       2.07e-04 5.92e-04 1.82e-02 8.17e-04   0.5
+    add_0_root_add_0_root_add_289_15 (fusion_unit_DW01_add_16)
                                        1.58e-04 4.61e-04 1.52e-02 6.34e-04   0.4
-    add_1_root_add_0_root_add_282_15 (fusion_unit_DW01_add_17)
+    add_1_root_add_0_root_add_289_15 (fusion_unit_DW01_add_17)
                                        2.14e-04 3.44e-04 1.49e-02 5.73e-04   0.4
-    add_2_root_add_0_root_add_282_15 (fusion_unit_DW01_add_18)
+    add_2_root_add_0_root_add_289_15 (fusion_unit_DW01_add_18)
                                        2.23e-04 3.82e-04 1.50e-02 6.20e-04   0.4
-    add_5_root_add_0_root_add_282_15 (fusion_unit_DW01_add_19)
+    add_5_root_add_0_root_add_289_15 (fusion_unit_DW01_add_19)
                                        1.94e-04 3.26e-04 1.51e-02 5.35e-04   0.4
-    add_6_root_add_0_root_add_282_15 (fusion_unit_DW01_add_22)
+    add_6_root_add_0_root_add_289_15 (fusion_unit_DW01_add_22)
                                        1.85e-04 3.24e-04 1.50e-02 5.24e-04   0.3
-    add_4_root_add_0_root_add_282_15 (fusion_unit_DW01_add_25)
-                                       1.63e-04 2.66e-04 1.40e-02 4.43e-04   0.3
-    add_3_root_add_0_root_add_282_15 (fusion_unit_DW01_add_28)
+    add_4_root_add_0_root_add_289_15 (fusion_unit_DW01_add_25)
+                                       1.63e-04 2.70e-04 1.49e-02 4.48e-04   0.3
+    add_3_root_add_0_root_add_289_15 (fusion_unit_DW01_add_28)
                                        1.77e-04 2.95e-04 1.49e-02 4.87e-04   0.3
-    add_0_root_add_0_root_add_334_15 (fusion_unit_DW01_add_31)
-                                       2.44e-04 6.84e-04 2.11e-02 9.50e-04   0.6
-    add_2_root_add_0_root_add_334_15 (fusion_unit_DW01_add_32)
-                                       3.37e-04 5.33e-04 2.09e-02 8.90e-04   0.6
-    add_1_root_add_0_root_add_334_15 (fusion_unit_DW01_add_33)
-                                       3.41e-04 5.30e-04 2.08e-02 8.91e-04   0.6
-    add_0_root_add_0_root_add_334_14 (fusion_unit_DW01_add_34)
-                                       1.65e-04 2.66e-04 1.39e-02 4.44e-04   0.3
-    add_0_root_add_0_root_add_334_10 (fusion_unit_DW01_add_35)
-                                       1.48e-04 2.33e-04 1.38e-02 3.94e-04   0.3
-    add_0_root_add_0_root_add_334_6 (fusion_unit_DW01_add_36)
+    add_0_root_add_0_root_add_362_15 (fusion_unit_DW01_add_31)
+                                       2.44e-04 6.84e-04 2.11e-02 9.49e-04   0.6
+    add_2_root_add_0_root_add_362_15 (fusion_unit_DW01_add_32)
+                                       3.37e-04 5.33e-04 2.09e-02 8.91e-04   0.6
+    add_1_root_add_0_root_add_362_15 (fusion_unit_DW01_add_33)
+                                       3.41e-04 5.30e-04 2.08e-02 8.92e-04   0.6
+    add_0_root_add_0_root_add_362_14 (fusion_unit_DW01_add_34)
+                                       1.65e-04 2.79e-04 1.49e-02 4.58e-04   0.3
+    add_0_root_add_0_root_add_362_10 (fusion_unit_DW01_add_35)
+                                       1.48e-04 2.47e-04 1.48e-02 4.09e-04   0.3
+    add_0_root_add_0_root_add_362_6 (fusion_unit_DW01_add_36)
                                        1.80e-04 3.15e-04 1.50e-02 5.10e-04   0.3
-    add_0_root_add_0_root_add_334_3 (fusion_unit_DW01_add_37)
+    add_0_root_add_0_root_add_362_3 (fusion_unit_DW01_add_37)
                                        1.44e-04 2.43e-04 1.48e-02 4.02e-04   0.3
-    add_0_root_add_0_root_add_324_15 (fusion_unit_DW01_add_46)
+    add_0_root_add_0_root_add_347_15 (fusion_unit_DW01_add_46)
                                        2.47e-04 6.92e-04 2.11e-02 9.60e-04   0.6
-    add_2_root_add_0_root_add_324_15 (fusion_unit_DW01_add_47)
-                                       3.37e-04 5.34e-04 2.08e-02 8.92e-04   0.6
-    add_1_root_add_0_root_add_324_15 (fusion_unit_DW01_add_48)
+    add_2_root_add_0_root_add_347_15 (fusion_unit_DW01_add_47)
+                                       3.37e-04 5.35e-04 2.08e-02 8.92e-04   0.6
+    add_1_root_add_0_root_add_347_15 (fusion_unit_DW01_add_48)
                                        3.42e-04 5.29e-04 2.08e-02 8.92e-04   0.6
-    add_0_root_add_0_root_add_324_14 (fusion_unit_DW01_add_49)
+    add_0_root_add_0_root_add_347_14 (fusion_unit_DW01_add_49)
                                        1.51e-04 2.54e-04 1.48e-02 4.20e-04   0.3
-    add_0_root_add_0_root_add_324_10 (fusion_unit_DW01_add_50)
+    add_0_root_add_0_root_add_347_10 (fusion_unit_DW01_add_50)
                                        1.61e-04 2.74e-04 1.49e-02 4.50e-04   0.3
-    add_0_root_add_0_root_add_324_6 (fusion_unit_DW01_add_51)
-                                       1.50e-04 2.38e-04 1.38e-02 4.02e-04   0.3
-    add_0_root_add_0_root_add_324_3 (fusion_unit_DW01_add_52)
+    add_0_root_add_0_root_add_347_6 (fusion_unit_DW01_add_51)
+                                       1.50e-04 2.53e-04 1.48e-02 4.18e-04   0.3
+    add_0_root_add_0_root_add_347_3 (fusion_unit_DW01_add_52)
                                        1.84e-04 3.24e-04 1.51e-02 5.24e-04   0.3
-    add_0_root_add_0_root_add_301_15 (fusion_unit_DW01_add_61)
-                                       2.04e-04 5.72e-04 1.82e-02 7.93e-04   0.5
-    add_1_root_add_0_root_add_301_15 (fusion_unit_DW01_add_62)
+    add_0_root_add_0_root_add_317_15 (fusion_unit_DW01_add_61)
+                                       2.04e-04 5.72e-04 1.82e-02 7.94e-04   0.5
+    add_1_root_add_0_root_add_317_15 (fusion_unit_DW01_add_62)
                                        3.42e-04 5.55e-04 1.81e-02 9.15e-04   0.6
-    add_4_root_add_0_root_add_301_15 (fusion_unit_DW01_add_63)
+    add_4_root_add_0_root_add_317_15 (fusion_unit_DW01_add_63)
                                        2.62e-04 4.34e-04 1.79e-02 7.14e-04   0.5
-    add_6_root_add_0_root_add_301_15 (fusion_unit_DW01_add_64)
-                                       2.47e-04 4.06e-04 1.79e-02 6.71e-04   0.4
-    add_3_root_add_0_root_add_301_15 (fusion_unit_DW01_add_65)
+    add_6_root_add_0_root_add_317_15 (fusion_unit_DW01_add_64)
+                                       2.47e-04 4.06e-04 1.79e-02 6.72e-04   0.4
+    add_3_root_add_0_root_add_317_15 (fusion_unit_DW01_add_65)
                                        2.42e-04 3.82e-04 1.78e-02 6.42e-04   0.4
-    add_2_root_add_0_root_add_301_15 (fusion_unit_DW01_add_66)
+    add_2_root_add_0_root_add_317_15 (fusion_unit_DW01_add_66)
                                        2.43e-04 3.90e-04 1.78e-02 6.51e-04   0.4
-    add_5_root_add_0_root_add_301_15 (fusion_unit_DW01_add_67)
+    add_5_root_add_0_root_add_317_15 (fusion_unit_DW01_add_67)
                                        2.13e-04 3.39e-04 1.78e-02 5.70e-04   0.4
-    add_0_root_add_0_root_add_292_15 (fusion_unit_DW01_add_76)
-                                       2.03e-04 5.79e-04 1.73e-02 8.00e-04   0.5
-    add_1_root_add_0_root_add_292_15 (fusion_unit_DW01_add_77)
+    add_0_root_add_0_root_add_304_15 (fusion_unit_DW01_add_76)
+                                       2.04e-04 5.87e-04 1.82e-02 8.09e-04   0.5
+    add_1_root_add_0_root_add_304_15 (fusion_unit_DW01_add_77)
                                        3.01e-04 4.78e-04 1.79e-02 7.98e-04   0.5
-    add_4_root_add_0_root_add_292_15 (fusion_unit_DW01_add_78)
+    add_4_root_add_0_root_add_304_15 (fusion_unit_DW01_add_78)
                                        2.28e-04 3.69e-04 1.77e-02 6.14e-04   0.4
-    add_3_root_add_0_root_add_292_15 (fusion_unit_DW01_add_79)
-                                       2.13e-04 3.36e-04 1.77e-02 5.66e-04   0.4
-    add_2_root_add_0_root_add_292_15 (fusion_unit_DW01_add_80)
-                                       3.19e-04 5.35e-04 1.81e-02 8.72e-04   0.6
-    add_5_root_add_0_root_add_292_15 (fusion_unit_DW01_add_81)
+    add_3_root_add_0_root_add_304_15 (fusion_unit_DW01_add_79)
+                                       2.13e-04 3.35e-04 1.77e-02 5.66e-04   0.4
+    add_2_root_add_0_root_add_304_15 (fusion_unit_DW01_add_80)
+                                       3.20e-04 5.35e-04 1.81e-02 8.73e-04   0.6
+    add_5_root_add_0_root_add_304_15 (fusion_unit_DW01_add_81)
                                        2.57e-04 4.15e-04 1.78e-02 6.90e-04   0.5
-    add_6_root_add_0_root_add_292_15 (fusion_unit_DW01_add_82)
-                                       2.40e-04 3.92e-04 1.70e-02 6.49e-04   0.4
-    r502 (fusion_unit_DW01_add_4)      1.65e-04 4.94e-04 1.95e-02 6.79e-04   0.5
-    add_429 (fusion_unit_DW01_add_3)   2.12e-04 6.08e-04 5.01e-02 8.70e-04   0.6
-    add_440 (fusion_unit_DW01_add_2)   1.37e-04 4.29e-04 1.67e-02 5.83e-04   0.4
-    add_453 (fusion_unit_DW01_add_1)   1.96e-04 5.43e-04 2.50e-02 7.64e-04   0.5
-    add_459 (fusion_unit_DW01_add_0)   1.81e-04 5.27e-04 2.23e-02 7.31e-04   0.5
-    bb_ll_4 (bitbrick_1)               4.20e-04 2.34e-04 3.16e-02 6.85e-04   0.5
+    add_6_root_add_0_root_add_304_15 (fusion_unit_DW01_add_82)
+                                       2.40e-04 4.01e-04 1.79e-02 6.60e-04   0.4
+    r502 (fusion_unit_DW01_add_4)      1.61e-04 4.80e-04 1.97e-02 6.61e-04   0.4
+    add_456 (fusion_unit_DW01_add_3)   1.91e-04 5.97e-04 3.43e-02 8.22e-04   0.5
+    add_471 (fusion_unit_DW01_add_2)   1.34e-04 4.05e-04 1.64e-02 5.56e-04   0.4
+    add_488 (fusion_unit_DW01_add_1)   1.84e-04 5.35e-04 2.52e-02 7.44e-04   0.5
+    add_496 (fusion_unit_DW01_add_0)   1.75e-04 5.18e-04 2.24e-02 7.16e-04   0.5
+    bb_ll_4 (bitbrick_1)               4.25e-04 2.34e-04 3.16e-02 6.91e-04   0.5
       FA_p4 (full_adder_1)             2.65e-05 1.41e-05 5.63e-03 4.62e-05   0.0
       FA_p3a (full_adder_2)            4.52e-05 3.31e-05 5.68e-03 8.39e-05   0.1
-      FA_p3b (full_adder_3)            1.05e-05 2.08e-05 6.22e-03 3.74e-05   0.0
+      FA_p3b (full_adder_3)            1.05e-05 2.07e-05 6.22e-03 3.74e-05   0.0
       HA_p2 (half_adder_1)             4.54e-05 3.23e-05 4.02e-03 8.17e-05   0.1
       FA_p2 (full_adder_4)             2.05e-05 5.37e-05 4.17e-03 7.84e-05   0.1
       HA_p1 (half_adder_2)             1.32e-04 3.64e-05 2.68e-03 1.71e-04   0.1
-    bb_lh_4 (bitbrick_2)               4.20e-04 2.84e-04 3.36e-02 7.37e-04   0.5
-      FA_p4 (full_adder_5)             4.14e-05 2.31e-05 5.62e-03 7.01e-05   0.0
-      FA_p3a (full_adder_6)            5.98e-05 5.09e-05 6.66e-03 1.17e-04   0.1
-      FA_p3b (full_adder_7)            1.18e-05 3.22e-05 7.21e-03 5.12e-05   0.0
-      HA_p2 (half_adder_3)             6.55e-05 3.72e-05 4.01e-03 1.07e-04   0.1
+    bb_lh_4 (bitbrick_2)               4.26e-04 2.90e-04 3.46e-02 7.51e-04   0.5
+      FA_p4 (full_adder_5)             4.15e-05 2.96e-05 6.60e-03 7.77e-05   0.1
+      FA_p3a (full_adder_6)            6.05e-05 5.09e-05 6.66e-03 1.18e-04   0.1
+      FA_p3b (full_adder_7)            1.18e-05 3.21e-05 7.21e-03 5.12e-05   0.0
+      HA_p2 (half_adder_3)             6.55e-05 3.71e-05 4.01e-03 1.07e-04   0.1
       FA_p2 (full_adder_8)             2.33e-05 5.75e-05 4.18e-03 8.50e-05   0.1
-      HA_p1 (half_adder_4)             1.00e-04 3.76e-05 2.69e-03 1.40e-04   0.1
-    bb_hl_4 (bitbrick_3)               4.04e-04 2.69e-04 3.27e-02 7.05e-04   0.5
+      HA_p1 (half_adder_4)             1.04e-04 3.76e-05 2.69e-03 1.44e-04   0.1
+    bb_hl_4 (bitbrick_3)               4.04e-04 2.70e-04 3.28e-02 7.07e-04   0.5
       FA_p4 (full_adder_9)             3.67e-05 2.02e-05 5.61e-03 6.25e-05   0.0
-      FA_p3a (full_adder_10)           5.80e-05 4.27e-05 5.67e-03 1.06e-04   0.1
-      FA_p3b (full_adder_11)           1.14e-05 3.17e-05 7.20e-03 5.03e-05   0.0
-      HA_p2 (half_adder_5)             6.35e-05 3.55e-05 4.01e-03 1.03e-04   0.1
-      FA_p2 (full_adder_12)            2.21e-05 5.50e-05 4.18e-03 8.13e-05   0.1
+      FA_p3a (full_adder_10)           6.01e-05 4.94e-05 6.66e-03 1.16e-04   0.1
+      FA_p3b (full_adder_11)           1.13e-05 2.51e-05 6.20e-03 4.26e-05   0.0
+      HA_p2 (half_adder_5)             6.30e-05 3.67e-05 4.08e-03 1.04e-04   0.1
+      FA_p2 (full_adder_12)            2.11e-05 5.50e-05 4.18e-03 8.03e-05   0.1
       HA_p1 (half_adder_6)             9.54e-05 3.60e-05 2.68e-03 1.34e-04   0.1
-    bb_hh_4 (bitbrick_4)               5.53e-04 2.86e-04 3.21e-02 8.72e-04   0.6
+    bb_hh_4 (bitbrick_4)               5.58e-04 3.23e-04 3.59e-02 9.18e-04   0.6
       FA_p4 (full_adder_13)            4.09e-05 3.40e-05 6.59e-03 8.15e-05   0.1
-      FA_p3a (full_adder_14)           6.14e-05 5.00e-05 5.67e-03 1.17e-04   0.1
-      FA_p3b (full_adder_15)           1.21e-05 2.75e-05 6.13e-03 4.57e-05   0.0
-      HA_p2 (half_adder_7)             7.87e-05 3.23e-05 3.54e-03 1.15e-04   0.1
-      FA_p2 (full_adder_16)            2.14e-05 5.76e-05 4.19e-03 8.32e-05   0.1
-      HA_p1 (half_adder_8)             9.66e-05 3.66e-05 2.69e-03 1.36e-04   0.1
-    bb_ll_3 (bitbrick_5)               4.28e-04 2.40e-04 3.26e-02 7.01e-04   0.5
+      FA_p3a (full_adder_14)           6.23e-05 5.79e-05 6.66e-03 1.27e-04   0.1
+      FA_p3b (full_adder_15)           1.23e-05 3.46e-05 7.19e-03 5.41e-05   0.0
+      HA_p2 (half_adder_7)             7.87e-05 4.44e-05 4.51e-03 1.28e-04   0.1
+      FA_p2 (full_adder_16)            2.45e-05 6.58e-05 4.84e-03 9.52e-05   0.1
+      HA_p1 (half_adder_8)             9.71e-05 3.66e-05 2.69e-03 1.36e-04   0.1
+    bb_ll_3 (bitbrick_5)               4.27e-04 2.34e-04 3.16e-02 6.92e-04   0.5
       FA_p4 (full_adder_17)            2.68e-05 1.45e-05 5.63e-03 4.69e-05   0.0
-      FA_p3a (full_adder_18)           4.84e-05 3.43e-05 5.68e-03 8.83e-05   0.1
-      FA_p3b (full_adder_19)           1.08e-05 2.85e-05 7.22e-03 4.65e-05   0.0
-      HA_p2 (half_adder_9)             4.58e-05 3.11e-05 4.02e-03 8.10e-05   0.1
-      FA_p2 (full_adder_20)            2.11e-05 5.27e-05 4.17e-03 7.80e-05   0.1
+      FA_p3a (full_adder_18)           4.84e-05 3.42e-05 5.68e-03 8.83e-05   0.1
+      FA_p3b (full_adder_19)           1.07e-05 2.17e-05 6.21e-03 3.87e-05   0.0
+      HA_p2 (half_adder_9)             4.58e-05 3.11e-05 4.02e-03 8.09e-05   0.1
+      FA_p2 (full_adder_20)            2.00e-05 5.26e-05 4.17e-03 7.69e-05   0.1
       HA_p1 (half_adder_10)            1.40e-04 3.58e-05 2.68e-03 1.79e-04   0.1
-    bb_lh_3 (bitbrick_6)               6.07e-04 3.09e-04 3.28e-02 9.49e-04   0.6
-      FA_p4 (full_adder_21)            6.17e-05 3.47e-05 5.59e-03 1.02e-04   0.1
-      FA_p3a (full_adder_22)           7.76e-05 5.80e-05 6.08e-03 1.42e-04   0.1
+    bb_lh_3 (bitbrick_6)               6.08e-04 3.17e-04 3.35e-02 9.59e-04   0.6
+      FA_p4 (full_adder_21)            6.17e-05 3.57e-05 5.65e-03 1.03e-04   0.1
+      FA_p3a (full_adder_22)           7.77e-05 5.80e-05 6.08e-03 1.42e-04   0.1
       FA_p3b (full_adder_23)           1.13e-05 3.13e-05 6.26e-03 4.89e-05   0.0
-      HA_p2 (half_adder_11)            6.19e-05 3.82e-05 4.00e-03 1.04e-04   0.1
-      FA_p2 (full_adder_24)            2.32e-05 6.38e-05 4.82e-03 9.19e-05   0.1
-      HA_p1 (half_adder_12)            9.73e-05 3.52e-05 2.68e-03 1.35e-04   0.1
-    bb_hl_3 (bitbrick_7)               4.93e-04 2.52e-04 3.16e-02 7.77e-04   0.5
-      FA_p4 (full_adder_25)            3.58e-05 1.96e-05 5.61e-03 6.10e-05   0.0
-      FA_p3a (full_adder_26)           5.61e-05 4.14e-05 5.67e-03 1.03e-04   0.1
+      HA_p2 (half_adder_11)            6.19e-05 4.47e-05 4.51e-03 1.11e-04   0.1
+      FA_p2 (full_adder_24)            2.39e-05 6.39e-05 4.82e-03 9.26e-05   0.1
+      HA_p1 (half_adder_12)            9.73e-05 3.51e-05 2.68e-03 1.35e-04   0.1
+    bb_hl_3 (bitbrick_7)               4.95e-04 2.65e-04 3.36e-02 7.93e-04   0.5
+      FA_p4 (full_adder_25)            3.58e-05 2.57e-05 6.59e-03 6.81e-05   0.0
+      FA_p3a (full_adder_26)           5.88e-05 4.80e-05 6.66e-03 1.13e-04   0.1
       FA_p3b (full_adder_27)           1.05e-05 2.29e-05 6.14e-03 3.95e-05   0.0
       HA_p2 (half_adder_13)            6.28e-05 3.40e-05 4.01e-03 1.01e-04   0.1
       FA_p2 (full_adder_28)            1.95e-05 5.15e-05 4.18e-03 7.51e-05   0.0
       HA_p1 (half_adder_14)            9.70e-05 3.56e-05 2.68e-03 1.35e-04   0.1
-    bb_hh_3 (bitbrick_8)               6.05e-04 3.33e-04 3.35e-02 9.71e-04   0.6
-      FA_p4 (full_adder_29)            5.66e-05 3.75e-05 5.59e-03 9.97e-05   0.1
-      FA_p3a (full_adder_30)           7.77e-05 6.25e-05 6.08e-03 1.46e-04   0.1
-      FA_p3b (full_adder_31)           1.19e-05 3.26e-05 6.25e-03 5.08e-05   0.0
-      HA_p2 (half_adder_15)            8.38e-05 4.76e-05 4.50e-03 1.36e-04   0.1
+    bb_hh_3 (bitbrick_8)               6.06e-04 3.57e-04 3.60e-02 9.99e-04   0.7
+      FA_p4 (full_adder_29)            5.67e-05 4.81e-05 6.56e-03 1.11e-04   0.1
+      FA_p3a (full_adder_30)           7.89e-05 7.11e-05 6.64e-03 1.57e-04   0.1
+      FA_p3b (full_adder_31)           1.28e-05 3.77e-05 7.17e-03 5.77e-05   0.0
+      HA_p2 (half_adder_15)            8.43e-05 4.76e-05 4.50e-03 1.36e-04   0.1
       FA_p2 (full_adder_32)            2.41e-05 6.42e-05 4.83e-03 9.31e-05   0.1
       HA_p1 (half_adder_16)            9.60e-05 3.63e-05 2.68e-03 1.35e-04   0.1
-    bb_ll_2 (bitbrick_9)               4.27e-04 2.33e-04 3.16e-02 6.92e-04   0.5
+    bb_ll_2 (bitbrick_9)               4.29e-04 2.33e-04 3.16e-02 6.94e-04   0.5
       FA_p4 (full_adder_33)            2.80e-05 1.49e-05 5.63e-03 4.85e-05   0.0
-      FA_p3a (full_adder_34)           4.72e-05 3.45e-05 5.68e-03 8.74e-05   0.1
+      FA_p3a (full_adder_34)           4.88e-05 3.45e-05 5.68e-03 8.89e-05   0.1
       FA_p3b (full_adder_35)           1.05e-05 2.18e-05 6.21e-03 3.85e-05   0.0
-      HA_p2 (half_adder_17)            4.41e-05 3.11e-05 4.02e-03 7.92e-05   0.1
+      HA_p2 (half_adder_17)            4.36e-05 3.11e-05 4.02e-03 7.87e-05   0.1
       FA_p2 (full_adder_36)            1.97e-05 5.17e-05 4.17e-03 7.56e-05   0.1
       HA_p1 (half_adder_18)            1.41e-04 3.59e-05 2.68e-03 1.80e-04   0.1
-    bb_lh_2 (bitbrick_10)              4.51e-04 2.60e-04 3.16e-02 7.43e-04   0.5
-      FA_p4 (full_adder_37)            4.06e-05 2.26e-05 5.61e-03 6.88e-05   0.0
-      FA_p3a (full_adder_38)           5.93e-05 4.40e-05 5.67e-03 1.09e-04   0.1
-      FA_p3b (full_adder_39)           1.14e-05 2.43e-05 6.14e-03 4.18e-05   0.0
-      HA_p2 (half_adder_19)            6.17e-05 3.48e-05 4.01e-03 1.01e-04   0.1
-      FA_p2 (full_adder_40)            2.06e-05 5.42e-05 4.17e-03 7.91e-05   0.1
-      HA_p1 (half_adder_20)            9.44e-05 3.56e-05 2.69e-03 1.33e-04   0.1
-    bb_hl_2 (bitbrick_11)              6.09e-04 3.02e-04 3.30e-02 9.44e-04   0.6
+    bb_lh_2 (bitbrick_10)              5.13e-04 2.54e-04 3.09e-02 7.98e-04   0.5
+      FA_p4 (full_adder_37)            4.08e-05 2.26e-05 5.61e-03 6.90e-05   0.0
+      FA_p3a (full_adder_38)           6.11e-05 3.76e-05 5.11e-03 1.04e-04   0.1
+      FA_p3b (full_adder_39)           1.03e-05 2.42e-05 6.14e-03 4.07e-05   0.0
+      HA_p2 (half_adder_19)            6.08e-05 3.47e-05 4.01e-03 9.96e-05   0.1
+      FA_p2 (full_adder_40)            2.06e-05 5.42e-05 4.17e-03 7.90e-05   0.1
+      HA_p1 (half_adder_20)            9.80e-05 3.57e-05 2.69e-03 1.36e-04   0.1
+    bb_hl_2 (bitbrick_11)              6.10e-04 2.89e-04 3.14e-02 9.30e-04   0.6
       FA_p4 (full_adder_41)            5.89e-05 3.16e-05 5.57e-03 9.62e-05   0.1
-      FA_p3a (full_adder_42)           7.76e-05 5.78e-05 5.64e-03 1.41e-04   0.1
-      FA_p3b (full_adder_43)           1.02e-05 3.36e-05 7.16e-03 5.10e-05   0.0
-      HA_p2 (half_adder_21)            6.96e-05 3.89e-05 4.00e-03 1.12e-04   0.1
-      FA_p2 (full_adder_44)            2.13e-05 5.31e-05 4.18e-03 7.86e-05   0.1
-      HA_p1 (half_adder_22)            9.28e-05 3.50e-05 2.68e-03 1.30e-04   0.1
-    bb_hh_2 (bitbrick_12)              6.25e-04 3.55e-04 3.49e-02 1.01e-03   0.7
+      FA_p3a (full_adder_42)           7.98e-05 4.98e-05 5.08e-03 1.35e-04   0.1
+      FA_p3b (full_adder_43)           9.17e-06 2.85e-05 6.10e-03 4.37e-05   0.0
+      HA_p2 (half_adder_21)            6.87e-05 3.89e-05 4.00e-03 1.12e-04   0.1
+      FA_p2 (full_adder_44)            2.01e-05 5.30e-05 4.18e-03 7.74e-05   0.1
+      HA_p1 (half_adder_22)            9.59e-05 3.50e-05 2.68e-03 1.34e-04   0.1
+    bb_hh_2 (bitbrick_12)              6.29e-04 3.69e-04 3.60e-02 1.03e-03   0.7
       FA_p4 (full_adder_45)            6.16e-05 5.01e-05 6.54e-03 1.18e-04   0.1
-      FA_p3a (full_adder_46)           8.35e-05 7.79e-05 6.63e-03 1.68e-04   0.1
+      FA_p3a (full_adder_46)           8.41e-05 7.78e-05 6.63e-03 1.69e-04   0.1
       FA_p3b (full_adder_47)           1.16e-05 3.67e-05 7.15e-03 5.54e-05   0.0
-      HA_p2 (half_adder_23)            8.94e-05 4.32e-05 3.99e-03 1.37e-04   0.1
-      FA_p2 (full_adder_48)            2.31e-05 5.70e-05 4.18e-03 8.43e-05   0.1
-      HA_p1 (half_adder_24)            9.69e-05 3.63e-05 2.68e-03 1.36e-04   0.1
-    bb_ll_1 (bitbrick_13)              4.18e-04 2.27e-04 3.16e-02 6.77e-04   0.4
-      FA_p4 (full_adder_49)            2.74e-05 1.46e-05 5.63e-03 4.76e-05   0.0
-      FA_p3a (full_adder_50)           4.72e-05 3.46e-05 5.68e-03 8.75e-05   0.1
-      FA_p3b (full_adder_51)           9.96e-06 2.00e-05 6.15e-03 3.61e-05   0.0
-      HA_p2 (half_adder_25)            4.45e-05 3.02e-05 4.02e-03 7.88e-05   0.1
-      FA_p2 (full_adder_52)            1.85e-05 4.92e-05 4.17e-03 7.19e-05   0.0
+      HA_p2 (half_adder_23)            8.94e-05 4.88e-05 4.42e-03 1.43e-04   0.1
+      FA_p2 (full_adder_48)            2.43e-05 6.53e-05 4.83e-03 9.44e-05   0.1
+      HA_p1 (half_adder_24)            1.01e-04 3.64e-05 2.68e-03 1.40e-04   0.1
+    bb_ll_1 (bitbrick_13)              4.95e-04 2.55e-04 3.57e-02 7.86e-04   0.5
+      FA_p4 (full_adder_49)            2.76e-05 1.91e-05 6.61e-03 5.33e-05   0.0
+      FA_p3a (full_adder_50)           4.81e-05 4.01e-05 6.66e-03 9.49e-05   0.1
+      FA_p3b (full_adder_51)           1.01e-05 2.69e-05 7.22e-03 4.43e-05   0.0
+      HA_p2 (half_adder_25)            4.46e-05 3.53e-05 4.53e-03 8.44e-05   0.1
+      FA_p2 (full_adder_52)            2.06e-05 5.59e-05 4.81e-03 8.14e-05   0.1
       HA_p1 (half_adder_26)            1.38e-04 3.52e-05 2.68e-03 1.76e-04   0.1
-    bb_lh_1 (bitbrick_14)              5.68e-04 3.20e-04 3.38e-02 9.22e-04   0.6
-      FA_p4 (full_adder_53)            6.16e-05 3.47e-05 5.59e-03 1.02e-04   0.1
-      FA_p3a (full_adder_54)           7.74e-05 5.80e-05 6.08e-03 1.41e-04   0.1
-      FA_p3b (full_adder_55)           1.10e-05 3.04e-05 6.26e-03 4.77e-05   0.0
-      HA_p2 (half_adder_27)            6.37e-05 4.98e-05 4.97e-03 1.19e-04   0.1
-      FA_p2 (full_adder_56)            2.41e-05 6.27e-05 4.81e-03 9.16e-05   0.1
+    bb_lh_1 (bitbrick_14)              5.70e-04 3.36e-04 3.58e-02 9.42e-04   0.6
+      FA_p4 (full_adder_53)            6.17e-05 4.44e-05 6.56e-03 1.13e-04   0.1
+      FA_p3a (full_adder_54)           7.85e-05 6.59e-05 6.64e-03 1.51e-04   0.1
+      FA_p3b (full_adder_55)           1.19e-05 3.51e-05 7.18e-03 5.41e-05   0.0
+      HA_p2 (half_adder_27)            6.42e-05 4.42e-05 4.51e-03 1.13e-04   0.1
+      FA_p2 (full_adder_56)            2.34e-05 6.27e-05 4.81e-03 9.09e-05   0.1
       HA_p1 (half_adder_28)            9.63e-05 3.61e-05 2.68e-03 1.35e-04   0.1
-    bb_hl_1 (bitbrick_15)              5.68e-04 3.15e-04 3.50e-02 9.18e-04   0.6
+    bb_hl_1 (bitbrick_15)              5.68e-04 3.27e-04 3.61e-02 9.32e-04   0.6
       FA_p4 (full_adder_57)            5.78e-05 4.09e-05 6.55e-03 1.05e-04   0.1
-      FA_p3a (full_adder_58)           7.94e-05 6.68e-05 6.63e-03 1.53e-04   0.1
+      FA_p3a (full_adder_58)           7.94e-05 6.67e-05 6.63e-03 1.53e-04   0.1
       FA_p3b (full_adder_59)           9.74e-06 3.18e-05 7.16e-03 4.87e-05   0.0
-      HA_p2 (half_adder_29)            6.93e-05 3.76e-05 4.00e-03 1.11e-04   0.1
-      FA_p2 (full_adder_60)            2.00e-05 5.00e-05 4.17e-03 7.42e-05   0.0
-      HA_p1 (half_adder_30)            9.49e-05 3.58e-05 2.68e-03 1.33e-04   0.1
+      HA_p2 (half_adder_29)            6.93e-05 4.33e-05 4.50e-03 1.17e-04   0.1
+      FA_p2 (full_adder_60)            2.10e-05 5.68e-05 4.82e-03 8.26e-05   0.1
+      HA_p1 (half_adder_30)            9.53e-05 3.58e-05 2.68e-03 1.34e-04   0.1
     bb_hh_1 (bitbrick_0)               5.94e-04 3.76e-04 3.62e-02 1.01e-03   0.7
       FA_p4 (full_adder_61)            6.62e-05 5.47e-05 6.54e-03 1.27e-04   0.1
       FA_p3a (full_adder_62)           8.93e-05 7.99e-05 6.63e-03 1.76e-04   0.1
@@ -243,5 +243,5 @@ mac_engine                             3.56e-02    0.113    2.510    0.151 100.0
       HA_p2 (half_adder_31)            8.93e-05 5.00e-05 4.48e-03 1.44e-04   0.1
       FA_p2 (full_adder_0)             2.34e-05 6.25e-05 4.81e-03 9.07e-05   0.1
       HA_p1 (half_adder_0)             9.70e-05 3.61e-05 2.68e-03 1.36e-04   0.1
-    sign_ctrl (signbit_ctrl)           5.16e-04 4.36e-04 1.79e-02 9.69e-04   0.6
+    sign_ctrl (signbit_ctrl)           4.68e-04 2.94e-04 9.72e-03 7.72e-04   0.5
 1

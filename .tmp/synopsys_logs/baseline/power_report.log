@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : mac_engine
 Version: U-2022.12
-Date   : Sat Apr  6 08:05:45 2024
+Date   : Sun Apr 28 01:43:41 2024
 ****************************************
 
 
@@ -35,12 +35,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  78.6573 uW   (91%)
-  Net Switching Power  =   7.5445 uW    (9%)
+  Cell Internal Power  = 105.8884 uW   (91%)
+  Net Switching Power  =  10.3788 uW    (9%)
                          ---------
-Total Dynamic Power    =  86.2018 uW  (100%)
+Total Dynamic Power    = 116.2673 uW  (100%)
 
-Cell Leakage Power     = 517.6840 nW
+Cell Leakage Power     = 536.9520 nW
 
 
                  Internal         Switching           Leakage            Total
@@ -49,10 +49,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network  6.7350e-02            0.0000            0.0000        6.7350e-02  (  77.66%)  i
-register       3.5710e-03        1.4804e-03            0.1985        5.2499e-03  (   6.05%)
+clock_network  9.0275e-02            0.0000            0.0000        9.0275e-02  (  77.29%)  i
+register       4.8282e-03        2.0428e-03            0.1985        7.0695e-03  (   6.05%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  7.7358e-03        6.0641e-03            0.3192        1.4119e-02  (  16.28%)
+combinational  1.0785e-02        8.3361e-03            0.3385        1.9459e-02  (  16.66%)
 --------------------------------------------------------------------------------------------------
-Total          7.8657e-02 mW     7.5445e-03 mW         0.5177 uW     8.6719e-02 mW
+Total              0.1059 mW     1.0379e-02 mW         0.5369 uW         0.1168 mW
 1

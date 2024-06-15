@@ -41,16 +41,16 @@ Statistics for case statements in always block at line 267 in file
 |           268            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 362 in file
+Statistics for case statements in always block at line 369 in file
         '/home/kpelayo/Documents/Pelayo_196_199/rfu/rtl/rfu.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           373            |    auto/auto     |
+|           380            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
-        in routine rfu line 298 in file
+        in routine rfu line 305 in file
                 '/home/kpelayo/Documents/Pelayo_196_199/rfu/rtl/rfu.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -59,7 +59,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-        in routine rfu line 362 in file
+        in routine rfu line 369 in file
                 '/home/kpelayo/Documents/Pelayo_196_199/rfu/rtl/rfu.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -269,11 +269,11 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     954.3      0.00       0.0       0.0                          
-    0:00:04     954.3      0.00       0.0       0.0                          
-    0:00:04     954.3      0.00       0.0       0.0                          
-    0:00:04     954.3      0.00       0.0       0.0                          
-    0:00:04     954.3      0.00       0.0       0.0                          
+    0:00:03     954.9      0.00       0.0       0.0                          
+    0:00:03     954.9      0.00       0.0       0.0                          
+    0:00:03     954.9      0.00       0.0       0.0                          
+    0:00:03     954.9      0.00       0.0       0.0                          
+    0:00:03     954.9      0.00       0.0       0.0                          
     0:00:04     706.0      0.00       0.0       0.0                          
     0:00:04     706.0      0.00       0.0       0.0                          
     0:00:04     706.0      0.00       0.0       0.0                          
@@ -310,7 +310,7 @@ Information: Updating design information... (UID-85)
     0:00:04     706.0      0.00       0.0       0.0                          
     0:00:04     706.0      0.00       0.0       0.0                          
     0:00:04     706.0      0.00       0.0       0.0                          
-    0:00:04     704.1      0.00       0.0       0.0                          
+    0:00:04     703.9      0.00       0.0       0.0                          
     0:00:04     703.7      0.00       0.0       0.0                          
     0:00:04     703.7      0.00       0.0       0.0                          
     0:00:04     703.7      0.00       0.0       0.0                          

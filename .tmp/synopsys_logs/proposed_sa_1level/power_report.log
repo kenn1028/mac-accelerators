@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : mac_engine
 Version: U-2022.12
-Date   : Mon Apr 15 01:50:05 2024
+Date   : Sun May 12 02:16:17 2024
 ****************************************
 
 
@@ -35,12 +35,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  = 193.6949 uW   (95%)
-  Net Switching Power  =  11.0594 uW    (5%)
+  Cell Internal Power  = 124.9400 uW   (93%)
+  Net Switching Power  =   9.7828 uW    (7%)
                          ---------
-Total Dynamic Power    = 204.7543 uW  (100%)
+Total Dynamic Power    = 134.7229 uW  (100%)
 
-Cell Leakage Power     =   1.7834 uW
+Cell Leakage Power     =   1.2213 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -49,10 +49,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      0.1782            0.0000            0.0000            0.1782  (  86.30%)  i
-register       3.0590e-03        1.3961e-03            0.5265        4.9816e-03  (   2.41%)
-sequential     8.9488e-04        4.6392e-04        9.5267e-02        1.4541e-03  (   0.70%)
-combinational  1.1507e-02        9.1994e-03            1.1616        2.1868e-02  (  10.59%)
+clock_network      0.1097            0.0000            0.0000            0.1097  (  80.70%)  i
+register       3.3010e-03        1.1458e-03            0.2838        4.7306e-03  (   3.48%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.1933e-02        8.6370e-03            0.9375        2.1507e-02  (  15.82%)
 --------------------------------------------------------------------------------------------------
-Total              0.1937 mW     1.1059e-02 mW         1.7834 uW         0.2065 mW
+Total              0.1249 mW     9.7828e-03 mW         1.2213 uW         0.1359 mW
 1

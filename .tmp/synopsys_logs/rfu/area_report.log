@@ -3,7 +3,7 @@
 Report : area
 Design : mac_engine
 Version: U-2022.12
-Date   : Fri Apr  5 23:24:27 2024
+Date   : Sun Jun 16 01:02:51 2024
 ****************************************
 
 Library(s) Used:
@@ -38,29 +38,29 @@ Hierarchical cell                 Absolute   Percent  Combi-    Noncombi-  Black
 --------------------------------  ---------  -------  --------  ---------  ------  --------------------------------
 mac_engine                         700.9416    100.0   31.5984    56.8632  0.0000  mac_engine
 RFU1                               597.8640     85.3  172.9560    31.7376  0.0000  rfu
-RFU1/add_0_root_add_0_root_add_277_3
+RFU1/add_0_root_add_0_root_add_279_3
                                     13.0152      1.9   13.0152     0.0000  0.0000  rfu_DW01_add_26
-RFU1/add_0_root_add_0_root_add_283_15
+RFU1/add_0_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_11
 RFU1/add_197_2                       7.7256      1.1    7.7256     0.0000  0.0000  rfu_DW01_add_3
-RFU1/add_1_root_add_0_root_add_283_15
+RFU1/add_1_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_12
 RFU1/add_210_2                       7.7256      1.1    7.7256     0.0000  0.0000  rfu_DW01_add_5
 RFU1/add_223_2                       7.7256      1.1    7.7256     0.0000  0.0000  rfu_DW01_add_7
 RFU1/add_235_2                       7.7256      1.1    7.7256     0.0000  0.0000  rfu_DW01_add_9
 RFU1/add_271_2                      15.6600      2.2   15.6600     0.0000  0.0000  rfu_DW01_add_29
-RFU1/add_2_root_add_0_root_add_283_15
+RFU1/add_2_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_13
-RFU1/add_376                        26.2392      3.7   26.2392     0.0000  0.0000  rfu_DW01_add_2
-RFU1/add_381                        15.6600      2.2   15.6600     0.0000  0.0000  rfu_DW01_add_1
-RFU1/add_387                        13.0152      1.9   13.0152     0.0000  0.0000  rfu_DW01_add_0
-RFU1/add_3_root_add_0_root_add_283_15
+RFU1/add_383                        26.2392      3.7   26.2392     0.0000  0.0000  rfu_DW01_add_2
+RFU1/add_390                        15.6600      2.2   15.6600     0.0000  0.0000  rfu_DW01_add_1
+RFU1/add_398                        13.0152      1.9   13.0152     0.0000  0.0000  rfu_DW01_add_0
+RFU1/add_3_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_23
-RFU1/add_4_root_add_0_root_add_283_15
+RFU1/add_4_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_18
-RFU1/add_5_root_add_0_root_add_283_15
+RFU1/add_5_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_14
-RFU1/add_6_root_add_0_root_add_283_15
+RFU1/add_6_root_add_0_root_add_290_15
                                     10.3704      1.5   10.3704     0.0000  0.0000  rfu_DW01_add_20
 RFU1/bb_hh_1                        12.7368      1.8    4.2456     0.0000  0.0000  s_bitbrick_0
 RFU1/bb_hh_1/FA_p2                   2.0880      0.3    2.0880     0.0000  0.0000  full_adder_0
