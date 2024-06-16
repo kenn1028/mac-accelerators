@@ -1,18 +1,19 @@
 import random
 from bitstring import BitArray
+import numpy as np
 
 # Dependencies for MobileNet v2 Probability Distribution Extraction
 import numpy as np
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-# import scipy.interpolate
+import seaborn as sns
+import matplotlib.pyplot as plt
+import scipy.interpolate
 
 ############################ (I) TEST CASE GENERATION ############################
 
 NUMBER_OF_TEST_CASES = 51
 sx = "Y"
 sy = "Y"
-architecture = "ST"
+architecture = "SA"
 asymmetric = "N"
 baseline = "N"
 level_1 = "Y"
@@ -48,47 +49,41 @@ weights = []
 #### Make sure to export a Weight Tensor with dimensions <96x1x3x3>
 #### Code Block courtesy of Sir Lawrence Quizon
 
-# def quantize(input,bits,range_low,range_high,zero):
-#     true_scale = (range_high-range_low)/(2**bits-1)
-#     return int(input/true_scale) - zero
+def quantize(input,bits,range_low,range_high,zero):
+    true_scale = (range_high-range_low)/(2**bits-1)
+    return int(input/true_scale) - zero
 
-# mbv2weights = np.load('mbv2_conv595.npy')
-# mbv2weights = mbv2weights.flatten()
+mbv2weights = np.load('mbv2_conv595.npy')
+mbv2weights = mbv2weights.flatten()
 
-# # flatten and quantize the weight matrix
-# range_low = min(mbv2weights)
-# range_high = max(mbv2weights)
-# vq = np.vectorize(quantize)
-# mbv2_flat_quant = vq(mbv2weights,8,range_low,range_high,0)
+# flatten and quantize the weight matrix
+range_low = min(mbv2weights)
+range_high = max(mbv2weights)
+vq = np.vectorize(quantize)
+mbv2_flat_quant = vq(mbv2weights,8,range_low,range_high,0)
 
-# plt.hist(mbv2_flat_quant)
-# plt.title('MBv2 conv 595 after 8-bit quant with absolute max/min range')
+plt.hist(mbv2_flat_quant)
+plt.title('MBv2 conv 595 after 8-bit quant with absolute max/min range')
 
-# # generate histogram of results
-# counts, bins = np.histogram(mbv2_flat_quant)
-# pdf = scipy.interpolate.interp1d(
-#     bins[1:],
-#     counts,
-#     fill_value="extrapolate",
-#     kind='quadratic'
-#     )
+# generate histogram of results
+counts, bins = np.histogram(mbv2_flat_quant)
+pdf = scipy.interpolate.interp1d(
+    bins[1:],
+    counts,
+    fill_value="extrapolate",
+    kind='quadratic'
+    )
 
 vals = np.arange(-128,127)
 probs = np.zeros(255)
 
-# for i,val in enumerate(vals):
-#     probs[i] = pdf(val)
+for i,val in enumerate(vals):
+    probs[i] = pdf(val)
 
-# plt.plot(vals,probs,color='orange')
+plt.plot(vals,probs,color='orange')
 
-# # normalize probabilities to sum to 1 cuz they should
-# probs = probs/probs.sum()
-
-# # export probability distribution
-# np.save('mbv2_conv595_probs.npy', probs)
-
-# import probability distribution (sample and export once and import for faster benchmarking)
-probs = np.load('mbv2_conv595_probs.npy')
+# normalize probabilities to sum to 1 cuz they should
+probs = probs/probs.sum()
 
 random_weight_values = np.random.choice(vals,p=probs,size=NUMBER_OF_TEST_CASES)
 
@@ -102,7 +97,7 @@ random_act_values =  np.random.normal(
 activations = random_act_values
 weights = random_weight_values
 # print(f'weights: {weights}')
-# print(f'activation: {activations}')      
+# print(f'activation: {activations}')  
 
 ################### Temporary Test Cases to Match Testbench (REMOVE AFTER) ###################
 # activations = [15, 30, 42, 61, 89, 101, 124, 168, 180, 240]
@@ -372,6 +367,11 @@ for i in range(NUMBER_OF_TEST_CASES):
 #     print("Sum 4bx8b: ", sum4bx8b, '\n')
 #     print("Sum 8bx4b: ", sum8bx4b)
 
+##### (II.c.1) Delete some elements in the 2bx2b List that are gated
+if (level_1 == "Y"):
+    for i in range(NUMBER_OF_TEST_CASES + 1):
+        sum2b[i] = (np.delete(sum2b[i], (1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15))).tolist()
+
 ##### (II.d) Convert sum lists into their hex equivalent
 # https://stackoverflow.com/questions/12638408/decorating-hex-function-to-pad-zeros (used the implementation from karelv)
 # https://stackoverflow.com/questions/7822956/how-to-convert-negative-integer-value-to-hex-in-python
@@ -385,19 +385,27 @@ def sum_tohex_writefile_SA(filename:str, sum, NUMBER_OF_TEST_CASES, MODE):
     sum_file = open(filename, "w+")
     PADDING = "0"
 
-    register_width = 32 # 4-bits in Hex * 32 characters = 128-bits Hex Accumulator
+    # register_width = 32 # 4-bits in Hex * 32 characters = 128-bits Hex Accumulator
+
+    if (level_1 == "Y"):
+        register_width = 12 # 4-bits in Hex * 12 characters = 48-bits Hex Accumulator
+    else:
+        register_width = 32 # 4-bits in Hex * 32 characters = 128-bits Hex Accumulator
 
     if (MODE == '8bx8b'):
-        NUMBER_OF_PRODUCTS = 1
         sum_bitwidth = 20
-        # PADDING = "000000000000000000000000000"
+        NUMBER_OF_PRODUCTS = 1
     elif (MODE == '4bx4b'):
-        NUMBER_OF_PRODUCTS = 4
         sum_bitwidth = 12
-        # PADDING = "00000000000000000000"
+        NUMBER_OF_PRODUCTS = 4
     elif (MODE == '2bx2b'):
-        NUMBER_OF_PRODUCTS = 16
         sum_bitwidth = 8
+        # NUMBER_OF_PRODUCTS = 16
+
+        if (level_1 == "Y"):
+            NUMBER_OF_PRODUCTS = 4
+        else:
+            NUMBER_OF_PRODUCTS = 16
 
     for i in range(NUMBER_OF_TEST_CASES+1): # Add 1 to consider the 0 index where sum is reset
         sum_hex = ""
@@ -408,9 +416,12 @@ def sum_tohex_writefile_SA(filename:str, sum, NUMBER_OF_TEST_CASES, MODE):
             if (j == (NUMBER_OF_PRODUCTS-1)):
                 if (MODE == '8bx8b' or MODE == '4bx4b'):
                     # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
-                    sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                   
+                    sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
                 else:
-                    sum_file.write(sum_hex + "\n") 
+                    if (level_1 == "Y"):
+                        sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
+                    else:
+                        sum_file.write(sum_hex + "\n") 
                     
     sum_file.close()
 
@@ -472,7 +483,8 @@ def sum_tohex_writefile_ST(filename:str, sum_list, NUMBER_OF_TEST_CASES, MODE):
             sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
 
             # If testing baseline data-gated architecture, padding is added at the LSB or start
-            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")           
+            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")   
+
         # if (baseline == "Y"):
         #     if (MODE == '2bx4b' or MODE == '2bx8b'):
         #         # (2b/4b)x(2b/4b) and (2b/8b)x(2b/8b) have expected sum_bitwidths that are not divisible
@@ -495,8 +507,7 @@ def sum_tohex_writefile_ST(filename:str, sum_list, NUMBER_OF_TEST_CASES, MODE):
         # else:
         #     sum_hex = ""
         #     sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
-        #     # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
-        #     sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
+        #     sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
                     
     sum_file.close()
 

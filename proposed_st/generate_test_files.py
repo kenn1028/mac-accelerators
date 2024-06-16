@@ -15,7 +15,6 @@ sy = "Y"
 architecture = "ST"
 asymmetric = "N"
 baseline = "N"
-level_1 = "Y"
 
 # NUMBER_OF_TEST_CASES = int(input("Please input the number of test cases: "))
 # sx = str(input("Signed Input Activations? (Y/N): "))
@@ -143,22 +142,6 @@ for i in range(NUMBER_OF_TEST_CASES):
 # print("Input Activations (Binary):\n", activations_b)
 # print("Input Weights (Binary):\n", weights_b)
 
-#### (I.c.1) Create new list that gate the lower 2-bits of 4-bit inputs for 2bx2b 1-level MAC Operation
-if (level_1 == 'Y'):
-    l1_activations_b = activations_b.copy()
-    l1_weights_b = weights_b.copy()
-
-    for i in range(NUMBER_OF_TEST_CASES):
-
-        new_activation = list(activations_b[i])
-        new_weight = list(weights_b[i])
-
-        new_activation[2] = new_activation[3] = new_activation[6] = new_activation[7] = '0'
-        new_weight[2] = new_weight[3] = new_weight[6] = new_weight[7] = '0'
-
-        l1_activations_b[i] = ''.join(new_activation)
-        l1_weights_b[i] = ''.join(new_weight)
-
 ##### (I.d) Create test files for the input activations and weights
 a = open("test_activations.txt", "w+")
 w = open("test_weights.txt", "w+")
@@ -195,36 +178,20 @@ for i in range(NUMBER_OF_TEST_CASES):
     if  (sx == 'Y'):
         # Signed Integer Representation of Activations
         activations_4b.append( [ BitArray(bin = activations_b[i][k:k+4]).int for k in range(0, 8, 4) ])
-        
-        if (level_1 == "Y"):
-            activations_2b.append( [ BitArray(bin = l1_activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
-        else:
-            activations_2b.append( [ BitArray(bin = activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
+        activations_2b.append( [ BitArray(bin = activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
     else:
         # Unsigned Integer Representation of Activations
         activations_4b.append( [ int(activations_b[i][k:k+4], 2) for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            activations_2b.append( [ int(l1_activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
-        else:
-            activations_2b.append( [ int(activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
+        activations_2b.append( [ int(activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
 
     if (sy == 'Y'):
         # Signed Integer Representation of Weights
         weights_4b.append( [ BitArray(bin = weights_b[i][k:k+4]).int for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            weights_2b.append( [ BitArray(bin = l1_weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
-        else:
-            weights_2b.append( [ BitArray(bin = weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
+        weights_2b.append( [ BitArray(bin = weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
     else:
         # Unsigned Integer Representation of Weights
         weights_4b.append( [ int(weights_b[i][k:k+4], 2) for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            weights_2b.append( [ int(l1_weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
-        else:
-            weights_2b.append( [ int(weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
+        weights_2b.append( [ int(weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
 
 # print("\n4-bit Activations:\n", activations_4b)
 # print("4-bit Weights:\n", weights_4b, "\n")

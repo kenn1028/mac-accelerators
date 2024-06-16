@@ -1,21 +1,21 @@
 import random
 from bitstring import BitArray
+import numpy as np
 
 # Dependencies for MobileNet v2 Probability Distribution Extraction
 import numpy as np
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-# import scipy.interpolate
+import seaborn as sns
+import matplotlib.pyplot as plt
+import scipy.interpolate
 
 ############################ (I) TEST CASE GENERATION ############################
 
 NUMBER_OF_TEST_CASES = 51
 sx = "Y"
 sy = "Y"
-architecture = "ST"
+architecture = "SA"
 asymmetric = "N"
 baseline = "N"
-level_1 = "Y"
 
 # NUMBER_OF_TEST_CASES = int(input("Please input the number of test cases: "))
 # sx = str(input("Signed Input Activations? (Y/N): "))
@@ -48,47 +48,41 @@ weights = []
 #### Make sure to export a Weight Tensor with dimensions <96x1x3x3>
 #### Code Block courtesy of Sir Lawrence Quizon
 
-# def quantize(input,bits,range_low,range_high,zero):
-#     true_scale = (range_high-range_low)/(2**bits-1)
-#     return int(input/true_scale) - zero
+def quantize(input,bits,range_low,range_high,zero):
+    true_scale = (range_high-range_low)/(2**bits-1)
+    return int(input/true_scale) - zero
 
-# mbv2weights = np.load('mbv2_conv595.npy')
-# mbv2weights = mbv2weights.flatten()
+mbv2weights = np.load('mbv2_conv595.npy')
+mbv2weights = mbv2weights.flatten()
 
-# # flatten and quantize the weight matrix
-# range_low = min(mbv2weights)
-# range_high = max(mbv2weights)
-# vq = np.vectorize(quantize)
-# mbv2_flat_quant = vq(mbv2weights,8,range_low,range_high,0)
+# flatten and quantize the weight matrix
+range_low = min(mbv2weights)
+range_high = max(mbv2weights)
+vq = np.vectorize(quantize)
+mbv2_flat_quant = vq(mbv2weights,8,range_low,range_high,0)
 
-# plt.hist(mbv2_flat_quant)
-# plt.title('MBv2 conv 595 after 8-bit quant with absolute max/min range')
+plt.hist(mbv2_flat_quant)
+plt.title('MBv2 conv 595 after 8-bit quant with absolute max/min range')
 
-# # generate histogram of results
-# counts, bins = np.histogram(mbv2_flat_quant)
-# pdf = scipy.interpolate.interp1d(
-#     bins[1:],
-#     counts,
-#     fill_value="extrapolate",
-#     kind='quadratic'
-#     )
+# generate histogram of results
+counts, bins = np.histogram(mbv2_flat_quant)
+pdf = scipy.interpolate.interp1d(
+    bins[1:],
+    counts,
+    fill_value="extrapolate",
+    kind='quadratic'
+    )
 
 vals = np.arange(-128,127)
 probs = np.zeros(255)
 
-# for i,val in enumerate(vals):
-#     probs[i] = pdf(val)
+for i,val in enumerate(vals):
+    probs[i] = pdf(val)
 
-# plt.plot(vals,probs,color='orange')
+plt.plot(vals,probs,color='orange')
 
-# # normalize probabilities to sum to 1 cuz they should
-# probs = probs/probs.sum()
-
-# # export probability distribution
-# np.save('mbv2_conv595_probs.npy', probs)
-
-# import probability distribution (sample and export once and import for faster benchmarking)
-probs = np.load('mbv2_conv595_probs.npy')
+# normalize probabilities to sum to 1 cuz they should
+probs = probs/probs.sum()
 
 random_weight_values = np.random.choice(vals,p=probs,size=NUMBER_OF_TEST_CASES)
 
@@ -102,7 +96,7 @@ random_act_values =  np.random.normal(
 activations = random_act_values
 weights = random_weight_values
 # print(f'weights: {weights}')
-# print(f'activation: {activations}')      
+# print(f'activation: {activations}')  
 
 ################### Temporary Test Cases to Match Testbench (REMOVE AFTER) ###################
 # activations = [15, 30, 42, 61, 89, 101, 124, 168, 180, 240]
@@ -143,22 +137,6 @@ for i in range(NUMBER_OF_TEST_CASES):
 # print("Input Activations (Binary):\n", activations_b)
 # print("Input Weights (Binary):\n", weights_b)
 
-#### (I.c.1) Create new list that gate the lower 2-bits of 4-bit inputs for 2bx2b 1-level MAC Operation
-if (level_1 == 'Y'):
-    l1_activations_b = activations_b.copy()
-    l1_weights_b = weights_b.copy()
-
-    for i in range(NUMBER_OF_TEST_CASES):
-
-        new_activation = list(activations_b[i])
-        new_weight = list(weights_b[i])
-
-        new_activation[2] = new_activation[3] = new_activation[6] = new_activation[7] = '0'
-        new_weight[2] = new_weight[3] = new_weight[6] = new_weight[7] = '0'
-
-        l1_activations_b[i] = ''.join(new_activation)
-        l1_weights_b[i] = ''.join(new_weight)
-
 ##### (I.d) Create test files for the input activations and weights
 a = open("test_activations.txt", "w+")
 w = open("test_weights.txt", "w+")
@@ -195,36 +173,20 @@ for i in range(NUMBER_OF_TEST_CASES):
     if  (sx == 'Y'):
         # Signed Integer Representation of Activations
         activations_4b.append( [ BitArray(bin = activations_b[i][k:k+4]).int for k in range(0, 8, 4) ])
-        
-        if (level_1 == "Y"):
-            activations_2b.append( [ BitArray(bin = l1_activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
-        else:
-            activations_2b.append( [ BitArray(bin = activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
+        activations_2b.append( [ BitArray(bin = activations_b[i][k:k+2]).int for k in range(0, 8, 2) ])
     else:
         # Unsigned Integer Representation of Activations
         activations_4b.append( [ int(activations_b[i][k:k+4], 2) for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            activations_2b.append( [ int(l1_activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
-        else:
-            activations_2b.append( [ int(activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
+        activations_2b.append( [ int(activations_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
 
     if (sy == 'Y'):
         # Signed Integer Representation of Weights
         weights_4b.append( [ BitArray(bin = weights_b[i][k:k+4]).int for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            weights_2b.append( [ BitArray(bin = l1_weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
-        else:
-            weights_2b.append( [ BitArray(bin = weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
+        weights_2b.append( [ BitArray(bin = weights_b[i][k:k+2]).int for k in range(0, 8, 2) ])
     else:
         # Unsigned Integer Representation of Weights
         weights_4b.append( [ int(weights_b[i][k:k+4], 2) for k in range(0, 8, 4) ])
-
-        if (level_1 == "Y"):
-            weights_2b.append( [ int(l1_weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
-        else:
-            weights_2b.append( [ int(weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
+        weights_2b.append( [ int(weights_b[i][k:k+2], 2) for k in range(0, 8, 2) ])
 
 # print("\n4-bit Activations:\n", activations_4b)
 # print("4-bit Weights:\n", weights_4b, "\n")
@@ -408,7 +370,7 @@ def sum_tohex_writefile_SA(filename:str, sum, NUMBER_OF_TEST_CASES, MODE):
             if (j == (NUMBER_OF_PRODUCTS-1)):
                 if (MODE == '8bx8b' or MODE == '4bx4b'):
                     # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
-                    sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")                   
+                    sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
                 else:
                     sum_file.write(sum_hex + "\n") 
                     
@@ -472,7 +434,8 @@ def sum_tohex_writefile_ST(filename:str, sum_list, NUMBER_OF_TEST_CASES, MODE):
             sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
 
             # If testing baseline data-gated architecture, padding is added at the LSB or start
-            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")           
+            sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")   
+
         # if (baseline == "Y"):
         #     if (MODE == '2bx4b' or MODE == '2bx8b'):
         #         # (2b/4b)x(2b/4b) and (2b/8b)x(2b/8b) have expected sum_bitwidths that are not divisible
@@ -495,8 +458,7 @@ def sum_tohex_writefile_ST(filename:str, sum_list, NUMBER_OF_TEST_CASES, MODE):
         # else:
         #     sum_hex = ""
         #     sum_hex = sum_hex + str(tohex(sum(sum_list[i]), sum_bitwidth))
-        #     # sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
-        #     sum_file.write((sum_hex + PADDING*(register_width - len(sum_hex))) + "\n")
+        #     sum_file.write((PADDING*(register_width - len(sum_hex))) + sum_hex + "\n")
                     
     sum_file.close()
 
