@@ -58,7 +58,7 @@ integer sumtb_file, otb;
 integer sump_file, op; 
 integer count, count_sum;
 localparam NULL = 0;
-localparam CLK_PERIOD = 1490;
+localparam CLK_PERIOD = 2000;
 
 integer exec_time_counter;
 integer exec_time_file;
@@ -289,13 +289,13 @@ initial begin
     //     test_precision(_2bx2b, 8'd51);
     // end
 
-    // repeat (200) begin
-    //     test_precision(_4bx4b, 8'd51);
-    // end
-
     repeat (200) begin
-        test_precision(_8bx8b, 8'd51);
+        test_precision(_4bx4b, 8'd51);
     end
+
+    // repeat (200) begin
+    //     test_precision(_8bx8b, 8'd51);
+    // end
 
     // test_precision(_2bx4b, NUMBER_OF_TEST);
     // test_precision(_4bx2b, NUMBER_OF_TEST);

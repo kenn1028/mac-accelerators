@@ -1,6 +1,11 @@
 import random
 from bitstring import BitArray
+
+# Dependencies for MobileNet v2 Probability Distribution Extraction
 import numpy as np
+# import seaborn as sns
+# import matplotlib.pyplot as plt
+# import scipy.interpolate
 
 ############################ (I) TEST CASE GENERATION ############################
 
@@ -26,17 +31,77 @@ baseline = "N"
 activations = []
 weights = []
 
-##### (I.b) Generate random integers and append to list (for calculating the product before converting to hex)
-for i in range(NUMBER_OF_TEST_CASES):
-    if (sx == "Y"):
-        activations.append(np.random.randint(-128,127)) # Signed Activations
-    else:
-        activations.append(np.random.randint(0,255)) # Unsigned Activations
+##### (I.b.1) Generate Gaussian normal random integers and append to list (for calculating the product before converting to hex)
+# for i in range(NUMBER_OF_TEST_CASES):
+#     if (sx == "Y"):
+#         activations.append(random.randrange(-128,127)) # Signed Activations
+#     else:
+#         activations.append(random.randrange(0,255)) # Unsigned Activations
 
-    if (sy == "Y"):
-        weights.append(np.random.randint(-128,127)) # Signed Weights
-    else:
-        weights.append(np.random.randint(0,255)) # Unsigned Weights        
+#     if (sy == "Y"):
+#         weights.append(random.randrange(-128,127)) # Signed Weights
+#     else:
+#         weights.append(random.randrange(0,255)) # Unsigned Weights      
+
+##### (I.b.2) Extract probability distributions from actual TinyML Model (MobileNet v2) from any CONV operation from Netron (see: https://netron.app/?url=https://github.com/onnx/models/blob/main/Computer_Vision/mobilenetv2_050_Opset16_timm/mobilenetv2_050_Opset16.onnx)
+#### Make sure to export a Weight Tensor with dimensions <96x1x3x3>
+#### Code Block courtesy of Sir Lawrence Quizon
+
+# def quantize(input,bits,range_low,range_high,zero):
+#     true_scale = (range_high-range_low)/(2**bits-1)
+#     return int(input/true_scale) - zero
+
+# mbv2weights = np.load('mbv2_conv595.npy')
+# mbv2weights = mbv2weights.flatten()
+
+# # flatten and quantize the weight matrix
+# range_low = min(mbv2weights)
+# range_high = max(mbv2weights)
+# vq = np.vectorize(quantize)
+# mbv2_flat_quant = vq(mbv2weights,8,range_low,range_high,0)
+
+# plt.hist(mbv2_flat_quant)
+# plt.title('MBv2 conv 595 after 8-bit quant with absolute max/min range')
+
+# # generate histogram of results
+# counts, bins = np.histogram(mbv2_flat_quant)
+# pdf = scipy.interpolate.interp1d(
+#     bins[1:],
+#     counts,
+#     fill_value="extrapolate",
+#     kind='quadratic'
+#     )
+
+vals = np.arange(-128,127)
+probs = np.zeros(255)
+
+# for i,val in enumerate(vals):
+#     probs[i] = pdf(val)
+
+# plt.plot(vals,probs,color='orange')
+
+# # normalize probabilities to sum to 1 cuz they should
+# probs = probs/probs.sum()
+
+# # export probability distribution
+# np.save('mbv2_conv595_probs.npy', probs)
+
+# import probability distribution (sample and export once and import for faster benchmarking)
+probs = np.load('mbv2_conv595_probs.npy')
+
+random_weight_values = np.random.choice(vals,p=probs,size=NUMBER_OF_TEST_CASES)
+
+# activations in batchnormed models (like mbv2) are always gaussian
+random_act_values =  np.random.normal(
+    loc=0,
+    scale=128//3,
+    size=NUMBER_OF_TEST_CASES
+).astype(int).clip(-128, 127)
+
+activations = random_act_values
+weights = random_weight_values
+# print(f'weights: {weights}')
+# print(f'activation: {activations}')      
 
 ################### Temporary Test Cases to Match Testbench (REMOVE AFTER) ###################
 # activations = [15, 30, 42, 61, 89, 101, 124, 168, 180, 240]

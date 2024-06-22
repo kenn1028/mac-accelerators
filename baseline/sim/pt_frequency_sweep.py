@@ -116,8 +116,9 @@ for freq in freq_list:
             if any(word in lines.split() for word in keywords):
                 buffer.append(lines.split())
 
-        engine_power = float(buffer[1][-2])
-        fu_power = float(buffer[2][-2])
+        # Convert Synopsys PT Power from mW to Watts
+        engine_power = (float(buffer[1][-2])/1000)
+        fu_power = (float(buffer[2][-2])/1000)
 
         # Calculate Energy and Throughput
         energy = ((fu_power*exec_time)/20000)*(1E12) # in pJ

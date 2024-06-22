@@ -3,7 +3,7 @@ import csv
 import subprocess
 
 # Constants
-area = 874.872 # in um2
+area = 829.284 # in um2
 area_mm2 = area * (1/1000)**2 # in mm2
 
 # Filepaths/Commands
@@ -16,7 +16,7 @@ vcs_command = "vcs mac_engine_tb.sv ../mapped/mac_engine_mapped.v /cad/tools/lib
 # Generate Range of Frequencies to Sweep
 interval =    10000000 # 10 MHz
 start_freq = 500000000 # 500 MHz
-end_freq =   560000000 # 560 MHz
+end_freq =   550000000 # 560 MHz
 freq_list = list(range(start_freq, (end_freq + interval), interval))
 
 # Create CSV for Energy/Throughput Reports (https://www.freecodecamp.org/news/how-to-create-a-csv-file-in-python/)
